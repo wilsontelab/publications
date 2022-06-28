@@ -1,0 +1,113 @@
+
+---
+job-manager:
+    host: gl3091.arc-ts.umich.edu
+    started: Sun 05/22/22 09:18
+---
+pipeline: svx-mdi-tools/svCapture:v1.0.0
+description: "Characterize structural variant junctions in short-read, paired-end capture library(s)"
+suiteVersions:
+    genomex-mdi-tools: main
+execute: genotype
+thread: default
+nTasks: 1
+genotype:
+    genome:
+        genomes-dir:    /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/resources/genomes
+        genome:         hg38
+    bam-format:
+        use-cram:       true
+    read-filtering:
+        min-mapq:       20
+    variant-calling:
+        max-read-depth: 1000
+        ploidy:         2
+        min-variant-qual: 50
+        min-call-depth: 5
+    target-region:
+        targets-bed:    /nfs/turbo/umms-glover/data/svCapture/resources/capture_targets/HF1_capture_targets.hg38.bed
+        region-padding: 250000
+    genotype:
+        duplex-only:    1
+        haplotype-file: /nfs/turbo/umms-glover/publications/svCapture-2022/DupSeq/APH_populations/APH_populations.hg38.genotype.unphased_haplotypes.rds
+    output:
+        output-dir:     /nfs/turbo/umms-glover/publications/svCapture-2022/DupSeq
+        data-name:      mixed_clones
+    version:
+        version:        latest
+    resources:
+        runtime:        auto
+        n-cpu:          8
+        ram-per-cpu:    4G
+        tmp-dir:        /tmpssd
+        tmp-dir-large:  /scratch/wilsonte_root/wilsonte0/wilsonte
+    job-manager:
+        email:          nobody@nowhere.edu
+        account:        wilsonte0
+        time-limit:     24:00:00
+        partition:      standard
+    workflow:
+        force:          false
+        rollback:       null
+        quiet:          false
+    help:
+        help:           false
+        dry-run:        false
+    conda:
+        prefix: /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/environments/caf1cc422f 
+        channels:
+            - conda-forge
+            - bioconda
+            - defaults
+        dependencies:
+            - pigz=2.6
+            - bedtools=2.30.0
+            - samtools=1.15.1
+            - bcftools=1.15.1
+            - r-vcfr=1.12.0
+            - r-base=4.1.2
+            - r-essentials=4.1
+            - r-r.utils=2.11.0
+...
+ACTION	STEP#	STEP	DATE
+find	1	find	Sun May 22 01:55:38 EDT 2022
+find	2	manifest	Sun May 22 01:55:50 EDT 2022
+find	3	coverage	Sun May 22 01:55:50 EDT 2022
+
+setting sample mode
+  multiple
+
+executing: svCapture genotype, step 4 = find
+searching for SNVs and indels near called SV junctions
+loading unphased haplotype map
+loading and filtering structural variants
+loading junction molecules
+comparing junction sequence to source alleles
+writing SV summary table
+done
+
+writing Stage 2 package file for svCapture genotype
+/nfs/turbo/umms-glover/publications/svCapture-2022/DupSeq/mixed_clones/mixed_clones.svCapture.genotype.mdi.package.zip
+  adding: package.yml (deflated 66%)
+  adding: mixed_clones.hg38.find.structural_variants.rds (deflated 0%)
+  adding: mixed_clones.hg38.genotype.haplotype_comparisons.rds (deflated 4%)
+  adding: mixed_clones.svCapture.concatenatedLogs (stored 0%)
+  adding: mixed_clones.hg38.find.junction_molecules.rds (deflated 1%)
+  adding: mixed_clones.svCapture.status (deflated 48%)
+  adding: mixed_clones.hg38.manifest.distribution_plots.zip (stored 0%)
+  adding: mixed_clones.hg38.manifest.sample_manifest.csv (deflated 47%)
+  adding: mixed_clones.hg38.find.metadata.yml (deflated 43%)
+  adding: mixed_clones.hg38.find.target_regions.bed (deflated 42%)
+
+
+---
+job-manager:
+    exit_status: 0
+    walltime: 0:49.25
+    seconds: 49.25
+    maxvmem: 1467524K
+    swaps: 0
+---
+job-manager:
+    ended: Sun 05/22/22 09:19
+...

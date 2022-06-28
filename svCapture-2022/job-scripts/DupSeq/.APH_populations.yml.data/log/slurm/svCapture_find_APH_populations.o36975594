@@ -1,0 +1,144 @@
+
+---
+job-manager:
+    host: gl3112.arc-ts.umich.edu
+    started: Sun 05/22/22 03:44
+---
+pipeline: svx-mdi-tools/svCapture:v1.0.0
+description: "Characterize structural variant junctions in short-read, paired-end capture library(s)"
+suiteVersions:
+    genomex-mdi-tools: main
+execute: find
+thread: default
+nTasks: 1
+find:
+    genome:
+        genomes-dir:    /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/resources/genomes
+        genome:         hg38
+    read-merging:
+        min-merge-overlap: 5
+        min-merge-density: 0.8
+    sv-filtering:
+        min-mapq-one:   30
+        min-mapq-both:  20
+        min-sv-size:    1000
+        sv-size-factor: 0
+        purge-distance: 5
+        purge-limit:    100
+        min-coverage:   1
+        on-target:      1
+    target-region:
+        targets-bed:    /nfs/turbo/umms-glover/data/svCapture/resources/capture_targets/HF1_capture_targets.hg38.bed
+        region-padding: 250000
+    output:
+        output-dir:     /nfs/turbo/umms-glover/publications/svCapture-2022/DupSeq
+        data-name:      APH_populations
+    version:
+        version:        latest
+    resources:
+        runtime:        auto
+        n-cpu:          8
+        ram-per-cpu:    12G
+        tmp-dir:        /tmpssd
+        tmp-dir-large:  /scratch/wilsonte_root/wilsonte0/wilsonte
+    job-manager:
+        email:          nobody@nowhere.edu
+        account:        wilsonte0
+        time-limit:     4:00:00
+        partition:      standard
+    workflow:
+        force:          false
+        rollback:       null
+        quiet:          false
+    help:
+        help:           false
+        dry-run:        false
+    conda:
+        prefix: /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/environments/c26db3f746 
+        channels:
+            - conda-forge
+            - bioconda
+            - defaults
+        dependencies:
+            - pigz=2.6
+            - samtools=1.14
+            - bedtools=2.30.0
+            - r-base=4.1.2
+            - r-essentials=4.1
+            - r-r.utils=2.11.0
+...
+setting find mode
+  compare
+
+executing: svCapture find, step 1 = find
+collecting library stats
+aggregating junction molecules into SV calls
+initializing samples
+loading and parsing molecules
+applying SV size filter to junction molecules
+parsing junction continuity groups into SVs
+marking ambiguous source molecules
+aggregating source molecule duplicates
+assigning SV reference molecules
+collecting candidate matching outer clipped nodes
+  dna01332_1_0
+  dna01333_2_0
+  dna01334_3_0pt2
+  dna01336_5_0pt6
+  dna01337_6_0pt6
+attempting to merge gap junctions using clipped nodes
+purging invalid/untrustworthy clip evidence
+initializing genome sequence retrieval
+initializing target region parsing (if any)
+initializing target regions
+characterizing final SV junction calls
+counting SVs by sample
+setting SV molecule plot positions
+writing SV summary table
+writing molecule evidence table
+done
+
+executing: svCapture find, step 2 = manifest
+zipping distribution plots
+  adding: dna01332_1_0.family_sizes.png (deflated 10%)
+  adding: dna01332_1_0.insertSizes.png (deflated 7%)
+  adding: dna01333_2_0.family_sizes.png (deflated 10%)
+  adding: dna01333_2_0.insertSizes.png (deflated 7%)
+  adding: dna01334_3_0pt2.family_sizes.png (deflated 10%)
+  adding: dna01334_3_0pt2.insertSizes.png (deflated 8%)
+  adding: dna01336_5_0pt6.family_sizes.png (deflated 10%)
+  adding: dna01336_5_0pt6.insertSizes.png (deflated 8%)
+  adding: dna01337_6_0pt6.family_sizes.png (deflated 10%)
+  adding: dna01337_6_0pt6.insertSizes.png (deflated 8%)
+assembling sample manifest table
+loading sample metadata
+loading SV summary table
+writing sample manifest
+done
+
+executing: svCapture find, step 3 = coverage
+
+writing Stage 2 package file for svCapture find
+/nfs/turbo/umms-glover/publications/svCapture-2022/DupSeq/APH_populations/APH_populations.svCapture.find.mdi.package.zip
+  adding: APH_populations.hg38.manifest.distribution_plots.zip (stored 0%)
+  adding: package.yml (deflated 65%)
+  adding: APH_populations.svCapture.concatenatedLogs (stored 0%)
+  adding: APH_populations.hg38.manifest.sample_manifest.csv (deflated 50%)
+  adding: APH_populations.hg38.find.target_regions.bed (deflated 42%)
+  adding: APH_populations.hg38.find.structural_variants.rds (deflated 0%)
+  adding: APH_populations.hg38.find.junction_molecules.rds (deflated 1%)
+  adding: APH_populations.hg38.find.metadata.yml (deflated 44%)
+  adding: APH_populations.svCapture.status (deflated 46%)
+
+
+---
+job-manager:
+    exit_status: 0
+    walltime: 1:01:19
+    seconds: 3679.02
+    maxvmem: 7737636K
+    swaps: 0
+---
+job-manager:
+    ended: Sun 05/22/22 04:45
+...

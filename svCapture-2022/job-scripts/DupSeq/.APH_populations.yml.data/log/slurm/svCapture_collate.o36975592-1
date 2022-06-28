@@ -1,0 +1,161 @@
+
+---
+job-manager:
+    host: gl3029.arc-ts.umich.edu
+    started: Sat 05/21/22 18:10
+---
+pipeline: svx-mdi-tools/svCapture:v1.0.0
+description: "Characterize structural variant junctions in short-read, paired-end capture library(s)"
+suiteVersions:
+    genomex-mdi-tools: main
+execute: collate
+thread: default
+nTasks: 5
+collate:
+    genome:
+        genomes-dir:    /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/resources/genomes
+        genome:         hg38
+    name-bam-file:
+        bam-file:       null
+    bam-format:
+        use-cram:       true
+    illumina-type:
+        library-type:   TruSeq
+    read-filtering:
+        min-mapq:       20
+    read-merging:
+        min-merge-overlap: 5
+        min-merge-density: 0.8
+    grouping:
+        min-clip:       5
+        adjacency-limit: 1
+    consensus:
+        downsample-n:   11
+        min-sw-score-factor: 0.7
+        consensus-factor: 0.667
+    target-region:
+        targets-bed:    /nfs/turbo/umms-glover/data/svCapture/resources/capture_targets/HF1_capture_targets.hg38.bed
+        region-padding: 250000
+    output:
+        output-dir:     /nfs/turbo/umms-glover/publications/svCapture-2022/DupSeq/APH_populations
+        data-name:
+            - dna01332_1_0
+            - dna01333_2_0
+            - dna01334_3_0pt2
+            - dna01336_5_0pt6
+            - dna01337_6_0pt6
+    version:
+        version:        latest
+    resources:
+        runtime:        auto
+        n-cpu:          8
+        ram-per-cpu:    4G
+        tmp-dir:        /tmpssd
+        tmp-dir-large:  /scratch/wilsonte_root/wilsonte0/wilsonte
+    job-manager:
+        email:          nobody@nowhere.edu
+        account:        wilsonte0
+        time-limit:     24:00:00
+        partition:      standard
+    workflow:
+        force:          false
+        rollback:       null
+        quiet:          false
+    help:
+        help:           false
+        dry-run:        false
+    conda:
+        prefix: /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/environments/cb2130e3e1 
+        channels:
+            - conda-forge
+            - bioconda
+            - defaults
+        dependencies:
+            - pigz=2.6
+            - sra-tools=2.11.0
+            - fastp=0.23.2
+            - bwa=0.7.17
+            - samtools=1.14
+...
+---
+task:
+    task-id: 1
+    data-name: dna01332_1_0
+...
+ACTION	STEP#	STEP	DATE
+align	1	align	Sat May 21 17:10:35 EDT 2022
+
+alignment file: /nfs/turbo/umms-glover/publications/svCapture-2022/DupSeq/APH_populations/dna01332_1_0/dna01332_1_0.hg38.name.cram
+extracting READ_LEN
+READ_LEN = 142
+extracting MAX_TLEN
+MAX_TLEN = 922
+
+executing: svCapture collate, step 1 = group
+grouping read pairs to unique, consensus source molecules
+input bam: /nfs/turbo/umms-glover/publications/svCapture-2022/DupSeq/APH_populations/dna01332_1_0/dna01332_1_0.hg38.name.cram
+parse_bam	37279007	nQualityPairs_8	read pairs passed MAPQ 20 in thread 8
+parse_bam	37281158	nQualityPairs_7	read pairs passed MAPQ 20 in thread 7
+parse_bam	37280661	nQualityPairs_6	read pairs passed MAPQ 20 in thread 6
+parse_bam	37282121	nQualityPairs_5	read pairs passed MAPQ 20 in thread 5
+parse_bam	37281315	nQualityPairs_4	read pairs passed MAPQ 20 in thread 4
+parse_bam	37279652	nQualityPairs_3	read pairs passed MAPQ 20 in thread 3
+parse_bam	37280579	nQualityPairs_2	read pairs passed MAPQ 20 in thread 2
+parse_bam	37279761	nQualityPairs_1	read pairs passed MAPQ 20 in thread 1
+parse_bam	496802197	nInputAlns	input aligned segments over all read pairs
+parse_bam	305144145	nReadPairs	input read pairs
+group_reads	298244254	nInputReadPairs	input read pairs (one per line)
+group_reads	81826303	nOutputGroups	output molecule groups
+group_reads	298244254	nOutputReadPairs	read pairs in the output molecule groups
+make_consensus	10228287	nThreadMolecules-8	total molecules processed in thread 8
+make_consensus	4870922	nThreadMerged-8	molecules were merged in thread 8
+make_consensus	745000	nThreadDuplex-8	molecules were duplex in thread 8
+make_consensus	10228288	nThreadMolecules-7	total molecules processed in thread 7
+make_consensus	4869682	nThreadMerged-7	molecules were merged in thread 7
+make_consensus	746507	nThreadDuplex-7	molecules were duplex in thread 7
+make_consensus	10228288	nThreadMolecules-6	total molecules processed in thread 6
+make_consensus	4873665	nThreadMerged-6	molecules were merged in thread 6
+make_consensus	745227	nThreadDuplex-6	molecules were duplex in thread 6
+make_consensus	10228288	nThreadMolecules-5	total molecules processed in thread 5
+make_consensus	4872417	nThreadMerged-5	molecules were merged in thread 5
+make_consensus	745171	nThreadDuplex-5	molecules were duplex in thread 5
+make_consensus	10228288	nThreadMolecules-4	total molecules processed in thread 4
+make_consensus	4873249	nThreadMerged-4	molecules were merged in thread 4
+make_consensus	745890	nThreadDuplex-4	molecules were duplex in thread 4
+make_consensus	10228288	nThreadMolecules-3	total molecules processed in thread 3
+make_consensus	4871612	nThreadMerged-3	molecules were merged in thread 3
+make_consensus	745734	nThreadDuplex-3	molecules were duplex in thread 3
+make_consensus	10228288	nThreadMolecules-2	total molecules processed in thread 2
+make_consensus	4870984	nThreadMerged-2	molecules were merged in thread 2
+make_consensus	744561	nThreadDuplex-2	molecules were duplex in thread 2
+make_consensus	10228288	nThreadMolecules-1	total molecules processed in thread 1
+make_consensus	4869673	nThreadMerged-1	molecules were merged in thread 1
+make_consensus	744386	nThreadDuplex-1	molecules were duplex in thread 1
+make_consensus	298244254	nReadPairs	input read pairs
+make_consensus	596488508	nReads	input reads (nReadPairs * 2)
+make_consensus	81826303	nMolecules	input source DNA molecules
+done
+
+executing: svCapture collate, step 2 = realign
+re-aligning consensus reads to genome
+coverage	3	nRegions	target regions
+coverage	750001	sumTargetLens	total bp covered by target regions
+coverage	2250001	sumPaddedTargetLens	total bp covered by padded target regions
+coverage	2093634664	sumCoverage[TT]	number of bases covered in unpadded target regions
+coverage	22323491751	sumCoverage[--]	number of bases covered in off-target regions
+coverage	2791.509	foldCoverage[TT]	coverage depth in target regions
+coverage	7.233	foldCoverage[--]	coverage depth in off-target regions
+coverage	385.9	enrichment	foldCoverage[TT] / foldCoverage[--]
+done
+
+---
+job-manager:
+    exit_status: 0
+    walltime: 7:00:09
+    seconds: 25209.37
+    maxvmem: 27344940K
+    swaps: 0
+---
+job-manager:
+    ended: Sun 05/22/22 01:10
+...

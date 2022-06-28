@@ -1,0 +1,115 @@
+
+---
+job-manager:
+    host: gl3350.arc-ts.umich.edu
+    started: Sat 05/21/22 13:48
+#waiting for suite lock(s) to clear.....
+---
+pipeline: svx-mdi-tools/svCapture:v1.0.0
+description: "Characterize structural variant junctions in short-read, paired-end capture library(s)"
+suiteVersions:
+    genomex-mdi-tools: main
+execute: align
+thread: default
+nTasks: 5
+align:
+    fastq-input:
+        input-dir:      /nfs/turbo/path-wilsonte-turbo/globus_from_agc/NovaA-220/827-SA/NovaA-220/827-SA
+        input-name:
+            - Sample_827-SA-1
+            - Sample_827-SA-2
+            - Sample_827-SA-3
+            - Sample_827-SA-4
+            - Sample_827-SA-5
+    fixed-umi:
+        umi-file:       /nfs/turbo/umms-glover/data/svCapture/resources/UMIs/umis-96.v1.txt
+        umi-skip-bases: 1
+    trim-reads:
+        adapter-sequence: null
+        min-insert-size: 25
+    alignment:
+        force-alignment: false
+        bam-sort:       name
+    genome:
+        genomes-dir:    /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/resources/genomes
+        genome:         hg38
+    bam-format:
+        use-cram:       true
+    output:
+        output-dir:     /nfs/turbo/umms-glover/publications/svCapture-2022/DupSeq/APH_populations
+        data-name:
+            - dna01332_1_0
+            - dna01333_2_0
+            - dna01334_3_0pt2
+            - dna01336_5_0pt6
+            - dna01337_6_0pt6
+    version:
+        version:        latest
+    resources:
+        runtime:        auto
+        n-cpu:          16
+        ram-per-cpu:    4G
+        tmp-dir:        /tmpssd
+        tmp-dir-large:  /scratch/wilsonte_root/wilsonte0/wilsonte
+    job-manager:
+        email:          nobody@nowhere.edu
+        account:        wilsonte0
+        time-limit:     48:00:00
+        partition:      standard
+    workflow:
+        force:          false
+        rollback:       null
+        quiet:          false
+    help:
+        help:           false
+        dry-run:        false
+    conda:
+        prefix: /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/environments/cb2130e3e1 
+        channels:
+            - conda-forge
+            - bioconda
+            - defaults
+        dependencies:
+            - pigz=2.6
+            - sra-tools=2.11.0
+            - fastp=0.23.2
+            - bwa=0.7.17
+            - samtools=1.14
+...
+---
+task:
+    task-id: 3
+    input-name: Sample_827-SA-3
+    data-name: dna01334_3_0pt2
+...
+
+executing: svCapture align, step 1 = align
+aligning paired end reads to genome hg38 with pre-alignment merging
+  read length: 151
+  read #1 fastq files:
+    /nfs/turbo/path-wilsonte-turbo/globus_from_agc/NovaA-220/827-SA/NovaA-220/827-SA/Sample_827-SA-3/827-SA-3_CTAGTGGA-AGCCAGTT_S225_R1_001.fastq.gz
+  read #2 fastq files:
+    /nfs/turbo/path-wilsonte-turbo/globus_from_agc/NovaA-220/827-SA/NovaA-220/827-SA/Sample_827-SA-3/827-SA-3_CTAGTGGA-AGCCAGTT_S225_R2_001.fastq.gz
+  genome: /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/resources/genomes/iGenomes/Homo_sapiens/UCSC/hg38/Sequence/BWAIndex/genome.fa
+prepare_fastq	8	umiLen	fixed UMI length
+prepare_fastq	96	nExpectedUmi	expected UMI values
+prepare_fastq	3072	nAllowedUmi	allowed UMI values (up to 1 base mismatch from expected)
+prepare_fastq	336923807	nInputPairs	input read pairs
+prepare_fastq	326987167	nOutputPairs	output read pairs
+prepare_fastq	673847614	nInputReads	input reads
+prepare_fastq	655018180	nUmisExpected	reads matched an expected UMI exactly
+prepare_fastq	8818425	nUmisInferred	reads had a 1 base mismatch from an expected UMI
+prepare_fastq	10011009	nUmisFailed	reads failed UMI lookup
+done
+
+---
+job-manager:
+    exit_status: 0
+    walltime: 3:34:24
+    seconds: 12864.62
+    maxvmem: 21837456K
+    swaps: 0
+---
+job-manager:
+    ended: Sat 05/21/22 17:23
+...

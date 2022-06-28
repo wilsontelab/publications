@@ -1,0 +1,46 @@
+---
+variables:
+    WILSON:             wilsonte
+    COLLABORATOR:       glover
+    SLURM_ACCOUNT:      ${WILSON}0
+    TURBO_DIR:          /nfs/turbo
+    WILSON_TURBO:       ${TURBO_DIR}/path-${WILSON}-turbo
+    COLLABORATOR_TURBO: ${TURBO_DIR}/umms-${COLLABORATOR}
+    RESOURCES_DIR:      ${COLLABORATOR_TURBO}/data/${PIPELINE_NAME}/resources
+    PUB_OUTPUT_DIR:     ${COLLABORATOR_TURBO}/publications/${PIPELINE_NAME}-2022
+    GENOME:             hg38
+
+shared:
+    resources: 
+        tmp-dir-large:      /scratch/${WILSON}_root/${SLURM_ACCOUNT}/${USER}
+    job-manager:
+        account:            ${SLURM_ACCOUNT}
+    genomex-mdi-tools//genome:
+        genome:             ${GENOME}
+    genomex-mdi-tools//bam-format:
+        use-cram:           true
+    genomex-mdi-tools//target-region:
+        targets-bed:        ${RESOURCES_DIR}/capture_targets/HF1_capture_targets.${GENOME}.bed
+        region-padding:     250000
+
+    # most of the following values are pipeline defaults
+    genomex-mdi-tools//read-filtering:
+        min-mapq:           20        
+    genomex-mdi-tools//read-merging:
+        min-merge-overlap:  5
+        min-merge-density:  0.8
+    grouping:
+        min-clip:           5
+        adjacency-limit:    1
+    consensus:
+        downsample-n:       11
+        min-sw-score-factor: 0.7
+        consensus-factor:   0.667 
+    svx-mdi-tools//sv-filtering:
+        min-mapq-one:       30
+        min-mapq-both:      20
+        min-clip:           5
+        min-sv-size:        1000
+        purge-distance:     5
+        split-allowance:    5
+        on-target:          1

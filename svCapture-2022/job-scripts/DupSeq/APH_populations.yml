@@ -1,0 +1,47 @@
+---
+pipeline: svx-mdi-tools/svCapture:latest
+
+variables:
+    PROJECT:        APH_populations
+    PROJECT_DIR:    ${PROJECTS_DIR}/${PROJECT}
+    AGC_RUN:        NovaA-220
+    AGC_PROJECT_ID: 827-SA
+
+# actions align through extract run at sample level
+shared:
+    output:
+        output-dir: ${PROJECT_DIR}
+        data-name:
+            - dna01332_1_0      # untreated rep. 1
+            - dna01333_2_0      # untreated rep. 2
+            - dna01334_3_0pt2   # 0.2 uM APH, rep. 1
+            - dna01336_5_0pt6   # 0.6 uM APH, rep. 1
+            - dna01337_6_0pt6   # 0.6 uM APH, rep. 2
+align:
+    genomex-mdi-tools//fastq-input: 
+        input-dir: ${WILSON_TURBO}/globus_from_agc/${AGC_RUN}/${AGC_PROJECT_ID}/${AGC_RUN}/${AGC_PROJECT_ID}
+        input-name:
+            - Sample_827-SA-1
+            - Sample_827-SA-2
+            - Sample_827-SA-3
+            - Sample_827-SA-4
+            - Sample_827-SA-5  
+
+# find and genotype actions run at project level for inter-sample comparisons
+find:
+    output:
+        output-dir:     ${PROJECTS_DIR}
+        data-name:      ${PROJECT}
+    resources:
+        ram-per-cpu:    12G
+genotype:
+    output:
+        output-dir:     ${PROJECTS_DIR}
+        data-name:      ${PROJECT}
+
+execute:
+    - align
+    - collate
+    - extract
+    - find
+    - genotype

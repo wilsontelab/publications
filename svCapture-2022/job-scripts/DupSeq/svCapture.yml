@@ -1,0 +1,11 @@
+---
+variables:
+    PROJECTS_DIR:  ${PUB_OUTPUT_DIR}/DupSeq
+shared:
+    genomex-mdi-tools//fixed-umi:
+        umi-file:       ${RESOURCES_DIR}/UMIs/umis-96.v1.txt
+        umi-skip-bases: 1  # the TruSeq A-tail
+    genomex-mdi-tools//illumina-type:
+        library-type:       TruSeq
+    genotype:
+        duplex-only:        true

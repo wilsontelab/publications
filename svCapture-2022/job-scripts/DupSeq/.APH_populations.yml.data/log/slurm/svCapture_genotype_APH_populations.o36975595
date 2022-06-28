@@ -1,0 +1,160 @@
+
+---
+job-manager:
+    host: gl3072.arc-ts.umich.edu
+    started: Sun 05/22/22 04:45
+---
+pipeline: svx-mdi-tools/svCapture:v1.0.0
+description: "Characterize structural variant junctions in short-read, paired-end capture library(s)"
+suiteVersions:
+    genomex-mdi-tools: main
+execute: genotype
+thread: default
+nTasks: 1
+genotype:
+    genome:
+        genomes-dir:    /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/resources/genomes
+        genome:         hg38
+    bam-format:
+        use-cram:       true
+    read-filtering:
+        min-mapq:       20
+    variant-calling:
+        max-read-depth: 1000
+        ploidy:         2
+        min-variant-qual: 50
+        min-call-depth: 5
+    target-region:
+        targets-bed:    /nfs/turbo/umms-glover/data/svCapture/resources/capture_targets/HF1_capture_targets.hg38.bed
+        region-padding: 250000
+    genotype:
+        duplex-only:    1
+        haplotype-file: null
+    output:
+        output-dir:     /nfs/turbo/umms-glover/publications/svCapture-2022/DupSeq
+        data-name:      APH_populations
+    version:
+        version:        latest
+    resources:
+        runtime:        auto
+        n-cpu:          8
+        ram-per-cpu:    4G
+        tmp-dir:        /tmpssd
+        tmp-dir-large:  /scratch/wilsonte_root/wilsonte0/wilsonte
+    job-manager:
+        email:          nobody@nowhere.edu
+        account:        wilsonte0
+        time-limit:     24:00:00
+        partition:      standard
+    workflow:
+        force:          false
+        rollback:       null
+        quiet:          false
+    help:
+        help:           false
+        dry-run:        false
+    conda:
+        prefix: /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/environments/caf1cc422f 
+        channels:
+            - conda-forge
+            - bioconda
+            - defaults
+        dependencies:
+            - pigz=2.6
+            - bedtools=2.30.0
+            - samtools=1.15.1
+            - bcftools=1.15.1
+            - r-vcfr=1.12.0
+            - r-base=4.1.2
+            - r-essentials=4.1
+            - r-r.utils=2.11.0
+...
+ACTION	STEP#	STEP	DATE
+find	1	find	Sun May 22 04:44:43 EDT 2022
+find	2	manifest	Sun May 22 04:45:08 EDT 2022
+find	3	coverage	Sun May 22 04:45:08 EDT 2022
+
+setting sample mode
+  multiple
+
+executing: svCapture genotype, step 1 = sort
+sorting: dna01332_1_0/dna01332_1_0.hg38.name.realigned.cram
+[bam_sort_core] merging from 16 files and 8 in-memory blocks...
+sorting: dna01333_2_0/dna01333_2_0.hg38.name.realigned.cram
+[bam_sort_core] merging from 16 files and 8 in-memory blocks...
+sorting: dna01334_3_0pt2/dna01334_3_0pt2.hg38.name.realigned.cram
+[bam_sort_core] merging from 16 files and 8 in-memory blocks...
+sorting: dna01336_5_0pt6/dna01336_5_0pt6.hg38.name.realigned.cram
+[bam_sort_core] merging from 16 files and 8 in-memory blocks...
+sorting: dna01337_6_0pt6/dna01337_6_0pt6.hg38.name.realigned.cram
+[bam_sort_core] merging from 8 files and 8 in-memory blocks...
+done
+
+executing: svCapture genotype, step 2 = genotype
+finding constitutive SNVs and indels in padded target regions
+[mpileup] 1 samples in 1 input files
+[mpileup] maximum number of reads per input file set to -d 1000
+Lines   total/split/realigned/skipped:	2123175/0/678/0
+done
+
+executing: svCapture genotype, step 3 = build
+assembling genotype calls into constitutive base values per target position
+
+   *****       ***   vcfR   ***       *****
+   This is vcfR 1.12.0 
+     browseVignettes('vcfR') # Documentation
+     citation('vcfR') # Citation
+   *****       *****      *****       *****
+
+loading target regions
+initializing target regions
+loading genome reference sequence
+filling allele map with reference bases
+loading VCF file
+Extracting gt element PL
+Extracting gt element GT
+parsing VCF file
+recording base informativity in allele map
+filtering low quality allelic variants
+parsing allele values
+filling allele values into map
+   HAP1
+   HAP2
+writing SV summary table
+done
+
+executing: svCapture genotype, step 4 = find
+searching for SNVs and indels near called SV junctions
+loading unphased haplotype map
+loading and filtering structural variants
+loading junction molecules
+comparing junction sequence to source alleles
+writing SV summary table
+done
+
+writing Stage 2 package file for svCapture genotype
+/nfs/turbo/umms-glover/publications/svCapture-2022/DupSeq/APH_populations/APH_populations.svCapture.genotype.mdi.package.zip
+  adding: APH_populations.hg38.manifest.distribution_plots.zip (stored 0%)
+  adding: package.yml (deflated 66%)
+  adding: APH_populations.svCapture.concatenatedLogs (stored 0%)
+  adding: APH_populations.hg38.manifest.sample_manifest.csv (deflated 50%)
+  adding: APH_populations.hg38.find.target_regions.bed (deflated 42%)
+  adding: APH_populations.hg38.find.structural_variants.rds (deflated 0%)
+  adding: APH_populations.hg38.find.junction_molecules.rds (deflated 1%)
+  adding: APH_populations.hg38.find.metadata.yml (deflated 44%)
+  adding: APH_populations.hg38.genotype.haplotype_comparisons.rds (deflated 3%)
+  adding: APH_populations.svCapture.status (deflated 58%)
+  adding: APH_populations.hg38.genotype.unphased_haplotypes.rds (deflated 59%)
+
+
+---
+job-manager:
+    exit_status: 0
+    walltime: 29:11.12
+    seconds: 1751.12
+    maxvmem: 29247212K
+    swaps: 0
+---
+job-manager:
+    ended: Sun 05/22/22 05:14
+...

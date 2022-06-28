@@ -1,0 +1,48 @@
+---
+pipeline: svx-mdi-tools/svCapture:latest
+
+variables:
+    PROJECT:        tagmentation
+    PROJECT_DIR:    ${PROJECTS_DIR}/${PROJECT}
+    AGC_RUN:        NovaA-276
+    AGC_PROJECT_ID: 1084-PB
+
+    # use haplotype calls from phase III to avoid clone SNVs from being called as source SNPs
+    REFERENCE_PROJECT:      APH_populations
+    REFERENCE_PROJECT_DIR:  ${PROJECTS_DIR}/../DupSeq/${REFERENCE_PROJECT}
+    HAPLOTYPE_FILE:         ${REFERENCE_PROJECT_DIR}/${REFERENCE_PROJECT}.${GENOME}.genotype.unphased_haplotypes.rds
+
+# actions align through extract run at sample level
+shared:
+    output:
+        output-dir: ${PROJECT_DIR}
+        data-name:
+            - dna01332_1_0      # untreated rep. 1
+            - dna01336_5_0pt6   # 0.6 uM APH, rep. 1
+            - dna00758_B        # 10% clones                
+align:
+    genomex-mdi-tools//fastq-input: 
+        input-dir: ${WILSON_TURBO}/globus_from_agc/${AGC_RUN}/${AGC_PROJECT_ID}
+        input-name:
+            - Sample_1084-PB-1
+            - Sample_1084-PB-2
+            - Sample_1084-PB-3 
+
+# find and genotype actions run at project level for inter-sample comparisons
+find:
+    output:
+        output-dir:     ${PROJECTS_DIR}
+        data-name:      ${PROJECT}
+genotype:
+    output:
+        output-dir:     ${PROJECTS_DIR}
+        data-name:      ${PROJECT}
+    genotype:
+        haplotype-file: ${HAPLOTYPE_FILE}
+
+execute:
+    - align
+    - collate
+    - extract
+    - find
+    - genotype

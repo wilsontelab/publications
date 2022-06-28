@@ -1,0 +1,53 @@
+---
+pipeline: svx-mdi-tools/svCapture:latest
+
+variables:
+    PROJECT:      mixed_clones
+    PROJECT_DIR:  ${PROJECTS_DIR}/${PROJECT}
+    AGC_RUN:      Run_3092_wilson
+
+    # use haplotype calls from phase III to avoid clone SNVs from being called as source SNPs
+    REFERENCE_PROJECT:      APH_populations
+    REFERENCE_PROJECT_DIR:  ${PROJECTS_DIR}/${REFERENCE_PROJECT}
+    HAPLOTYPE_FILE:         ${REFERENCE_PROJECT_DIR}/${REFERENCE_PROJECT}.${GENOME}.genotype.unphased_haplotypes.rds
+
+# actions align through extract run at sample level
+shared:
+    output:
+        output-dir: ${PROJECT_DIR}
+        data-name:
+            - dna00757_A    # HF1 cell line
+            - dna00758_B    # 10% clones
+            - dna00759_C    # 1% clones
+            - dna00760_D    # var.% clones
+            - dna00761_E    # ?% clones (blinded)                  
+align:
+    genomex-mdi-tools//fastq-input: 
+        input-dir: ${WILSON_TURBO}/${AGC_RUN}/wilson
+        input-name:
+            - Sample_138413
+            - Sample_138414
+            - Sample_138415
+            - Sample_138416
+            - Sample_138417    
+
+# find and genotype actions run at project level for inter-sample comparisons
+find:
+    output:
+        output-dir:     ${PROJECTS_DIR}
+        data-name:      ${PROJECT}
+    resources:
+        ram-per-cpu:    12G
+genotype:
+    output:
+        output-dir:     ${PROJECTS_DIR}
+        data-name:      ${PROJECT}
+    genotype:
+        haplotype-file: ${HAPLOTYPE_FILE}
+
+execute:
+    - align
+    - collate
+    - extract
+    - find
+    - genotype
