@@ -2,7 +2,7 @@
 
 Folder svCapture-2022 carries the job configuration scripts, log file outputs,
 and other data resources related to 
-[Wilson et al. 2022](),
+[Wilson et al. 2022](https://www.biorxiv.org/content/10.1101/2022.07.07.497948v1),
 which describes the implementation and validation of error minimization 
 approaches for structural variant (SV) detection in short-read capture libraries.
 
@@ -10,7 +10,7 @@ approaches for structural variant (SV) detection in short-read capture libraries
 
 For more information, please see:
 
-- [citation pending]()
+- <https://www.biorxiv.org/content/10.1101/2022.07.07.497948v1>
 
 ## Michigan Data Interface svx-mdi-tools suite
 
