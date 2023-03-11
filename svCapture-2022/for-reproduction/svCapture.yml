@@ -1,0 +1,46 @@
+---
+
+# this environment configuration file sets values used by all reproductions job scripts
+
+variables:
+    # by default, reproduction job files operate entirely within the publications/svCapture-2022 folder
+    # please adjust these paths as needed to match a different installation configuration
+    SRA_DIR:        ${PWD}/../../sra # download SRR files from SRA into directory 'sra'
+    RESOURCES_DIR:  ${PWD}/../../resources
+    OUTPUT_DIR:     ${PWD}/../../output
+    GENOMES_DIR:    ${PWD}/../../genomes
+    GENOME:         hg38
+
+shared:
+
+    # genome information and associated options
+    genomex-mdi-tools//genome:
+        genomes-dir:        ${GENOMES_DIR}
+        genome:             ${GENOME}
+    genomex-mdi-tools//bam-format:
+        use-cram:           true
+    genomex-mdi-tools//target-region:
+        targets-bed:        ${RESOURCES_DIR}/HF1_capture_targets.${GENOME}.bed
+        region-padding:     250000
+
+    # most of the following values are pipeline defaults, repeated here for clarity
+    genomex-mdi-tools//read-filtering:
+        min-mapq:           20        
+    genomex-mdi-tools//read-merging:
+        min-merge-overlap:  5
+        min-merge-density:  0.8
+    grouping:
+        min-clip:           5
+        adjacency-limit:    1
+    consensus:
+        downsample-n:       11
+        min-sw-score-factor: 0.7
+        consensus-factor:   0.667 
+    svx-mdi-tools//sv-filtering:
+        min-mapq-one:       30
+        min-mapq-both:      20
+        min-clip:           5
+        min-sv-size:        1000
+        purge-distance:     5
+        split-allowance:    5
+        on-target:          1

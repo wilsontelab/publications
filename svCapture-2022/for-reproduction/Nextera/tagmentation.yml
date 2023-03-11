@@ -1,0 +1,35 @@
+---
+pipeline: svx-mdi-tools/svCapture:latest
+
+# this project files analyzes all Nextera samples, which were run together
+variables:
+    PROJECT:      tagmentation
+    PROJECT_DIR:  ${OUTPUT_DIR}/${PROJECT}
+
+# actions align through extract are run at sample level
+shared:
+    output:
+        output-dir: ${PROJECT_DIR}
+        data-name:
+            - dna01332_1_0      # untreated rep. 1
+            - dna01336_5_0pt6   # 0.6 uM APH, rep. 1
+            - dna00758_B        # 10% clones                
+align:
+    genomex-mdi-tools//fastq-input: 
+        input-dir: ${SRA_DIR}
+        input-name:
+            - SRR22419722
+            - SRR22419723        
+            - SRR22419724
+
+# find action is run at project level for inter-sample comparisons
+find:
+    output:
+        output-dir:     ${OUTPUT_DIR}
+        data-name:      ${PROJECT}
+
+execute:
+    - align
+    - collate
+    - extract
+    - find

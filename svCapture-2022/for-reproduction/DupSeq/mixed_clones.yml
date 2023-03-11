@@ -1,0 +1,41 @@
+---
+pipeline: svx-mdi-tools/svCapture:latest
+
+# this project files analyzes the DupSeq mixed clone samples, which were run together
+variables:
+    PROJECT:      DupSeq_mixed_clones
+    PROJECT_DIR:  ${OUTPUT_DIR}/${PROJECT}
+
+# actions align through extract are run at sample level
+shared:
+    output:
+        output-dir: ${PROJECT_DIR}
+        data-name:
+            - dna00757_A    # HF1 cell line
+            - dna00758_B    # 10% clones
+            - dna00759_C    # 1% clones
+            - dna00760_D    # var.% clones
+            - dna00761_E    # ?% clones (blinded)                  
+align:
+    genomex-mdi-tools//fastq-input: 
+        input-dir: ${SRA_DIR}
+        input-name:
+            - SRR22419712
+            - SRR22419713
+            - SRR22419714
+            - SRR22419715
+            - SRR22419716    
+
+# find action is run at project level for inter-sample comparisons
+find:
+    output:
+        output-dir:     ${OUTPUT_DIR}
+        data-name:      ${PROJECT}
+    resources:
+        ram-per-cpu:    12G
+
+execute:
+    - align
+    - collate
+    - extract
+    - find

@@ -1,0 +1,41 @@
+---
+pipeline: svx-mdi-tools/svCapture:latest
+
+# this project files analyzes the DupSeq APH populations, which were run together
+variables:
+    PROJECT:      DupSeq_APH_populations
+    PROJECT_DIR:  ${OUTPUT_DIR}/${PROJECT}
+
+# actions align through extract are run at sample level
+shared:
+    output:
+        output-dir: ${PROJECT_DIR}
+        data-name:
+            - dna01332_1_0      # untreated rep. 1
+            - dna01333_2_0      # untreated rep. 2
+            - dna01334_3_0pt2   # 0.2 uM APH, rep. 1
+            - dna01336_5_0pt6   # 0.6 uM APH, rep. 1
+            - dna01337_6_0pt6   # 0.6 uM APH, rep. 2
+align:
+    genomex-mdi-tools//fastq-input: 
+        input-dir: ${SRA_DIR}
+        input-name:
+            - SRR22419717
+            - SRR22419718
+            - SRR22419719
+            - SRR22419720
+            - SRR22419721
+
+# find action is run at project level for inter-sample comparisons
+find:
+    output:
+        output-dir:     ${OUTPUT_DIR}
+        data-name:      ${PROJECT}
+    resources:
+        ram-per-cpu:    12G
+
+execute:
+    - align
+    - collate
+    - extract
+    - find

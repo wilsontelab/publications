@@ -1,0 +1,12 @@
+---
+
+# this environment configuration file sets values used by all DupSeq job scripts
+
+shared:
+    genomex-mdi-tools//fixed-umi:
+        umi-file:       ${RESOURCES_DIR}/umis-96.v1.txt
+        umi-skip-bases: 1  # the TruSeq A-tail
+    genomex-mdi-tools//illumina-type:
+        library-type:       TruSeq
+    genotype:
+        duplex-only:        true

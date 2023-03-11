@@ -1,0 +1,11 @@
+---
+
+# this environment configuration file sets values used by all Nextera job scripts
+
+shared:
+    genomex-mdi-tools//illumina-type:
+        library-type:       Nextera
+    genomex-mdi-tools//trim-reads:
+        adapter-sequence:   CTGTCTCTTATACACATCT
+    genotype:
+        duplex-only:        false

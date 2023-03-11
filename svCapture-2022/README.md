@@ -1,43 +1,76 @@
 ## svCapture-2022
 
-Folder svCapture-2022 carries the job configuration scripts, log file outputs,
+Folder svCapture-2022 carries job configuration scripts, log file outputs,
 and other data resources related to 
 [Wilson et al. 2022](https://www.biorxiv.org/content/10.1101/2022.07.07.497948v1),
 which describes the implementation and validation of error minimization 
 approaches for structural variant (SV) detection in short-read capture libraries.
 
+Sufficient materials are provided to reproduce analysis of the reported data sets.
+
+Depending on your needs, you may find it easier to use the simpler 
+[svCapture demo](https://wilsontelab.github.io/svx-mdi-tools/docs/svCapture/toy-example.html).
+
 ## Source publication
 
-For more information, please see:
+For more information, please see and cite:
 
 - <https://www.biorxiv.org/content/10.1101/2022.07.07.497948v1>
 
-## Michigan Data Interface svx-mdi-tools suite
+## Associated sequencing data sets
 
-### svCapture pipeline
+The sequencing data sets in the above publication are available via SRA and summarized in the table below:
+- <https://www.ncbi.nlm.nih.gov/sra?LinkName=gap_sra_all&from_uid=2297510>
 
-Job scripts were written for, and executed by, the svCapture pipeline
-available in the 
-[svx-mdi-tools](https://github.com/wilsontelab/svx-mdi-tools)
-software suite of the 
-[Michigan Data Interface](https://github.com/MiDataInt) (MDI),
-which makes use of genomics modules found in suite 
-[genomex-mdi-tools](https://github.com/wilsontelab/genomex-mdi-tools).
+These are restricted access human samples for which you 
+will need download permissions from dbGaP (click on an SRR file in SRA to learn more).
 
-Please click on the links above to learn how to install
-and use the MDI, the svCapture pipeline, and other svx and genomex tools.
+For reproduction purposes, please download the SRR files into the **sra** directory after cloning this repository.
 
-### svCapture app
+|SRA_Run_ID  |Description                                                                  |
+|------------|-----------------------------------------------------------------------------|
+|SRR22419712 |DupSeq svCapture of the human HF1 cell line                                  |
+|SRR22419713 |DupSeq svCapture of a mixture of clones of the human HF1 cell line, mix B    |
+|SRR22419714 |DupSeq svCapture of a mixture of clones of the human HF1 cell line, mix C    |
+|SRR22419715 |DupSeq svCapture of a mixture of clones of the human HF1 cell line, mix D    |
+|SRR22419716 |DupSeq svCapture of a mixture of clones of the human HF1 cell line, mix E    |
+|SRR22419717 |DupSeq svCapture of the human HF1 cell line, untreated, replicate 1          |
+|SRR22419718 |DupSeq svCapture of the human HF1 cell line, untreated, replicate 2          |
+|SRR22419719 |DupSeq svCapture of the human HF1 cell line, 0.2 uM aphidicolin, replicate 1 |
+|SRR22419720 |DupSeq svCapture of the human HF1 cell line, 0.6 uM aphidicolin, replicate 1 |
+|SRR22419721 |DupSeq svCapture of the human HF1 cell line, 0.6 uM aphidicolin, replicate 2 |
+|SRR22419722 |Nextera svCapture of the human HF1 cell line, untreated, replicate 1         |
+|SRR22419723 |Nextera svCapture of the human HF1 cell line, 0.6 uM aphidicolin, replicate 1|
+|SRR22419724 |Nextera svCapture of a mixture of clones of the human HF1 cell line, mix B   |
 
-The svCapture pipeline creates output files that are packaged into a zip
-file suitable for loading into the associated svCapture R Shiny app, also
-found in the 
-[svx-mdi-tools](https://github.com/wilsontelab/svx-mdi-tools)
-software suite.
+## Required code suite and genome files
 
-## Job configuration scripts
+The svCapture pipeline and app are implemented in this Michigan Data Interface tool suite:
+- repository: <https://github.com/wilsontelab/svx-mdi-tools>
+- documentation: <https://wilsontelab.github.io/svx-mdi-tools>
 
-The **job-scripts** folder has subfolders for Duplex Sequencing (DupSeq)
+To reproduce our data analysis, please follow the documentation instructions to install the required code and hg38 genome. Job scripts below
+assume you have installed hg38 into the **genomes** folder.
+
+## Resource files
+
+The **resources** folder has additional required supporting data files:
+
+| File        | Description |
+| ----------- | ----------- |
+| umis-96-v1.txt      | DupSeq UMI file used by the 'align' action       |
+| HF1_capture_targets.hg38.bed   | the three 250kb regions target for capture        |
+| (un)blinded_cnvs.hg38.bed   | the known HF1 CNVs in mixed_clone samples        |
+
+The easiest way to use these files is to clone this repository and run its reproduction scripts, as described below.
+
+## Work jobs as we ran them
+
+This section summarizes the job configuration files and output logs as we ran them for the work reported in the paper.
+
+### Job configuration scripts
+
+Folder **our-job-files/job-scripts** has subfolders for Duplex Sequencing (DupSeq)
 and tagmentation (Nextera), which each carry YAML-format job
 configuration scripts for the following sample sets:
 
@@ -49,13 +82,9 @@ This folder and the DupSeq and Nextera folders additionally carry files
 named **svCapture.yml** that provide environment-level parameters for 
 job configuration.
 
-The YAML files can be directly inspected for option values,
-or you can install the MDI and svx tools as described above to read them
-or adapt them to your needs.
+### Job output logs
 
-## Job output logs
-
-The **composite-logs** folder carries terminal files that are the 
+Folder **our-job-files/composite-logs** carries terminal files that are the 
 results of running:
 
 ```
@@ -64,15 +93,49 @@ mdi <name>.yml report -j all > <name>.report_all.txt
 
 on each job configuration script, that thereby carry all of the primary
 pipeline job logs. You can execute the same command (and more) if you 
-clone this repository and install the MDI and svx tools as described above.
+clone this repository and install the required code.
 
 Information found in the log files includes software versions in use
 and various output statistics.
 
-## Resource files
+## Reproducing the analysis on your system
 
-The **resources** folder has additional supporting data files:
+Folder **for-reproduction** has job scripts you can use to repeat 
+analysis of our data sets on your system.
 
-- **umis-96-v1.txt** = DupSeq UMI file used by the 'align' action
-- **HF1_capture_targets.hg38.bed** = the three 250kb regions target for capture
-- **(un)blinded_cnvs.hg38.bed** = the known HF1 CNVs in mixed_clone samples
+First, clone this repository and change to the project folder:
+
+```sh
+git clone https://github.com/wilsontelab/publications.git
+cd publications/svCapture-2022
+```
+
+Next, install the svx-mdi-tools suite and hg38 iGenome following the documentation
+in the links provided above. 
+
+Commands below assume you:
+- created an alias or PATH variable to the `mdi` command utility
+- installed the hg38 genome into the **genomes** folder
+- downloaded the SRR sequence files into the **sra** folder. 
+
+Please adjust  commands as needed if you chose different installation/download options.
+
+The following commands will execute the 'DupSeq_mixed_clones' analysis.
+Minor modifications will similarly execute the 'DupSeq_APH_populations'
+and 'tagmentation' analyses.
+
+```sh
+cd for-reproduction/DupSeq
+
+# explore the job script and its options
+cat mixed_clones.yml
+mdi inspect mixed_clones.yml
+
+# launch the pipeline in the shell
+mdi svCapture mixed_clones.yml --dry-run
+mdi svCapture mixed_clones.yml
+
+# or, alternatively, submit the pipeline jobs to a server job scheduler
+mdi submit --dry-run mixed_clones.yml
+mdi submit mixed_clones.yml # add '--account XYZ' as needed
+```
