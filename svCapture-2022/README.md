@@ -22,7 +22,7 @@ For more information, please see and cite:
 The sequencing data sets in the above publication are available via SRA and summarized in the table below:
 - <https://www.ncbi.nlm.nih.gov/sra?LinkName=gap_sra_all&from_uid=2297510>
 
-These are restricted access human samples for which you 
+These are restricted human samples for which you 
 will need download permissions from dbGaP (click on an SRR file in SRA to learn more).
 
 For reproduction purposes, please download the SRR files into the **sra** directory after cloning this repository.
@@ -118,11 +118,13 @@ Commands below assume you:
 - installed the hg38 genome into the **genomes** folder
 - downloaded the SRR sequence files into the **sra** folder. 
 
-Please adjust  commands as needed if you chose different installation/download options.
+Please adjust  commands and/or edit the job files
+as needed if you chose different installation/download options.
 
 The following commands will execute the 'DupSeq_mixed_clones' analysis.
 Minor modifications will similarly execute the 'DupSeq_APH_populations'
-and 'tagmentation' analyses.
+and 'tagmentation' analyses. They are split this way because each of the
+analysis sets were originally sequenced together. 
 
 ```sh
 cd for-reproduction/DupSeq
@@ -131,11 +133,22 @@ cd for-reproduction/DupSeq
 cat mixed_clones.yml
 mdi inspect mixed_clones.yml
 
-# launch the pipeline in the shell
+# launch the pipeline in the shell like any program
 mdi svCapture mixed_clones.yml --dry-run
 mdi svCapture mixed_clones.yml
 
 # or, alternatively, submit the pipeline jobs to a server job scheduler
+# add '--account XYZ' or other server options as needed
 mdi submit --dry-run mixed_clones.yml
-mdi submit mixed_clones.yml # add '--account XYZ' as needed
+mdi submit mixed_clones.yml 
 ```
+
+If you have Singularity available on your system, you will be prompted
+to approve download of the pipeline's container(s). If not, the above
+commands will fail until you build your conda environments using:
+
+```sh
+# add option '--force' to avoid being prompted multiple times
+mdi svCapture conda --create 
+```
+
