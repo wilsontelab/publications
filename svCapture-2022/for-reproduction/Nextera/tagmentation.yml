@@ -6,6 +6,12 @@ variables:
     PROJECT:      tagmentation
     PROJECT_DIR:  ${OUTPUT_DIR}/${PROJECT}
 
+    # use haplotype calls from APH populations to prevent clone SNVs from being called as source SNPs
+    # you must therefore run the DupSeq_APH_populations jobs before tagmentation
+    REFERENCE_PROJECT:      DupSeq_APH_populations
+    REFERENCE_PROJECT_DIR:  ${OUTPUT_DIR}/${REFERENCE_PROJECT}
+    HAPLOTYPE_FILE:         ${REFERENCE_PROJECT_DIR}/${REFERENCE_PROJECT}.${GENOME}.genotype.unphased_haplotypes.rds
+
 # actions align through extract are run at sample level
 shared:
     output:
@@ -22,14 +28,21 @@ align:
             - SRR22419723        
             - SRR22419724
 
-# find action is run at project level for inter-sample comparisons
+# find and genotype actions are run at project level for inter-sample comparisons
 find:
     output:
         output-dir:     ${OUTPUT_DIR}
         data-name:      ${PROJECT}
+genotype:
+    output:
+        output-dir:     ${OUTPUT_DIR}
+        data-name:      ${PROJECT}
+    genotype:
+        haplotype-file: ${HAPLOTYPE_FILE}
 
 execute:
     - align
     - collate
     - extract
     - find
+    - genotype # !! this action will fail unless you have previously run DupSeq_APH_populations genotype !!

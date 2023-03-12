@@ -44,6 +44,17 @@ Each .sra file should be in its own, similarly named folder, e.g., 'sra/SRR22419
 |SRR22419723 |Nextera svCapture of the human HF1 cell line, 0.6 uM aphidicolin, replicate 1|
 |SRR22419724 |Nextera svCapture of a mixture of clones of the human HF1 cell line, mix B   |
 
+### Alternative sequence files to use for testing
+
+You can also make small modifications to the reproduction job scripts
+to use any other paired-end WGS data as input. One unrestricted example we have used is:
+
+- <https://www.ncbi.nlm.nih.gov/sra/?term=SRR21384118>
+
+Most inputs, like the one linked above, will not have been subjected
+to appropriate target capture but they can still be analyzed, which will
+reveal the failure of targeting to you.
+
 ## Required code suite and genome files
 
 The svCapture pipeline and app are implemented in this Michigan Data Interface tool suite:
@@ -99,7 +110,7 @@ clone this repository and install the required code.
 Information found in the log files includes software versions in use
 and various output statistics.
 
-## Reproducing the analysis on your system
+## Reproducing the pipeline analysis on your system
 
 Folder **for-reproduction** has job scripts you can use to repeat 
 analysis of our data sets on your system.
@@ -153,3 +164,46 @@ commands will fail until you build your conda environments using:
 mdi svCapture conda --create 
 ```
 
+### Proper job order for the genotype action 
+
+For the genotype actions to all run properly, you must
+execute the 'DupSeq/APH_populations.yml' script before the 
+other data sets, since it generates a SNP file that is used 
+by the mixed clone analyses.
+
+## Interactive data analysis in the svCapture app
+
+The job scripts will generate VCF files as well as MDI data packages
+that you can load into the svCapture R Shiny app. Follow the documentation
+links above to install the app, typically using the 
+[MDI Desktop](https://midataint.github.io/mdi-desktop-app/docs/overview). 
+
+The app was used to generate nearly all data figures in the manuscript.
+You may use it to interactively explore the data with a variety of
+filters and sample combinations, as we did.
+
+Use the tabs at the left to work through the  analysis steps.
+The basic actions for most steps are:
+- load the required data package(s) into the running app
+- assign samples into Sample Sets using `Assign Samples`
+- use `Sample Set` and `Select Samples` to choose the samples to plot
+- use the gear icon at the top to set SV filtering options
+
+### Sample Sets
+
+The various plots can be directed to load data from just one sample
+or many samples together. Use `Assign Samples` to construct
+Sample Sets containing samples you wish to co-analyze.
+
+### Settings
+
+The methods paper explored a large variety of different SV filters
+to demonstrate their effects. Please see the paper for details.
+
+The `Fragile_Site` preset (under the gear/cog icon) 
+sets the filters we typically use for filtering to high confidence
+single-molecule deletions in common fragile sites:
+- `Min Map Quality` = 20
+- `Max Samples With SV` = 1
+- `Max Source Molecules` = 1
+- `Min Read Count` = 3

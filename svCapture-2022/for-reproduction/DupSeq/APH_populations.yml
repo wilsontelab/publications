@@ -26,16 +26,21 @@ align:
             - SRR22419720
             - SRR22419721
 
-# find action is run at project level for inter-sample comparisons
+# find and genotype actions are run at project level for inter-sample comparisons
 find:
     output:
         output-dir:     ${OUTPUT_DIR}
         data-name:      ${PROJECT}
     resources:
         ram-per-cpu:    12G
+genotype:
+    output:
+        output-dir:     ${OUTPUT_DIR}
+        data-name:      ${PROJECT}
 
 execute:
     - align
     - collate
     - extract
     - find
+    - genotype
