@@ -26,6 +26,7 @@ These are restricted human samples for which you
 will need download permissions from dbGaP (click on an SRR file in SRA to learn more).
 
 For reproduction purposes, please download the SRR files into the **sra** directory after cloning this repository.
+Each .sra file should be in its own, similarly named folder, e.g., 'sra/SRR22419712/SRR22419712.sra'.
 
 |SRA_Run_ID  |Description                                                                  |
 |------------|-----------------------------------------------------------------------------|
