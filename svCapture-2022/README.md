@@ -110,7 +110,7 @@ clone this repository and install the required code.
 Information found in the log files includes software versions in use
 and various output statistics.
 
-## Reproducing the pipeline analysis on your system
+## Reproducing the analysis on your system
 
 Folder **for-reproduction** has job scripts you can use to repeat 
 analysis of our data sets on your system.
@@ -130,11 +130,11 @@ Commands below assume you:
 - installed the hg38 genome into the **genomes** folder
 - downloaded the SRR sequence files into the **sra** folder. 
 
-Please adjust  commands and/or edit the job files
+Please adjust commands and/or edit the job files
 as needed if you chose different installation/download options.
 
-The following commands will execute the 'DupSeq_mixed_clones' analysis.
-Minor modifications will similarly execute the 'DupSeq_APH_populations'
+The following commands will execute the 'DupSeq_APH_populations' analysis.
+Minor modifications will similarly execute the 'DupSeq_mixed_clones'
 and 'tagmentation' analyses. They are split this way because each of the
 analysis sets were originally sequenced together. 
 
@@ -142,17 +142,17 @@ analysis sets were originally sequenced together.
 cd for-reproduction/DupSeq
 
 # explore the job script and its options
-cat mixed_clones.yml
-mdi inspect mixed_clones.yml
+cat APH_populations.yml
+mdi inspect APH_populations.yml
 
 # launch the pipeline in the shell like any program
-mdi svCapture mixed_clones.yml --dry-run
-mdi svCapture mixed_clones.yml
+mdi svCapture APH_populations.yml --dry-run
+mdi svCapture APH_populations.yml
 
 # or, alternatively, submit the pipeline jobs to a server job scheduler
 # add '--account XYZ' or other server options as needed
-mdi submit --dry-run mixed_clones.yml
-mdi submit mixed_clones.yml 
+mdi submit --dry-run APH_populations.yml
+mdi submit APH_populations.yml 
 ```
 
 If you have Singularity available on your system, you will be prompted
@@ -166,7 +166,7 @@ mdi svCapture conda --create
 
 ### Proper job order for the genotype action 
 
-For the genotype actions to all run properly, you must
+For the genotype actions to run properly, you must
 execute the 'DupSeq/APH_populations.yml' script before the 
 other data sets, since it generates a SNP file that is used 
 by the mixed clone analyses.
@@ -184,7 +184,7 @@ filters and sample combinations, as we did.
 
 Use the tabs at the left to work through the  analysis steps.
 The basic actions for most steps are:
-- load the required data package(s) into the running app
+- load the required data package(s) into the running app, ending with 'mdi.package.zip'
 - assign samples into Sample Sets using `Assign Samples`
 - use `Sample Set` and `Select Samples` to choose the samples to plot
 - use the gear icon at the top to set SV filtering options
