@@ -1,0 +1,33 @@
+---
+pipeline: svx-mdi-tools/svCapture:latest
+variables:
+    PROJECT:            HCT_sync_ART_Nu7_123023a
+    PROJECT_DIR:        ${PROJECTS_DIR}/${PROJECT}
+    CORE_PROJECT_ID:    9762-SA
+    PROJECT_INPUT_DIR:  ${USER_SCRATCH_DIR}/${PIPELINE_NAME}/${CORE_PROJECT_ID}/fastqs_${CORE_PROJECT_ID}
+shared:
+    genomex-mdi-tools//fastq-input: 
+        input-dir: ${PROJECT_INPUT_DIR}
+        input-name: # expects to find <input-dir>/<input-name>/*.fastq.gz
+            - 9762-SA-1-LabPrep
+            - 9762-SA-2-LabPrep # 3 was dropped due to low yield
+            - 9762-SA-4-LabPrep
+            - 9762-SA-5-LabPrep
+            - 9762-SA-6-LabPrep
+    output:
+        output-dir: ${PROJECT_DIR}
+        data-name:
+            - HCT_Cntrl_sync_M_0.2APH
+            - HCT_Cntrl_sync_M_0.2APH_Nu7
+            - HCT_Cntrl_sync_M_0.2APH_ART_Nu7
+            - HCT_P2A.5_sync_M_0.2APH
+            - HCT_P2A.5_sync_M_0.2APH_Nu7
+find:
+    output:
+        output-dir: ${PROJECTS_DIR}
+        data-name:  ${PROJECT}
+execute:
+    - align
+    - collate
+    - extract
+    - find

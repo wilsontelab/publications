@@ -15,7 +15,12 @@ Depending on your needs, you may find it easier to use the simpler
 
 For more information, please see and cite:
 
-- <https://www.biorxiv.org/content/10.1101/2022.07.07.497948v1>
+**svCapture: efficient and specific detection of very low frequency structural variant junctions by error-minimized capture sequencing.**<br>
+Thomas E Wilson, Samreen Ahmed, Jake Higgins, Jesse J Salk, Thomas W Glover.<br>
+[_NAR Genomics and Bioinformatics_](https://doi.org/10.1093/nargab/lqad042), 
+5:lqad042 (2023).<br>
+[PMID: 37181851](https://pubmed.ncbi.nlm.nih.gov/37181851/), 
+[PMCID: PMC10167630](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10167630/)
 
 ## Associated sequencing data sets
 

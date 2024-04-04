@@ -1,0 +1,16 @@
+variables:
+    GENOME:  hg38
+shared:
+    resources:
+        runtime:        conda
+    genomex-mdi-tools//genome:
+        genomes-dir:    ${GENOMES_DIR}
+        genome:         ${GENOME}
+    genomex-mdi-tools//illumina-type:
+        library-type:   Nextera        
+    genomex-mdi-tools//trim-reads:
+        adapter-sequence: CTGTCTCTTATACACATCT
+    genomex-mdi-tools//bam-format:
+        use-cram:       true
+    svx-mdi-tools//sv-filtering:
+        on-target:      2

@@ -1,0 +1,36 @@
+---
+pipeline: svx-mdi-tools/svCapture:latest
+variables:
+    PROJECT:            lblast_011422
+    PROJECT_DIR:        ${PROJECTS_DIR}/${PROJECT}
+    CORE_PROJECT_ID:    5006-SA
+    PROJECT_INPUT_DIR:  ${CORE_GLOBUS_DIR}/${CORE_PROJECT_ID}/fastqs_${CORE_PROJECT_ID}
+shared:
+    genomex-mdi-tools//fastq-input: 
+        input-dir: ${PROJECT_INPUT_DIR}
+        input-name: # expects to find <input-dir>/<input-name>/*.fastq.gz
+            - Sample_5006-SA-1
+            - Sample_5006-SA-2
+            - Sample_5006-SA-3
+            - Sample_5006-SA-4
+            - Sample_5006-SA-5
+            - Sample_5006-SA-6
+    output:
+        output-dir: ${PROJECT_DIR}
+        data-name:
+            - RO3306_G2
+            - RO3306_0.4APH_G2
+            - RO3306_Colch_M
+            - RO3306_Colch_0.4APH_M
+            - RO3306_Colch_2APH_M
+            - RO3306_0.4APH_Colch_2APH_M      
+find:
+    output:
+        output-dir: ${PROJECTS_DIR}
+        data-name:  ${PROJECT}
+execute:
+    - align
+    - collate
+    - extract
+    - find
+

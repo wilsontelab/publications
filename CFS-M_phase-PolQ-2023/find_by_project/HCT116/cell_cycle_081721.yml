@@ -1,0 +1,36 @@
+---
+pipeline: svx-mdi-tools/svCapture:latest
+variables:
+    PROJECT:            cell_cycle_081721
+    PROJECT_DIR:        ${PROJECTS_DIR}/${PROJECT}
+    CORE_PROJECT_ID:    3845-SA
+    PROJECT_INPUT_DIR:  ${CORE_GLOBUS_DIR}/${CORE_PROJECT_ID}*/fastqs_${CORE_PROJECT_ID} # 3845-SA_run1 3845-SA_run2
+    # NOTE: These samples yielded fewer reads than expected on the initial sequencing run and were re-sequenced for additional coverage. 
+    #     Two folders have been transferred to your turbo space, one for each sequencing run, named 3845-SA_run1 and 3845-SA_run2. 
+shared:
+    genomex-mdi-tools//fastq-input: 
+        input-dir: ${PROJECT_INPUT_DIR}
+        input-name: # expects to find <input-dir>/<input-name>/*.fastq.gz
+            - Sample_3845-SA-1
+            - Sample_3845-SA-2
+            - Sample_3845-SA-3
+            - Sample_3845-SA-4
+            - Sample_3845-SA-5
+    output:
+        output-dir: ${PROJECT_DIR}
+        data-name:
+            - Ro3306_G2
+            - Ro3306_Colchicine_M
+            - Ro3306_0.2APH_S
+            - Ro3306_0.2APH_G2
+            - Ro3306_0.2APH_Colchicine_M      
+find:
+    output:
+        output-dir: ${PROJECTS_DIR}
+        data-name:  ${PROJECT}
+execute:
+    - align
+    - collate
+    - extract
+    - find
+

@@ -1,0 +1,40 @@
+---
+pipeline: svx-mdi-tools/svCapture:latest
+variables:
+    PROJECT:            cell_cycle_110521
+    PROJECT_DIR:        ${PROJECTS_DIR}/${PROJECT}
+    CORE_PROJECT_ID:    4370-PB
+    PROJECT_INPUT_DIR:  ${CORE_GLOBUS_DIR}/${CORE_PROJECT_ID}/fastqs_${CORE_PROJECT_ID}* # 4370-PB 4370-PB_resequenced
+    # NOTE: The initial sequencing run of this project did not get the desired number of reads, 
+    #       so this project was sequenced on a second NovaSeq run. 
+    #       Results from the second sequencing run is in a folder called 4370-PB_resequenced. 
+    #       The files are also copied into 4370-PB/fastqs_4370-PB_reseq
+shared:
+    genomex-mdi-tools//fastq-input: 
+        input-dir: ${PROJECT_INPUT_DIR}
+        input-name: # expects to find <input-dir>/<input-name>/*.fastq.gz
+            - Sample_4370-PB-1
+            - Sample_4370-PB-2
+            - Sample_4370-PB-3
+            - Sample_4370-PB-4
+            - Sample_4370-PB-5
+            - Sample_4370-PB-6
+    output:
+        output-dir: ${PROJECT_DIR}
+        data-name:
+            - RO3306_G2
+            - RO3306_0.2APH_G2
+            - RO3306_Colch_M
+            - RO3306_Colch_2APH_M
+            - RO3306_0.2APH_Colch_M
+            - RO3306_0.2APH_Colch_2APH_M      
+find:
+    output:
+        output-dir: ${PROJECTS_DIR}
+        data-name:  ${PROJECT}
+execute:
+    - align
+    - collate
+    - extract
+    - find
+

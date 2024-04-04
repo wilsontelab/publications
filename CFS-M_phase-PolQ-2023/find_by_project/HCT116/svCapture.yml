@@ -1,0 +1,4 @@
+shared:
+    genomex-mdi-tools//target-region:
+        targets-bed:    ${RESOURCES_DIR}/capture_targets/targets_UM_Wilson_chr3_chr16_TE-93195434_hg38.bed
+        region-padding: 800000

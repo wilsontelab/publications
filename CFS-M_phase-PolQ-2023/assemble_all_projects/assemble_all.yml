@@ -1,0 +1,15 @@
+---
+pipeline: svx-mdi-tools/svCapture:latest
+variables:
+    TABLE_PREFIX: ${PWD}/../sample_lists/${PUBLICATION_CODE}
+shared:
+assemble:
+    assembly-inputs:
+        input-dir: ${PROJECTS_DIR}
+        samples-table: ${TABLE_PREFIX}.csv # run this composite assembly over all cell lines AFTER assembling each cell line
+        warn-only: true # since we are assembling over different targets BED files
+    output:
+        output-dir: ${ASSEMBLIES_DIR}
+        data-name: all_data
+execute:
+    - assemble

@@ -1,0 +1,4 @@
+shared:
+    genomex-mdi-tools//target-region:
+        targets-bed:    ${RESOURCES_DIR}/capture_targets/HF1_capture_targets.${GENOME}.bed
+        region-padding: 800000

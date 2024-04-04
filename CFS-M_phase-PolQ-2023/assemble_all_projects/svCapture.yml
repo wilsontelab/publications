@@ -1,0 +1,5 @@
+shared:
+    assembly-insertions:
+        find-insertion-templates: true
+    resources:
+        runtime: conda

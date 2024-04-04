@@ -1,0 +1,33 @@
+---
+pipeline: svx-mdi-tools/svCapture:latest
+variables:
+    PROJECT:            GM_ART_Nu7_123023
+    PROJECT_DIR:        ${PROJECTS_DIR}/${PROJECT}
+    CORE_PROJECT_ID:    9762-SA
+    PROJECT_INPUT_DIR:  ${USER_SCRATCH_DIR}/${PIPELINE_NAME}/${CORE_PROJECT_ID}/fastqs_${CORE_PROJECT_ID}
+shared:
+    genomex-mdi-tools//fastq-input: 
+        input-dir: ${PROJECT_INPUT_DIR}
+        input-name: # expects to find <input-dir>/<input-name>/*.fastq.gz
+            - 9762-SA-7-LabPrep
+            - 9762-SA-8-LabPrep
+            - 9762-SA-9-LabPrep
+            - 9762-SA-10-LabPrep
+            - 9762-SA-11-LabPrep
+    output:
+        output-dir: ${PROJECT_DIR}
+        data-name:
+            - GM_0APH
+            - GM_0.4APH
+            - GM_0.4APH_ART
+            - GM_0.4APH_Nu7
+            - GM_0.4APH_ART_Nu7
+find:
+    output:
+        output-dir: ${PROJECTS_DIR}
+        data-name:  ${PROJECT}
+execute:
+    - align
+    - collate
+    - extract
+    - find

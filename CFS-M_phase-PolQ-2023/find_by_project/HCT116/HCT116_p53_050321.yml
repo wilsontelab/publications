@@ -1,0 +1,31 @@
+---
+pipeline: svx-mdi-tools/svCapture:latest
+variables:
+    PROJECT:            HCT116_p53_050321
+    PROJECT_DIR:        ${PROJECTS_DIR}/${PROJECT}
+    CORE_PROJECT_ID:    3333-SA
+    PROJECT_INPUT_DIR:  ${CORE_GLOBUS_DIR}/${CORE_PROJECT_ID}*/fastqs_${CORE_PROJECT_ID} # 3333-SA 3333-SA_resequence
+    # NOTE: Two data directories were transferred to the wilsontelab_globus_from_agc endpoint for this request. 
+    #       The first sequencing run of this request yielded fewer reads than expected (3333-SA directory). 
+    #       We sequenced this request on a second run to reach the desired number of reads (3333-SA_resequence).
+shared:
+    genomex-mdi-tools//fastq-input: 
+        input-dir: ${PROJECT_INPUT_DIR}
+        input-name: # expects to find <input-dir>/<input-name>/*.fastq.gz
+            - Sample_3333-SA-1
+            - Sample_3333-SA-2
+    output:
+        output-dir: ${PROJECT_DIR}
+        data-name:
+            - Control_0_APH
+            - Control_0pt2_APH
+find:
+    output:
+        output-dir: ${PROJECTS_DIR}
+        data-name:  ${PROJECT}
+execute:
+    - align
+    - collate
+    - extract
+    - find
+

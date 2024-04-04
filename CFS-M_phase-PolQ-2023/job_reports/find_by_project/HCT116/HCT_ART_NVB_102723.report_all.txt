@@ -1,0 +1,2103 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+updating /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/data-scripts/wilsontelab/publications/CFS-M_phase-PolQ-2023/find_by_project/HCT116/.HCT_ART_NVB_102723.yml.data/HCT_ART_NVB_102723.yml.status
+updated	3/3/2024 14:18:9
+qType	slurm
+submitted	10/27/2023 15:57:37	wilsonte
+job_name                              array  job_ID     exit_status  start_time  wall_time  maxvmem
+svCapture_align ------------------------  @  63294172   0    Fri 10/27/23 15:57  04:47:52   44.7G  
+svCapture_collate ----------------------  @  63294173   0    Fri 10/27/23 20:45  11:37:49   27.348G
+svCapture_extract ----------------------  @  63294174   0    Sat 10/28/23 08:23  00:05:59   9.724G 
+svCapture_find_HCT_ART_NVB_102723 ------     63294175   0    Sat 10/28/23 08:29  00:10:38   0.865G 
+qType	slurm
+submitted	3/2/2024 15:59:12	wilsonte
+job_name                              array  job_ID     exit_status  start_time  wall_time  maxvmem
+svCapture_collate ----------------------  @  3952508    0    Sat 03/02/24 17:59  11:22:51   27.348G
+svCapture_extract ----------------------  @  3952509    0    Sun 03/03/24 05:23  00:06:05   9.724G 
+svCapture_find_HCT_ART_NVB_102723 ------     3952510    0    Sun 03/03/24 05:29  00:09:59   0.998G 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+====================================================================================================
+job: 63294172
+----------------------------------------------------------------------------------------------------
+/nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/data-scripts/wilsontelab/publications/CFS-M_phase-PolQ-2023/find_by_project/HCT116/.HCT_ART_NVB_102723.yml.data/log/slurm/svCapture_align.o63294172-1
+----------------------------------------------------------------------------------------------------
+
+---
+job-manager:
+    host: gl3040.arc-ts.umich.edu
+    started: Fri 10/27/23 15:57
+---
+pipeline: svx-mdi-tools/svCapture:main
+description: "Characterize structural variant junctions in short-read, paired-end capture library(s)"
+suiteVersions:
+    genomex-mdi-tools: main
+execute: align
+thread: default
+nTasks: 4
+align:
+    fastq-input:
+        input-dir:      /scratch/wilsonte_root/wilsonte0/wilsonte/svCapture/9296-SA/fastqs_9296-SA
+        input-name:
+            - 9296-SA-1
+            - 9296-SA-2
+            - 9296-SA-3
+            - 9296-SA-4
+    fixed-umi:
+        umi-file:       null
+        umi-skip-bases: 1
+    trim-reads:
+        adapter-sequence: CTGTCTCTTATACACATCT
+        min-insert-size: 25
+    quality-filtering:
+        n-terminal-bases: 30
+        min-qual:       0:0:0
+        max-homopolymer: 0
+    alignment:
+        force-alignment: false
+        bam-sort:       name
+        parabricks-prep-command: module load singularity
+        parabricks-version-tag: 4.1.1-1
+        parabricks-image: NA
+        low-memory:     false
+        use-minimap2:   false
+    aligner:
+        bandwidth:      NA
+    genome:
+        genomes-dir:    /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/resources/genomes
+        genome:         hg38
+        use-all-chroms: false
+    bam-format:
+        use-cram:       true
+    output:
+        output-dir:     /nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects/HCT_ART_NVB_102723
+        data-name:
+            - HCT_Ro3_Colch_M
+            - HCT_0.2APH_Ro3_Colch_M
+            - HCT_0.2APH_Ro3_ART_Colch_M
+            - HCT_0.2APH_NVB_Ro3_Colch_M
+    push:
+        push-server:    null
+        push-dir:       /srv/data
+        push-user:      ubuntu
+        push-key:       ~/.ssh/mdi-push-key.pem
+    version:
+        version:        latest
+    resources:
+        runtime:        conda
+        n-cpu:          16
+        n-gpu:          0
+        ram-per-cpu:    4G
+        tmp-dir:        /tmp
+        tmp-dir-large:  /scratch/wilsonte_root/wilsonte0/wilsonte
+    job-manager:
+        email:          nobody@nowhere.edu
+        account:        wilsonte0
+        time-limit:     48:00:00
+        partition:      standard
+        exclusive:      false
+    workflow:
+        force:          false
+        rollback:       null
+        quiet:          false
+    help:
+        help:           false
+        dry-run:        true
+    conda:
+        prefix: /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/environments/9c5398fde8 
+        channels:
+            - conda-forge
+            - bioconda
+            - defaults
+        dependencies:
+            - pigz=2.6
+            - sra-tools=3.0.0
+            - fastp=0.23.2
+            - bwa=0.7.17
+            - minimap2=2.24
+            - samtools=1.16.1
+            - porechop_abi=0.5.0
+...
+---
+task:
+    task-id: 1
+    input-name: 9296-SA-1
+    data-name: HCT_Ro3_Colch_M
+...
+
+executing: svCapture align, step 1 = align
+aligning paired end reads to genome hg38 with pre-alignment merging
+  read length: 151
+  read #1 fastq files:
+    /scratch/wilsonte_root/wilsonte0/wilsonte/svCapture/9296-SA/fastqs_9296-SA/9296-SA-1_GGTTGCGAGG-AATAGAGCAA_S1_R1_001.fastq.gz
+  read #2 fastq files:
+    /scratch/wilsonte_root/wilsonte0/wilsonte/svCapture/9296-SA/fastqs_9296-SA/9296-SA-1_GGTTGCGAGG-AATAGAGCAA_S1_R2_001.fastq.gz
+  genome: /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/resources/genomes/iGenomes/Homo_sapiens/UCSC/hg38/Sequence/BWAIndex/genome.fa
+  bandwidth: aligner default
+--n-gpu==0, using CPU-based bwa mem
+prepare_fastq	0	nInputReads	input reads
+prepare_fastq	600002928	nInputPairs	input read pairs
+prepare_fastq	600002928	nOutputPairs	output read pairs
+done
+
+---
+job-manager:
+    exit_status: 0
+    walltime: 4:33:07
+    seconds: 16387.37
+    maxvmem: 44699980K
+    swaps: 0
+---
+job-manager:
+    ended: Fri 10/27/23 20:30
+...
+----------------------------------------------------------------------------------------------------
+/nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/data-scripts/wilsontelab/publications/CFS-M_phase-PolQ-2023/find_by_project/HCT116/.HCT_ART_NVB_102723.yml.data/log/slurm/svCapture_align.o63294172-2
+----------------------------------------------------------------------------------------------------
+
+---
+job-manager:
+    host: gl3043.arc-ts.umich.edu
+    started: Fri 10/27/23 15:57
+---
+pipeline: svx-mdi-tools/svCapture:main
+description: "Characterize structural variant junctions in short-read, paired-end capture library(s)"
+suiteVersions:
+    genomex-mdi-tools: main
+execute: align
+thread: default
+nTasks: 4
+align:
+    fastq-input:
+        input-dir:      /scratch/wilsonte_root/wilsonte0/wilsonte/svCapture/9296-SA/fastqs_9296-SA
+        input-name:
+            - 9296-SA-1
+            - 9296-SA-2
+            - 9296-SA-3
+            - 9296-SA-4
+    fixed-umi:
+        umi-file:       null
+        umi-skip-bases: 1
+    trim-reads:
+        adapter-sequence: CTGTCTCTTATACACATCT
+        min-insert-size: 25
+    quality-filtering:
+        n-terminal-bases: 30
+        min-qual:       0:0:0
+        max-homopolymer: 0
+    alignment:
+        force-alignment: false
+        bam-sort:       name
+        parabricks-prep-command: module load singularity
+        parabricks-version-tag: 4.1.1-1
+        parabricks-image: NA
+        low-memory:     false
+        use-minimap2:   false
+    aligner:
+        bandwidth:      NA
+    genome:
+        genomes-dir:    /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/resources/genomes
+        genome:         hg38
+        use-all-chroms: false
+    bam-format:
+        use-cram:       true
+    output:
+        output-dir:     /nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects/HCT_ART_NVB_102723
+        data-name:
+            - HCT_Ro3_Colch_M
+            - HCT_0.2APH_Ro3_Colch_M
+            - HCT_0.2APH_Ro3_ART_Colch_M
+            - HCT_0.2APH_NVB_Ro3_Colch_M
+    push:
+        push-server:    null
+        push-dir:       /srv/data
+        push-user:      ubuntu
+        push-key:       ~/.ssh/mdi-push-key.pem
+    version:
+        version:        latest
+    resources:
+        runtime:        conda
+        n-cpu:          16
+        n-gpu:          0
+        ram-per-cpu:    4G
+        tmp-dir:        /tmp
+        tmp-dir-large:  /scratch/wilsonte_root/wilsonte0/wilsonte
+    job-manager:
+        email:          nobody@nowhere.edu
+        account:        wilsonte0
+        time-limit:     48:00:00
+        partition:      standard
+        exclusive:      false
+    workflow:
+        force:          false
+        rollback:       null
+        quiet:          false
+    help:
+        help:           false
+        dry-run:        true
+    conda:
+        prefix: /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/environments/9c5398fde8 
+        channels:
+            - conda-forge
+            - bioconda
+            - defaults
+        dependencies:
+            - pigz=2.6
+            - sra-tools=3.0.0
+            - fastp=0.23.2
+            - bwa=0.7.17
+            - minimap2=2.24
+            - samtools=1.16.1
+            - porechop_abi=0.5.0
+...
+---
+task:
+    task-id: 2
+    input-name: 9296-SA-2
+    data-name: HCT_0.2APH_Ro3_Colch_M
+...
+
+executing: svCapture align, step 1 = align
+aligning paired end reads to genome hg38 with pre-alignment merging
+  read length: 151
+  read #1 fastq files:
+    /scratch/wilsonte_root/wilsonte0/wilsonte/svCapture/9296-SA/fastqs_9296-SA/9296-SA-2_TAAGCATCCA-TCAATCCATT_S2_R1_001.fastq.gz
+  read #2 fastq files:
+    /scratch/wilsonte_root/wilsonte0/wilsonte/svCapture/9296-SA/fastqs_9296-SA/9296-SA-2_TAAGCATCCA-TCAATCCATT_S2_R2_001.fastq.gz
+  genome: /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/resources/genomes/iGenomes/Homo_sapiens/UCSC/hg38/Sequence/BWAIndex/genome.fa
+  bandwidth: aligner default
+--n-gpu==0, using CPU-based bwa mem
+prepare_fastq	0	nInputReads	input reads
+prepare_fastq	575518114	nInputPairs	input read pairs
+prepare_fastq	575518114	nOutputPairs	output read pairs
+done
+
+---
+job-manager:
+    exit_status: 0
+    walltime: 4:47:52
+    seconds: 17272.52
+    maxvmem: 39844616K
+    swaps: 0
+---
+job-manager:
+    ended: Fri 10/27/23 20:45
+...
+----------------------------------------------------------------------------------------------------
+/nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/data-scripts/wilsontelab/publications/CFS-M_phase-PolQ-2023/find_by_project/HCT116/.HCT_ART_NVB_102723.yml.data/log/slurm/svCapture_align.o63294172-3
+----------------------------------------------------------------------------------------------------
+
+---
+job-manager:
+    host: gl3074.arc-ts.umich.edu
+    started: Fri 10/27/23 15:57
+---
+pipeline: svx-mdi-tools/svCapture:main
+description: "Characterize structural variant junctions in short-read, paired-end capture library(s)"
+suiteVersions:
+    genomex-mdi-tools: main
+execute: align
+thread: default
+nTasks: 4
+align:
+    fastq-input:
+        input-dir:      /scratch/wilsonte_root/wilsonte0/wilsonte/svCapture/9296-SA/fastqs_9296-SA
+        input-name:
+            - 9296-SA-1
+            - 9296-SA-2
+            - 9296-SA-3
+            - 9296-SA-4
+    fixed-umi:
+        umi-file:       null
+        umi-skip-bases: 1
+    trim-reads:
+        adapter-sequence: CTGTCTCTTATACACATCT
+        min-insert-size: 25
+    quality-filtering:
+        n-terminal-bases: 30
+        min-qual:       0:0:0
+        max-homopolymer: 0
+    alignment:
+        force-alignment: false
+        bam-sort:       name
+        parabricks-prep-command: module load singularity
+        parabricks-version-tag: 4.1.1-1
+        parabricks-image: NA
+        low-memory:     false
+        use-minimap2:   false
+    aligner:
+        bandwidth:      NA
+    genome:
+        genomes-dir:    /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/resources/genomes
+        genome:         hg38
+        use-all-chroms: false
+    bam-format:
+        use-cram:       true
+    output:
+        output-dir:     /nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects/HCT_ART_NVB_102723
+        data-name:
+            - HCT_Ro3_Colch_M
+            - HCT_0.2APH_Ro3_Colch_M
+            - HCT_0.2APH_Ro3_ART_Colch_M
+            - HCT_0.2APH_NVB_Ro3_Colch_M
+    push:
+        push-server:    null
+        push-dir:       /srv/data
+        push-user:      ubuntu
+        push-key:       ~/.ssh/mdi-push-key.pem
+    version:
+        version:        latest
+    resources:
+        runtime:        conda
+        n-cpu:          16
+        n-gpu:          0
+        ram-per-cpu:    4G
+        tmp-dir:        /tmp
+        tmp-dir-large:  /scratch/wilsonte_root/wilsonte0/wilsonte
+    job-manager:
+        email:          nobody@nowhere.edu
+        account:        wilsonte0
+        time-limit:     48:00:00
+        partition:      standard
+        exclusive:      false
+    workflow:
+        force:          false
+        rollback:       null
+        quiet:          false
+    help:
+        help:           false
+        dry-run:        true
+    conda:
+        prefix: /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/environments/9c5398fde8 
+        channels:
+            - conda-forge
+            - bioconda
+            - defaults
+        dependencies:
+            - pigz=2.6
+            - sra-tools=3.0.0
+            - fastp=0.23.2
+            - bwa=0.7.17
+            - minimap2=2.24
+            - samtools=1.16.1
+            - porechop_abi=0.5.0
+...
+---
+task:
+    task-id: 3
+    input-name: 9296-SA-3
+    data-name: HCT_0.2APH_Ro3_ART_Colch_M
+...
+
+executing: svCapture align, step 1 = align
+aligning paired end reads to genome hg38 with pre-alignment merging
+  read length: 151
+  read #1 fastq files:
+    /scratch/wilsonte_root/wilsonte0/wilsonte/svCapture/9296-SA/fastqs_9296-SA/9296-SA-3_ACCACGACAT-TCGTATGCGG_S3_R1_001.fastq.gz
+  read #2 fastq files:
+    /scratch/wilsonte_root/wilsonte0/wilsonte/svCapture/9296-SA/fastqs_9296-SA/9296-SA-3_ACCACGACAT-TCGTATGCGG_S3_R2_001.fastq.gz
+  genome: /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/resources/genomes/iGenomes/Homo_sapiens/UCSC/hg38/Sequence/BWAIndex/genome.fa
+  bandwidth: aligner default
+--n-gpu==0, using CPU-based bwa mem
+prepare_fastq	0	nInputReads	input reads
+prepare_fastq	499541228	nInputPairs	input read pairs
+prepare_fastq	499541228	nOutputPairs	output read pairs
+done
+
+---
+job-manager:
+    exit_status: 0
+    walltime: 3:23:51
+    seconds: 12231.37
+    maxvmem: 34638380K
+    swaps: 0
+---
+job-manager:
+    ended: Fri 10/27/23 19:21
+...
+----------------------------------------------------------------------------------------------------
+/nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/data-scripts/wilsontelab/publications/CFS-M_phase-PolQ-2023/find_by_project/HCT116/.HCT_ART_NVB_102723.yml.data/log/slurm/svCapture_align.o63294172-4
+----------------------------------------------------------------------------------------------------
+
+---
+job-manager:
+    host: gl3080.arc-ts.umich.edu
+    started: Fri 10/27/23 15:57
+---
+pipeline: svx-mdi-tools/svCapture:main
+description: "Characterize structural variant junctions in short-read, paired-end capture library(s)"
+suiteVersions:
+    genomex-mdi-tools: main
+execute: align
+thread: default
+nTasks: 4
+align:
+    fastq-input:
+        input-dir:      /scratch/wilsonte_root/wilsonte0/wilsonte/svCapture/9296-SA/fastqs_9296-SA
+        input-name:
+            - 9296-SA-1
+            - 9296-SA-2
+            - 9296-SA-3
+            - 9296-SA-4
+    fixed-umi:
+        umi-file:       null
+        umi-skip-bases: 1
+    trim-reads:
+        adapter-sequence: CTGTCTCTTATACACATCT
+        min-insert-size: 25
+    quality-filtering:
+        n-terminal-bases: 30
+        min-qual:       0:0:0
+        max-homopolymer: 0
+    alignment:
+        force-alignment: false
+        bam-sort:       name
+        parabricks-prep-command: module load singularity
+        parabricks-version-tag: 4.1.1-1
+        parabricks-image: NA
+        low-memory:     false
+        use-minimap2:   false
+    aligner:
+        bandwidth:      NA
+    genome:
+        genomes-dir:    /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/resources/genomes
+        genome:         hg38
+        use-all-chroms: false
+    bam-format:
+        use-cram:       true
+    output:
+        output-dir:     /nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects/HCT_ART_NVB_102723
+        data-name:
+            - HCT_Ro3_Colch_M
+            - HCT_0.2APH_Ro3_Colch_M
+            - HCT_0.2APH_Ro3_ART_Colch_M
+            - HCT_0.2APH_NVB_Ro3_Colch_M
+    push:
+        push-server:    null
+        push-dir:       /srv/data
+        push-user:      ubuntu
+        push-key:       ~/.ssh/mdi-push-key.pem
+    version:
+        version:        latest
+    resources:
+        runtime:        conda
+        n-cpu:          16
+        n-gpu:          0
+        ram-per-cpu:    4G
+        tmp-dir:        /tmp
+        tmp-dir-large:  /scratch/wilsonte_root/wilsonte0/wilsonte
+    job-manager:
+        email:          nobody@nowhere.edu
+        account:        wilsonte0
+        time-limit:     48:00:00
+        partition:      standard
+        exclusive:      false
+    workflow:
+        force:          false
+        rollback:       null
+        quiet:          false
+    help:
+        help:           false
+        dry-run:        true
+    conda:
+        prefix: /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/environments/9c5398fde8 
+        channels:
+            - conda-forge
+            - bioconda
+            - defaults
+        dependencies:
+            - pigz=2.6
+            - sra-tools=3.0.0
+            - fastp=0.23.2
+            - bwa=0.7.17
+            - minimap2=2.24
+            - samtools=1.16.1
+            - porechop_abi=0.5.0
+...
+---
+task:
+    task-id: 4
+    input-name: 9296-SA-4
+    data-name: HCT_0.2APH_NVB_Ro3_Colch_M
+...
+
+executing: svCapture align, step 1 = align
+aligning paired end reads to genome hg38 with pre-alignment merging
+  read length: 151
+  read #1 fastq files:
+    /scratch/wilsonte_root/wilsonte0/wilsonte/svCapture/9296-SA/fastqs_9296-SA/9296-SA-4_GCCGCACTCT-TCCGACCTCG_S4_R1_001.fastq.gz
+  read #2 fastq files:
+    /scratch/wilsonte_root/wilsonte0/wilsonte/svCapture/9296-SA/fastqs_9296-SA/9296-SA-4_GCCGCACTCT-TCCGACCTCG_S4_R2_001.fastq.gz
+  genome: /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/resources/genomes/iGenomes/Homo_sapiens/UCSC/hg38/Sequence/BWAIndex/genome.fa
+  bandwidth: aligner default
+--n-gpu==0, using CPU-based bwa mem
+prepare_fastq	0	nInputReads	input reads
+prepare_fastq	559379420	nInputPairs	input read pairs
+prepare_fastq	559379420	nOutputPairs	output read pairs
+done
+
+---
+job-manager:
+    exit_status: 0
+    walltime: 4:11:10
+    seconds: 15070.77
+    maxvmem: 40798092K
+    swaps: 0
+---
+job-manager:
+    ended: Fri 10/27/23 20:08
+...
+====================================================================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+====================================================================================================
+job: 3952508
+----------------------------------------------------------------------------------------------------
+/nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/data-scripts/wilsontelab/publications/CFS-M_phase-PolQ-2023/find_by_project/HCT116/.HCT_ART_NVB_102723.yml.data/log/slurm/svCapture_collate.o3952508-1
+----------------------------------------------------------------------------------------------------
+
+---
+job-manager:
+    host: gl3131.arc-ts.umich.edu
+    started: Sat 03/02/24 17:59
+---
+pipeline: svx-mdi-tools/svCapture:v2.0.0
+description: "Characterize structural variant junctions in short-read, paired-end capture library(s)"
+suiteVersions:
+    genomex-mdi-tools: main
+execute: collate
+thread: default
+nTasks: 4
+collate:
+    genome:
+        genomes-dir:    /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/resources/genomes
+        genome:         hg38
+        use-all-chroms: false
+        ordered-chroms: NA
+    name-bam-file:
+        bam-file:       null
+    bam-format:
+        use-cram:       true
+    illumina-type:
+        library-type:   Nextera
+    read-filtering:
+        min-mapq:       20
+    read-merging:
+        min-merge-overlap: 5
+        min-merge-density: 0.8
+    grouping:
+        min-clip:       5
+        adjacency-limit: 1
+    consensus:
+        downsample-n:   11
+        min-sw-score-factor: 0.7
+        consensus-factor: 0.667
+    target-region:
+        targets-bed:    /nfs/turbo/umms-glover/data/svCapture/resources/capture_targets/targets_UM_Wilson_chr3_chr16_TE-93195434_hg38.bed
+        region-padding: 800000
+    output:
+        output-dir:     /nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects/HCT_ART_NVB_102723
+        data-name:
+            - HCT_Ro3_Colch_M
+            - HCT_0.2APH_Ro3_Colch_M
+            - HCT_0.2APH_Ro3_ART_Colch_M
+            - HCT_0.2APH_NVB_Ro3_Colch_M
+    push:
+        push-server:    null
+        push-dir:       /srv/data
+        push-user:      ubuntu
+        push-key:       ~/.ssh/mdi-push-key.pem
+    version:
+        version:        latest
+    resources:
+        runtime:        conda
+        n-cpu:          8
+        n-gpu:          0
+        ram-per-cpu:    4G
+        tmp-dir:        /tmp
+        tmp-dir-large:  /scratch/wilsonte_root/wilsonte0/wilsonte
+    job-manager:
+        email:          nobody@nowhere.edu
+        account:        wilsonte0
+        time-limit:     24:00:00
+        partition:      standard
+        exclusive:      false
+    workflow:
+        force:          false
+        rollback:       0
+        quiet:          false
+    help:
+        help:           false
+        dry-run:        true
+    conda:
+        prefix: /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/environments/8f504b688f 
+        channels:
+            - conda-forge
+            - bioconda
+            - defaults
+        dependencies:
+            - pigz=2.6
+            - sra-tools=3.0.0
+            - fastp=0.23.2
+            - bwa=0.7.17
+            - samtools=1.16.1
+...
+---
+task:
+    task-id: 1
+    data-name: HCT_Ro3_Colch_M
+...
+rolling back to pipeline step 0
+
+ACTION	STEP#	STEP	DATE
+align	1	align	Fri Oct 27 20:30:45 EDT 2023
+extract	1	extract	Sat Oct 28 08:26:42 EDT 2023
+extract	2	coverage	Sat Oct 28 08:26:42 EDT 2023
+extract	3	compile	Sat Oct 28 08:29:21 EDT 2023
+
+alignment file: /nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects/HCT_ART_NVB_102723/HCT_Ro3_Colch_M/HCT_Ro3_Colch_M.hg38.name.cram
+extracting READ_LEN
+READ_LEN = 151
+extracting MAX_TLEN
+MAX_TLEN = 860
+
+executing: svCapture collate, step 1 = group
+grouping read pairs to unique, consensus source molecules
+input bam: /nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects/HCT_ART_NVB_102723/HCT_Ro3_Colch_M/HCT_Ro3_Colch_M.hg38.name.cram
+parse_bam	72740387	nQualityPairs_8	read pairs passed MAPQ 20 in thread 8
+parse_bam	72741226	nQualityPairs_7	read pairs passed MAPQ 20 in thread 7
+parse_bam	72740798	nQualityPairs_6	read pairs passed MAPQ 20 in thread 6
+parse_bam	72741470	nQualityPairs_5	read pairs passed MAPQ 20 in thread 5
+parse_bam	72742195	nQualityPairs_4	read pairs passed MAPQ 20 in thread 4
+parse_bam	72739974	nQualityPairs_3	read pairs passed MAPQ 20 in thread 3
+parse_bam	72741076	nQualityPairs_2	read pairs passed MAPQ 20 in thread 2
+parse_bam	72742183	nQualityPairs_1	read pairs passed MAPQ 20 in thread 1
+parse_bam	800376512	nInputAlns	input aligned segments over all read pairs
+parse_bam	599270292	nReadPairs	input read pairs
+group_reads	581929309	nInputReadPairs	input read pairs (one per line)
+group_reads	32509347	nOutputGroups	output molecule groups
+group_reads	581929309	nOutputReadPairs	read pairs in the output molecule groups
+make_consensus	4063668	nThreadMolecules-8	total molecules processed in thread 8
+make_consensus	2850117	nThreadMerged-8	molecules were merged in thread 8
+make_consensus	0	nThreadDuplex-8	molecules were duplex in thread 8
+make_consensus	4063668	nThreadMolecules-7	total molecules processed in thread 7
+make_consensus	2850652	nThreadMerged-7	molecules were merged in thread 7
+make_consensus	0	nThreadDuplex-7	molecules were duplex in thread 7
+make_consensus	4063668	nThreadMolecules-6	total molecules processed in thread 6
+make_consensus	2851621	nThreadMerged-6	molecules were merged in thread 6
+make_consensus	0	nThreadDuplex-6	molecules were duplex in thread 6
+make_consensus	4063668	nThreadMolecules-5	total molecules processed in thread 5
+make_consensus	2850100	nThreadMerged-5	molecules were merged in thread 5
+make_consensus	0	nThreadDuplex-5	molecules were duplex in thread 5
+make_consensus	4063668	nThreadMolecules-4	total molecules processed in thread 4
+make_consensus	2850172	nThreadMerged-4	molecules were merged in thread 4
+make_consensus	0	nThreadDuplex-4	molecules were duplex in thread 4
+make_consensus	4063669	nThreadMolecules-3	total molecules processed in thread 3
+make_consensus	2850135	nThreadMerged-3	molecules were merged in thread 3
+make_consensus	0	nThreadDuplex-3	molecules were duplex in thread 3
+make_consensus	4063669	nThreadMolecules-2	total molecules processed in thread 2
+make_consensus	2849092	nThreadMerged-2	molecules were merged in thread 2
+make_consensus	0	nThreadDuplex-2	molecules were duplex in thread 2
+make_consensus	4063669	nThreadMolecules-1	total molecules processed in thread 1
+make_consensus	2849979	nThreadMerged-1	molecules were merged in thread 1
+make_consensus	0	nThreadDuplex-1	molecules were duplex in thread 1
+make_consensus	581929309	nReadPairs	input read pairs
+make_consensus	1163858618	nReads	input reads (nReadPairs * 2)
+make_consensus	32509347	nMolecules	input source DNA molecules
+done
+
+executing: svCapture collate, step 2 = realign
+re-aligning consensus reads to genome
+coverage	2	nRegions	target regions
+coverage	800000	sumTargetLens	total bp covered by target regions
+coverage	4000000	sumPaddedTargetLens	total bp covered by padded target regions
+coverage	3825983468	sumCoverage[TT]	number of bases covered in unpadded target regions
+coverage	4265304799	sumCoverage[--]	number of bases covered in off-target regions
+coverage	4782.479	foldCoverage[TT]	coverage depth in target regions
+coverage	1.383	foldCoverage[--]	coverage depth in off-target regions
+coverage	3458	enrichment	foldCoverage[TT] / foldCoverage[--]
+done
+
+---
+job-manager:
+    exit_status: 0
+    walltime: 11:22:51
+    seconds: 40971.99
+    maxvmem: 27347540K
+    swaps: 0
+---
+job-manager:
+    ended: Sun 03/03/24 05:22
+...
+----------------------------------------------------------------------------------------------------
+/nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/data-scripts/wilsontelab/publications/CFS-M_phase-PolQ-2023/find_by_project/HCT116/.HCT_ART_NVB_102723.yml.data/log/slurm/svCapture_collate.o3952508-2
+----------------------------------------------------------------------------------------------------
+
+---
+job-manager:
+    host: gl3180.arc-ts.umich.edu
+    started: Sat 03/02/24 18:01
+---
+pipeline: svx-mdi-tools/svCapture:v2.0.0
+description: "Characterize structural variant junctions in short-read, paired-end capture library(s)"
+suiteVersions:
+    genomex-mdi-tools: main
+execute: collate
+thread: default
+nTasks: 4
+collate:
+    genome:
+        genomes-dir:    /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/resources/genomes
+        genome:         hg38
+        use-all-chroms: false
+        ordered-chroms: NA
+    name-bam-file:
+        bam-file:       null
+    bam-format:
+        use-cram:       true
+    illumina-type:
+        library-type:   Nextera
+    read-filtering:
+        min-mapq:       20
+    read-merging:
+        min-merge-overlap: 5
+        min-merge-density: 0.8
+    grouping:
+        min-clip:       5
+        adjacency-limit: 1
+    consensus:
+        downsample-n:   11
+        min-sw-score-factor: 0.7
+        consensus-factor: 0.667
+    target-region:
+        targets-bed:    /nfs/turbo/umms-glover/data/svCapture/resources/capture_targets/targets_UM_Wilson_chr3_chr16_TE-93195434_hg38.bed
+        region-padding: 800000
+    output:
+        output-dir:     /nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects/HCT_ART_NVB_102723
+        data-name:
+            - HCT_Ro3_Colch_M
+            - HCT_0.2APH_Ro3_Colch_M
+            - HCT_0.2APH_Ro3_ART_Colch_M
+            - HCT_0.2APH_NVB_Ro3_Colch_M
+    push:
+        push-server:    null
+        push-dir:       /srv/data
+        push-user:      ubuntu
+        push-key:       ~/.ssh/mdi-push-key.pem
+    version:
+        version:        latest
+    resources:
+        runtime:        conda
+        n-cpu:          8
+        n-gpu:          0
+        ram-per-cpu:    4G
+        tmp-dir:        /tmp
+        tmp-dir-large:  /scratch/wilsonte_root/wilsonte0/wilsonte
+    job-manager:
+        email:          nobody@nowhere.edu
+        account:        wilsonte0
+        time-limit:     24:00:00
+        partition:      standard
+        exclusive:      false
+    workflow:
+        force:          false
+        rollback:       0
+        quiet:          false
+    help:
+        help:           false
+        dry-run:        true
+    conda:
+        prefix: /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/environments/8f504b688f 
+        channels:
+            - conda-forge
+            - bioconda
+            - defaults
+        dependencies:
+            - pigz=2.6
+            - sra-tools=3.0.0
+            - fastp=0.23.2
+            - bwa=0.7.17
+            - samtools=1.16.1
+...
+---
+task:
+    task-id: 2
+    data-name: HCT_0.2APH_Ro3_Colch_M
+...
+rolling back to pipeline step 0
+
+ACTION	STEP#	STEP	DATE
+align	1	align	Fri Oct 27 20:45:30 EDT 2023
+extract	1	extract	Sat Oct 28 08:25:50 EDT 2023
+extract	2	coverage	Sat Oct 28 08:25:50 EDT 2023
+extract	3	compile	Sat Oct 28 08:27:17 EDT 2023
+
+alignment file: /nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects/HCT_ART_NVB_102723/HCT_0.2APH_Ro3_Colch_M/HCT_0.2APH_Ro3_Colch_M.hg38.name.cram
+extracting READ_LEN
+READ_LEN = 151
+extracting MAX_TLEN
+MAX_TLEN = 800
+
+executing: svCapture collate, step 1 = group
+grouping read pairs to unique, consensus source molecules
+input bam: /nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects/HCT_ART_NVB_102723/HCT_0.2APH_Ro3_Colch_M/HCT_0.2APH_Ro3_Colch_M.hg38.name.cram
+parse_bam	70464907	nQualityPairs_8	read pairs passed MAPQ 20 in thread 8
+parse_bam	70467053	nQualityPairs_7	read pairs passed MAPQ 20 in thread 7
+parse_bam	70465343	nQualityPairs_6	read pairs passed MAPQ 20 in thread 6
+parse_bam	70467687	nQualityPairs_5	read pairs passed MAPQ 20 in thread 5
+parse_bam	70467574	nQualityPairs_4	read pairs passed MAPQ 20 in thread 4
+parse_bam	70466717	nQualityPairs_3	read pairs passed MAPQ 20 in thread 3
+parse_bam	70465894	nQualityPairs_2	read pairs passed MAPQ 20 in thread 2
+parse_bam	70467951	nQualityPairs_1	read pairs passed MAPQ 20 in thread 1
+parse_bam	800253802	nInputAlns	input aligned segments over all read pairs
+parse_bam	574795430	nReadPairs	input read pairs
+group_reads	563733126	nInputReadPairs	input read pairs (one per line)
+group_reads	17707831	nOutputGroups	output molecule groups
+group_reads	563733126	nOutputReadPairs	read pairs in the output molecule groups
+make_consensus	2213478	nThreadMolecules-8	total molecules processed in thread 8
+make_consensus	1304520	nThreadMerged-8	molecules were merged in thread 8
+make_consensus	0	nThreadDuplex-8	molecules were duplex in thread 8
+make_consensus	2213479	nThreadMolecules-7	total molecules processed in thread 7
+make_consensus	1304619	nThreadMerged-7	molecules were merged in thread 7
+make_consensus	0	nThreadDuplex-7	molecules were duplex in thread 7
+make_consensus	2213479	nThreadMolecules-6	total molecules processed in thread 6
+make_consensus	1304651	nThreadMerged-6	molecules were merged in thread 6
+make_consensus	0	nThreadDuplex-6	molecules were duplex in thread 6
+make_consensus	2213479	nThreadMolecules-5	total molecules processed in thread 5
+make_consensus	1305232	nThreadMerged-5	molecules were merged in thread 5
+make_consensus	0	nThreadDuplex-5	molecules were duplex in thread 5
+make_consensus	2213479	nThreadMolecules-4	total molecules processed in thread 4
+make_consensus	1304633	nThreadMerged-4	molecules were merged in thread 4
+make_consensus	0	nThreadDuplex-4	molecules were duplex in thread 4
+make_consensus	2213479	nThreadMolecules-3	total molecules processed in thread 3
+make_consensus	1304314	nThreadMerged-3	molecules were merged in thread 3
+make_consensus	0	nThreadDuplex-3	molecules were duplex in thread 3
+make_consensus	2213479	nThreadMolecules-2	total molecules processed in thread 2
+make_consensus	1304102	nThreadMerged-2	molecules were merged in thread 2
+make_consensus	0	nThreadDuplex-2	molecules were duplex in thread 2
+make_consensus	2213479	nThreadMolecules-1	total molecules processed in thread 1
+make_consensus	1304249	nThreadMerged-1	molecules were merged in thread 1
+make_consensus	0	nThreadDuplex-1	molecules were duplex in thread 1
+make_consensus	563733126	nReadPairs	input read pairs
+make_consensus	1127466252	nReads	input reads (nReadPairs * 2)
+make_consensus	17707831	nMolecules	input source DNA molecules
+done
+
+executing: svCapture collate, step 2 = realign
+re-aligning consensus reads to genome
+coverage	2	nRegions	target regions
+coverage	800000	sumTargetLens	total bp covered by target regions
+coverage	4000000	sumPaddedTargetLens	total bp covered by padded target regions
+coverage	3939473648	sumCoverage[TT]	number of bases covered in unpadded target regions
+coverage	1110591256	sumCoverage[--]	number of bases covered in off-target regions
+coverage	4924.342	foldCoverage[TT]	coverage depth in target regions
+coverage	0.36	foldCoverage[--]	coverage depth in off-target regions
+coverage	13678.7	enrichment	foldCoverage[TT] / foldCoverage[--]
+done
+
+---
+job-manager:
+    exit_status: 0
+    walltime: 11:22:17
+    seconds: 40937.76
+    maxvmem: 27347500K
+    swaps: 0
+---
+job-manager:
+    ended: Sun 03/03/24 05:23
+...
+----------------------------------------------------------------------------------------------------
+/nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/data-scripts/wilsontelab/publications/CFS-M_phase-PolQ-2023/find_by_project/HCT116/.HCT_ART_NVB_102723.yml.data/log/slurm/svCapture_collate.o3952508-3
+----------------------------------------------------------------------------------------------------
+
+---
+job-manager:
+    host: gl3188.arc-ts.umich.edu
+    started: Sat 03/02/24 18:01
+---
+pipeline: svx-mdi-tools/svCapture:v2.0.0
+description: "Characterize structural variant junctions in short-read, paired-end capture library(s)"
+suiteVersions:
+    genomex-mdi-tools: main
+execute: collate
+thread: default
+nTasks: 4
+collate:
+    genome:
+        genomes-dir:    /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/resources/genomes
+        genome:         hg38
+        use-all-chroms: false
+        ordered-chroms: NA
+    name-bam-file:
+        bam-file:       null
+    bam-format:
+        use-cram:       true
+    illumina-type:
+        library-type:   Nextera
+    read-filtering:
+        min-mapq:       20
+    read-merging:
+        min-merge-overlap: 5
+        min-merge-density: 0.8
+    grouping:
+        min-clip:       5
+        adjacency-limit: 1
+    consensus:
+        downsample-n:   11
+        min-sw-score-factor: 0.7
+        consensus-factor: 0.667
+    target-region:
+        targets-bed:    /nfs/turbo/umms-glover/data/svCapture/resources/capture_targets/targets_UM_Wilson_chr3_chr16_TE-93195434_hg38.bed
+        region-padding: 800000
+    output:
+        output-dir:     /nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects/HCT_ART_NVB_102723
+        data-name:
+            - HCT_Ro3_Colch_M
+            - HCT_0.2APH_Ro3_Colch_M
+            - HCT_0.2APH_Ro3_ART_Colch_M
+            - HCT_0.2APH_NVB_Ro3_Colch_M
+    push:
+        push-server:    null
+        push-dir:       /srv/data
+        push-user:      ubuntu
+        push-key:       ~/.ssh/mdi-push-key.pem
+    version:
+        version:        latest
+    resources:
+        runtime:        conda
+        n-cpu:          8
+        n-gpu:          0
+        ram-per-cpu:    4G
+        tmp-dir:        /tmp
+        tmp-dir-large:  /scratch/wilsonte_root/wilsonte0/wilsonte
+    job-manager:
+        email:          nobody@nowhere.edu
+        account:        wilsonte0
+        time-limit:     24:00:00
+        partition:      standard
+        exclusive:      false
+    workflow:
+        force:          false
+        rollback:       0
+        quiet:          false
+    help:
+        help:           false
+        dry-run:        true
+    conda:
+        prefix: /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/environments/8f504b688f 
+        channels:
+            - conda-forge
+            - bioconda
+            - defaults
+        dependencies:
+            - pigz=2.6
+            - sra-tools=3.0.0
+            - fastp=0.23.2
+            - bwa=0.7.17
+            - samtools=1.16.1
+...
+---
+task:
+    task-id: 3
+    data-name: HCT_0.2APH_Ro3_ART_Colch_M
+...
+rolling back to pipeline step 0
+
+ACTION	STEP#	STEP	DATE
+align	1	align	Fri Oct 27 19:21:29 EDT 2023
+extract	1	extract	Sat Oct 28 08:25:38 EDT 2023
+extract	2	coverage	Sat Oct 28 08:25:38 EDT 2023
+extract	3	compile	Sat Oct 28 08:26:57 EDT 2023
+
+alignment file: /nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects/HCT_ART_NVB_102723/HCT_0.2APH_Ro3_ART_Colch_M/HCT_0.2APH_Ro3_ART_Colch_M.hg38.name.cram
+extracting READ_LEN
+READ_LEN = 151
+extracting MAX_TLEN
+MAX_TLEN = 755
+
+executing: svCapture collate, step 1 = group
+grouping read pairs to unique, consensus source molecules
+input bam: /nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects/HCT_ART_NVB_102723/HCT_0.2APH_Ro3_ART_Colch_M/HCT_0.2APH_Ro3_ART_Colch_M.hg38.name.cram
+parse_bam	61109455	nQualityPairs_8	read pairs passed MAPQ 20 in thread 8
+parse_bam	61107533	nQualityPairs_7	read pairs passed MAPQ 20 in thread 7
+parse_bam	61110682	nQualityPairs_6	read pairs passed MAPQ 20 in thread 6
+parse_bam	61109391	nQualityPairs_5	read pairs passed MAPQ 20 in thread 5
+parse_bam	61109149	nQualityPairs_4	read pairs passed MAPQ 20 in thread 4
+parse_bam	61109364	nQualityPairs_3	read pairs passed MAPQ 20 in thread 3
+parse_bam	61112041	nQualityPairs_2	read pairs passed MAPQ 20 in thread 2
+parse_bam	61110194	nQualityPairs_1	read pairs passed MAPQ 20 in thread 1
+parse_bam	701801789	nInputAlns	input aligned segments over all read pairs
+parse_bam	498900786	nReadPairs	input read pairs
+group_reads	488877809	nInputReadPairs	input read pairs (one per line)
+group_reads	15910637	nOutputGroups	output molecule groups
+group_reads	488877809	nOutputReadPairs	read pairs in the output molecule groups
+make_consensus	1988829	nThreadMolecules-8	total molecules processed in thread 8
+make_consensus	1147938	nThreadMerged-8	molecules were merged in thread 8
+make_consensus	0	nThreadDuplex-8	molecules were duplex in thread 8
+make_consensus	1988829	nThreadMolecules-7	total molecules processed in thread 7
+make_consensus	1147755	nThreadMerged-7	molecules were merged in thread 7
+make_consensus	0	nThreadDuplex-7	molecules were duplex in thread 7
+make_consensus	1988829	nThreadMolecules-6	total molecules processed in thread 6
+make_consensus	1148194	nThreadMerged-6	molecules were merged in thread 6
+make_consensus	0	nThreadDuplex-6	molecules were duplex in thread 6
+make_consensus	1988830	nThreadMolecules-5	total molecules processed in thread 5
+make_consensus	1148192	nThreadMerged-5	molecules were merged in thread 5
+make_consensus	0	nThreadDuplex-5	molecules were duplex in thread 5
+make_consensus	1988830	nThreadMolecules-4	total molecules processed in thread 4
+make_consensus	1147535	nThreadMerged-4	molecules were merged in thread 4
+make_consensus	0	nThreadDuplex-4	molecules were duplex in thread 4
+make_consensus	1988830	nThreadMolecules-3	total molecules processed in thread 3
+make_consensus	1147569	nThreadMerged-3	molecules were merged in thread 3
+make_consensus	0	nThreadDuplex-3	molecules were duplex in thread 3
+make_consensus	1988830	nThreadMolecules-2	total molecules processed in thread 2
+make_consensus	1147610	nThreadMerged-2	molecules were merged in thread 2
+make_consensus	0	nThreadDuplex-2	molecules were duplex in thread 2
+make_consensus	1988830	nThreadMolecules-1	total molecules processed in thread 1
+make_consensus	1147739	nThreadMerged-1	molecules were merged in thread 1
+make_consensus	0	nThreadDuplex-1	molecules were duplex in thread 1
+make_consensus	488877809	nReadPairs	input read pairs
+make_consensus	977755618	nReads	input reads (nReadPairs * 2)
+make_consensus	15910637	nMolecules	input source DNA molecules
+done
+
+executing: svCapture collate, step 2 = realign
+re-aligning consensus reads to genome
+coverage	2	nRegions	target regions
+coverage	800000	sumTargetLens	total bp covered by target regions
+coverage	4000000	sumPaddedTargetLens	total bp covered by padded target regions
+coverage	3751240434	sumCoverage[TT]	number of bases covered in unpadded target regions
+coverage	842345862	sumCoverage[--]	number of bases covered in off-target regions
+coverage	4689.051	foldCoverage[TT]	coverage depth in target regions
+coverage	0.273	foldCoverage[--]	coverage depth in off-target regions
+coverage	17176	enrichment	foldCoverage[TT] / foldCoverage[--]
+done
+
+---
+job-manager:
+    exit_status: 0
+    walltime: 9:25:53
+    seconds: 33953.28
+    maxvmem: 27347456K
+    swaps: 0
+---
+job-manager:
+    ended: Sun 03/03/24 03:27
+...
+----------------------------------------------------------------------------------------------------
+/nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/data-scripts/wilsontelab/publications/CFS-M_phase-PolQ-2023/find_by_project/HCT116/.HCT_ART_NVB_102723.yml.data/log/slurm/svCapture_collate.o3952508-4
+----------------------------------------------------------------------------------------------------
+
+---
+job-manager:
+    host: gl3207.arc-ts.umich.edu
+    started: Sat 03/02/24 18:01
+---
+pipeline: svx-mdi-tools/svCapture:v2.0.0
+description: "Characterize structural variant junctions in short-read, paired-end capture library(s)"
+suiteVersions:
+    genomex-mdi-tools: main
+execute: collate
+thread: default
+nTasks: 4
+collate:
+    genome:
+        genomes-dir:    /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/resources/genomes
+        genome:         hg38
+        use-all-chroms: false
+        ordered-chroms: NA
+    name-bam-file:
+        bam-file:       null
+    bam-format:
+        use-cram:       true
+    illumina-type:
+        library-type:   Nextera
+    read-filtering:
+        min-mapq:       20
+    read-merging:
+        min-merge-overlap: 5
+        min-merge-density: 0.8
+    grouping:
+        min-clip:       5
+        adjacency-limit: 1
+    consensus:
+        downsample-n:   11
+        min-sw-score-factor: 0.7
+        consensus-factor: 0.667
+    target-region:
+        targets-bed:    /nfs/turbo/umms-glover/data/svCapture/resources/capture_targets/targets_UM_Wilson_chr3_chr16_TE-93195434_hg38.bed
+        region-padding: 800000
+    output:
+        output-dir:     /nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects/HCT_ART_NVB_102723
+        data-name:
+            - HCT_Ro3_Colch_M
+            - HCT_0.2APH_Ro3_Colch_M
+            - HCT_0.2APH_Ro3_ART_Colch_M
+            - HCT_0.2APH_NVB_Ro3_Colch_M
+    push:
+        push-server:    null
+        push-dir:       /srv/data
+        push-user:      ubuntu
+        push-key:       ~/.ssh/mdi-push-key.pem
+    version:
+        version:        latest
+    resources:
+        runtime:        conda
+        n-cpu:          8
+        n-gpu:          0
+        ram-per-cpu:    4G
+        tmp-dir:        /tmp
+        tmp-dir-large:  /scratch/wilsonte_root/wilsonte0/wilsonte
+    job-manager:
+        email:          nobody@nowhere.edu
+        account:        wilsonte0
+        time-limit:     24:00:00
+        partition:      standard
+        exclusive:      false
+    workflow:
+        force:          false
+        rollback:       0
+        quiet:          false
+    help:
+        help:           false
+        dry-run:        true
+    conda:
+        prefix: /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/environments/8f504b688f 
+        channels:
+            - conda-forge
+            - bioconda
+            - defaults
+        dependencies:
+            - pigz=2.6
+            - sra-tools=3.0.0
+            - fastp=0.23.2
+            - bwa=0.7.17
+            - samtools=1.16.1
+...
+---
+task:
+    task-id: 4
+    data-name: HCT_0.2APH_NVB_Ro3_Colch_M
+...
+rolling back to pipeline step 0
+
+ACTION	STEP#	STEP	DATE
+align	1	align	Fri Oct 27 20:08:48 EDT 2023
+extract	1	extract	Sat Oct 28 08:26:21 EDT 2023
+extract	2	coverage	Sat Oct 28 08:26:21 EDT 2023
+extract	3	compile	Sat Oct 28 08:28:47 EDT 2023
+
+alignment file: /nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects/HCT_ART_NVB_102723/HCT_0.2APH_NVB_Ro3_Colch_M/HCT_0.2APH_NVB_Ro3_Colch_M.hg38.name.cram
+extracting READ_LEN
+READ_LEN = 151
+extracting MAX_TLEN
+MAX_TLEN = 786
+
+executing: svCapture collate, step 1 = group
+grouping read pairs to unique, consensus source molecules
+input bam: /nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects/HCT_ART_NVB_102723/HCT_0.2APH_NVB_Ro3_Colch_M/HCT_0.2APH_NVB_Ro3_Colch_M.hg38.name.cram
+parse_bam	68112327	nQualityPairs_8	read pairs passed MAPQ 20 in thread 8
+parse_bam	68111115	nQualityPairs_7	read pairs passed MAPQ 20 in thread 7
+parse_bam	68111204	nQualityPairs_6	read pairs passed MAPQ 20 in thread 6
+parse_bam	68110219	nQualityPairs_5	read pairs passed MAPQ 20 in thread 5
+parse_bam	68110604	nQualityPairs_4	read pairs passed MAPQ 20 in thread 4
+parse_bam	68111662	nQualityPairs_3	read pairs passed MAPQ 20 in thread 3
+parse_bam	68113041	nQualityPairs_2	read pairs passed MAPQ 20 in thread 2
+parse_bam	68110074	nQualityPairs_1	read pairs passed MAPQ 20 in thread 1
+parse_bam	763085399	nInputAlns	input aligned segments over all read pairs
+parse_bam	558649678	nReadPairs	input read pairs
+group_reads	544890246	nInputReadPairs	input read pairs (one per line)
+group_reads	25002228	nOutputGroups	output molecule groups
+group_reads	544890246	nOutputReadPairs	read pairs in the output molecule groups
+make_consensus	3125278	nThreadMolecules-8	total molecules processed in thread 8
+make_consensus	2053989	nThreadMerged-8	molecules were merged in thread 8
+make_consensus	0	nThreadDuplex-8	molecules were duplex in thread 8
+make_consensus	3125278	nThreadMolecules-7	total molecules processed in thread 7
+make_consensus	2055535	nThreadMerged-7	molecules were merged in thread 7
+make_consensus	0	nThreadDuplex-7	molecules were duplex in thread 7
+make_consensus	3125278	nThreadMolecules-6	total molecules processed in thread 6
+make_consensus	2053761	nThreadMerged-6	molecules were merged in thread 6
+make_consensus	0	nThreadDuplex-6	molecules were duplex in thread 6
+make_consensus	3125278	nThreadMolecules-5	total molecules processed in thread 5
+make_consensus	2053918	nThreadMerged-5	molecules were merged in thread 5
+make_consensus	0	nThreadDuplex-5	molecules were duplex in thread 5
+make_consensus	3125279	nThreadMolecules-4	total molecules processed in thread 4
+make_consensus	2054880	nThreadMerged-4	molecules were merged in thread 4
+make_consensus	0	nThreadDuplex-4	molecules were duplex in thread 4
+make_consensus	3125279	nThreadMolecules-3	total molecules processed in thread 3
+make_consensus	2054210	nThreadMerged-3	molecules were merged in thread 3
+make_consensus	0	nThreadDuplex-3	molecules were duplex in thread 3
+make_consensus	3125279	nThreadMolecules-2	total molecules processed in thread 2
+make_consensus	2054893	nThreadMerged-2	molecules were merged in thread 2
+make_consensus	0	nThreadDuplex-2	molecules were duplex in thread 2
+make_consensus	3125279	nThreadMolecules-1	total molecules processed in thread 1
+make_consensus	2054293	nThreadMerged-1	molecules were merged in thread 1
+make_consensus	0	nThreadDuplex-1	molecules were duplex in thread 1
+make_consensus	544890246	nReadPairs	input read pairs
+make_consensus	1089780492	nReads	input reads (nReadPairs * 2)
+make_consensus	25002228	nMolecules	input source DNA molecules
+done
+
+executing: svCapture collate, step 2 = realign
+re-aligning consensus reads to genome
+coverage	2	nRegions	target regions
+coverage	800000	sumTargetLens	total bp covered by target regions
+coverage	4000000	sumPaddedTargetLens	total bp covered by padded target regions
+coverage	3806351921	sumCoverage[TT]	number of bases covered in unpadded target regions
+coverage	2792888084	sumCoverage[--]	number of bases covered in off-target regions
+coverage	4757.94	foldCoverage[TT]	coverage depth in target regions
+coverage	0.905	foldCoverage[--]	coverage depth in off-target regions
+coverage	5257.4	enrichment	foldCoverage[TT] / foldCoverage[--]
+done
+
+---
+job-manager:
+    exit_status: 0
+    walltime: 10:35:02
+    seconds: 38102.31
+    maxvmem: 27347028K
+    swaps: 0
+---
+job-manager:
+    ended: Sun 03/03/24 04:36
+...
+====================================================================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+====================================================================================================
+job: 3952509
+----------------------------------------------------------------------------------------------------
+/nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/data-scripts/wilsontelab/publications/CFS-M_phase-PolQ-2023/find_by_project/HCT116/.HCT_ART_NVB_102723.yml.data/log/slurm/svCapture_extract.o3952509-1
+----------------------------------------------------------------------------------------------------
+
+---
+job-manager:
+    host: gl3057.arc-ts.umich.edu
+    started: Sun 03/03/24 05:23
+---
+pipeline: svx-mdi-tools/svCapture:v2.0.0
+description: "Characterize structural variant junctions in short-read, paired-end capture library(s)"
+suiteVersions:
+    genomex-mdi-tools: main
+execute: extract
+thread: default
+nTasks: 4
+extract:
+    genome:
+        genomes-dir:    /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/resources/genomes
+        genome:         hg38
+        use-all-chroms: false
+        ordered-chroms: NA
+    name-bam-file:
+        bam-file:       null
+    bam-format:
+        use-cram:       true
+    illumina-type:
+        library-type:   Nextera
+    read-filtering:
+        min-mapq:       20
+    read-merging:
+        min-merge-overlap: 5
+        min-merge-density: 0.8
+    clip:
+        min-clip:       5
+    target-region:
+        targets-bed:    /nfs/turbo/umms-glover/data/svCapture/resources/capture_targets/targets_UM_Wilson_chr3_chr16_TE-93195434_hg38.bed
+        region-padding: 800000
+    output:
+        output-dir:     /nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects/HCT_ART_NVB_102723
+        data-name:
+            - HCT_Ro3_Colch_M
+            - HCT_0.2APH_Ro3_Colch_M
+            - HCT_0.2APH_Ro3_ART_Colch_M
+            - HCT_0.2APH_NVB_Ro3_Colch_M
+    push:
+        push-server:    null
+        push-dir:       /srv/data
+        push-user:      ubuntu
+        push-key:       ~/.ssh/mdi-push-key.pem
+    version:
+        version:        latest
+    resources:
+        runtime:        conda
+        n-cpu:          8
+        n-gpu:          0
+        ram-per-cpu:    4G
+        tmp-dir:        /tmp
+        tmp-dir-large:  /scratch/wilsonte_root/wilsonte0/wilsonte
+    job-manager:
+        email:          nobody@nowhere.edu
+        account:        wilsonte0
+        time-limit:     4:00:00
+        partition:      standard
+        exclusive:      false
+    workflow:
+        force:          false
+        rollback:       0
+        quiet:          false
+    help:
+        help:           false
+        dry-run:        true
+    conda:
+        prefix: /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/environments/ef8ad54517 
+        channels:
+            - conda-forge
+            - bioconda
+            - defaults
+        dependencies:
+            - pigz=2.6
+            - samtools=1.16.1
+            - bedtools=2.30.0
+            - r-base=4.1.3
+            - r-essentials=4.1
+            - r-r.utils=2.12.0
+...
+---
+task:
+    task-id: 1
+    data-name: HCT_Ro3_Colch_M
+...
+rolling back to pipeline step 0
+
+ACTION	STEP#	STEP	DATE
+align	1	align	Fri Oct 27 20:30:45 EDT 2023
+collate	1	group	Sun Mar  3 04:57:47 EST 2024
+collate	2	realign	Sun Mar  3 05:22:09 EST 2024
+
+alignment file: /nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects/HCT_ART_NVB_102723/HCT_Ro3_Colch_M/HCT_Ro3_Colch_M.hg38.name.cram
+extracting READ_LEN
+READ_LEN = 151
+extracting MAX_TLEN
+MAX_TLEN = 860
+
+executing: svCapture extract, step 1 = extract
+extracting SV data from name-sorted bam
+/nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects/HCT_ART_NVB_102723/HCT_Ro3_Colch_M/HCT_Ro3_Colch_M.hg38.name.realigned.cram
+extract_nodes	2	nRegions	target regions
+extract_nodes	800000	sumTargetLens	total bp covered by target regions
+extract_nodes	4000000	sumPaddedTargetLens	total bp covered by padded target regions
+extract_nodes	4045493	nThreadPairs-8	total read pairs processed in thread 8
+extract_nodes	53830	nExcluded-8	rejected read pairs in excluded regions in thread 8
+extract_nodes	10859	nFailedQuality-8	rejected read pairs failed MIN_MAPQ 20 in thread 8
+extract_nodes	4045493	nThreadPairs-7	total read pairs processed in thread 7
+extract_nodes	53965	nExcluded-7	rejected read pairs in excluded regions in thread 7
+extract_nodes	10764	nFailedQuality-7	rejected read pairs failed MIN_MAPQ 20 in thread 7
+extract_nodes	4045493	nThreadPairs-6	total read pairs processed in thread 6
+extract_nodes	53799	nExcluded-6	rejected read pairs in excluded regions in thread 6
+extract_nodes	10887	nFailedQuality-6	rejected read pairs failed MIN_MAPQ 20 in thread 6
+extract_nodes	4045493	nThreadPairs-5	total read pairs processed in thread 5
+extract_nodes	53844	nExcluded-5	rejected read pairs in excluded regions in thread 5
+extract_nodes	10864	nFailedQuality-5	rejected read pairs failed MIN_MAPQ 20 in thread 5
+extract_nodes	4045494	nThreadPairs-4	total read pairs processed in thread 4
+extract_nodes	53808	nExcluded-4	rejected read pairs in excluded regions in thread 4
+extract_nodes	10800	nFailedQuality-4	rejected read pairs failed MIN_MAPQ 20 in thread 4
+extract_nodes	4045494	nThreadPairs-3	total read pairs processed in thread 3
+extract_nodes	53832	nExcluded-3	rejected read pairs in excluded regions in thread 3
+extract_nodes	10756	nFailedQuality-3	rejected read pairs failed MIN_MAPQ 20 in thread 3
+extract_nodes	4045494	nThreadPairs-2	total read pairs processed in thread 2
+extract_nodes	53703	nExcluded-2	rejected read pairs in excluded regions in thread 2
+extract_nodes	10677	nFailedQuality-2	rejected read pairs failed MIN_MAPQ 20 in thread 2
+extract_nodes	4045494	nThreadPairs-1	total read pairs processed in thread 1
+extract_nodes	53763	nExcluded-1	rejected read pairs in excluded regions in thread 1
+extract_nodes	10939	nFailedQuality-1	rejected read pairs failed MIN_MAPQ 20 in thread 1
+extract_nodes	41879401	nInputAlns	input aligned segments over all read pairs
+extract_nodes	32363948	nReadPairs	input read pairs
+plotting insert size histogram
+done
+
+executing: svCapture extract, step 2 = coverage
+
+executing: svCapture extract, step 3 = compile
+identifying SV molecules that share endpoints with proper molecules
+calculating duplex rates and strand family sizes
+  targetClass       class    total duplex duplex3 singleton duplexRate
+1          TT      Proper 12355141      0       0  12355141          0
+2          TT Del/Dup/Inv    45857      0       0     45857          0
+3          tt    Artifact       78      0       0        78          0
+4          --      Proper 19358618      0       0  19358618          0
+5          --    Artifact    19371      0       0     19371          0
+parsing and printing SV junction edges
+printing outer clip nodes
+done
+
+---
+job-manager:
+    exit_status: 0
+    walltime: 6:05.33
+    seconds: 365.33
+    maxvmem: 9723532K
+    swaps: 0
+---
+job-manager:
+    ended: Sun 03/03/24 05:29
+...
+----------------------------------------------------------------------------------------------------
+/nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/data-scripts/wilsontelab/publications/CFS-M_phase-PolQ-2023/find_by_project/HCT116/.HCT_ART_NVB_102723.yml.data/log/slurm/svCapture_extract.o3952509-2
+----------------------------------------------------------------------------------------------------
+
+---
+job-manager:
+    host: gl3057.arc-ts.umich.edu
+    started: Sun 03/03/24 05:23
+---
+pipeline: svx-mdi-tools/svCapture:v2.0.0
+description: "Characterize structural variant junctions in short-read, paired-end capture library(s)"
+suiteVersions:
+    genomex-mdi-tools: main
+execute: extract
+thread: default
+nTasks: 4
+extract:
+    genome:
+        genomes-dir:    /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/resources/genomes
+        genome:         hg38
+        use-all-chroms: false
+        ordered-chroms: NA
+    name-bam-file:
+        bam-file:       null
+    bam-format:
+        use-cram:       true
+    illumina-type:
+        library-type:   Nextera
+    read-filtering:
+        min-mapq:       20
+    read-merging:
+        min-merge-overlap: 5
+        min-merge-density: 0.8
+    clip:
+        min-clip:       5
+    target-region:
+        targets-bed:    /nfs/turbo/umms-glover/data/svCapture/resources/capture_targets/targets_UM_Wilson_chr3_chr16_TE-93195434_hg38.bed
+        region-padding: 800000
+    output:
+        output-dir:     /nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects/HCT_ART_NVB_102723
+        data-name:
+            - HCT_Ro3_Colch_M
+            - HCT_0.2APH_Ro3_Colch_M
+            - HCT_0.2APH_Ro3_ART_Colch_M
+            - HCT_0.2APH_NVB_Ro3_Colch_M
+    push:
+        push-server:    null
+        push-dir:       /srv/data
+        push-user:      ubuntu
+        push-key:       ~/.ssh/mdi-push-key.pem
+    version:
+        version:        latest
+    resources:
+        runtime:        conda
+        n-cpu:          8
+        n-gpu:          0
+        ram-per-cpu:    4G
+        tmp-dir:        /tmp
+        tmp-dir-large:  /scratch/wilsonte_root/wilsonte0/wilsonte
+    job-manager:
+        email:          nobody@nowhere.edu
+        account:        wilsonte0
+        time-limit:     4:00:00
+        partition:      standard
+        exclusive:      false
+    workflow:
+        force:          false
+        rollback:       0
+        quiet:          false
+    help:
+        help:           false
+        dry-run:        true
+    conda:
+        prefix: /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/environments/ef8ad54517 
+        channels:
+            - conda-forge
+            - bioconda
+            - defaults
+        dependencies:
+            - pigz=2.6
+            - samtools=1.16.1
+            - bedtools=2.30.0
+            - r-base=4.1.3
+            - r-essentials=4.1
+            - r-r.utils=2.12.0
+...
+---
+task:
+    task-id: 2
+    data-name: HCT_0.2APH_Ro3_Colch_M
+...
+rolling back to pipeline step 0
+
+ACTION	STEP#	STEP	DATE
+align	1	align	Fri Oct 27 20:45:30 EDT 2023
+collate	1	group	Sun Mar  3 05:09:31 EST 2024
+collate	2	realign	Sun Mar  3 05:23:33 EST 2024
+
+alignment file: /nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects/HCT_ART_NVB_102723/HCT_0.2APH_Ro3_Colch_M/HCT_0.2APH_Ro3_Colch_M.hg38.name.cram
+extracting READ_LEN
+READ_LEN = 151
+extracting MAX_TLEN
+MAX_TLEN = 800
+
+executing: svCapture extract, step 1 = extract
+extracting SV data from name-sorted bam
+/nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects/HCT_ART_NVB_102723/HCT_0.2APH_Ro3_Colch_M/HCT_0.2APH_Ro3_Colch_M.hg38.name.realigned.cram
+extract_nodes	2	nRegions	target regions
+extract_nodes	800000	sumTargetLens	total bp covered by target regions
+extract_nodes	4000000	sumPaddedTargetLens	total bp covered by padded target regions
+extract_nodes	2196002	nThreadPairs-8	total read pairs processed in thread 8
+extract_nodes	25236	nExcluded-8	rejected read pairs in excluded regions in thread 8
+extract_nodes	6289	nFailedQuality-8	rejected read pairs failed MIN_MAPQ 20 in thread 8
+extract_nodes	2196002	nThreadPairs-7	total read pairs processed in thread 7
+extract_nodes	25188	nExcluded-7	rejected read pairs in excluded regions in thread 7
+extract_nodes	6380	nFailedQuality-7	rejected read pairs failed MIN_MAPQ 20 in thread 7
+extract_nodes	2196002	nThreadPairs-6	total read pairs processed in thread 6
+extract_nodes	25112	nExcluded-6	rejected read pairs in excluded regions in thread 6
+extract_nodes	6422	nFailedQuality-6	rejected read pairs failed MIN_MAPQ 20 in thread 6
+extract_nodes	2196002	nThreadPairs-5	total read pairs processed in thread 5
+extract_nodes	25143	nExcluded-5	rejected read pairs in excluded regions in thread 5
+extract_nodes	6440	nFailedQuality-5	rejected read pairs failed MIN_MAPQ 20 in thread 5
+extract_nodes	2196002	nThreadPairs-4	total read pairs processed in thread 4
+extract_nodes	24974	nExcluded-4	rejected read pairs in excluded regions in thread 4
+extract_nodes	6511	nFailedQuality-4	rejected read pairs failed MIN_MAPQ 20 in thread 4
+extract_nodes	2196002	nThreadPairs-3	total read pairs processed in thread 3
+extract_nodes	25258	nExcluded-3	rejected read pairs in excluded regions in thread 3
+extract_nodes	6372	nFailedQuality-3	rejected read pairs failed MIN_MAPQ 20 in thread 3
+extract_nodes	2196002	nThreadPairs-2	total read pairs processed in thread 2
+extract_nodes	25099	nExcluded-2	rejected read pairs in excluded regions in thread 2
+extract_nodes	6358	nFailedQuality-2	rejected read pairs failed MIN_MAPQ 20 in thread 2
+extract_nodes	2196002	nThreadPairs-1	total read pairs processed in thread 1
+extract_nodes	25063	nExcluded-1	rejected read pairs in excluded regions in thread 1
+extract_nodes	6327	nFailedQuality-1	rejected read pairs failed MIN_MAPQ 20 in thread 1
+extract_nodes	24649570	nInputAlns	input aligned segments over all read pairs
+extract_nodes	17568016	nReadPairs	input read pairs
+plotting insert size histogram
+done
+
+executing: svCapture extract, step 2 = coverage
+
+executing: svCapture extract, step 3 = compile
+identifying SV molecules that share endpoints with proper molecules
+calculating duplex rates and strand family sizes
+  targetClass       class    total duplex duplex3 singleton duplexRate
+1          TT      Proper 12703843      0       0  12703843          0
+2          TT Del/Dup/Inv    48934      0       0     48934          0
+3          tt    Artifact       89      0       0        89          0
+4          --      Proper  4502956      0       0   4502956          0
+5          --    Artifact     6277      0       0      6277          0
+parsing and printing SV junction edges
+printing outer clip nodes
+done
+
+---
+job-manager:
+    exit_status: 0
+    walltime: 3:57.25
+    seconds: 237.25
+    maxvmem: 5276696K
+    swaps: 0
+---
+job-manager:
+    ended: Sun 03/03/24 05:27
+...
+----------------------------------------------------------------------------------------------------
+/nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/data-scripts/wilsontelab/publications/CFS-M_phase-PolQ-2023/find_by_project/HCT116/.HCT_ART_NVB_102723.yml.data/log/slurm/svCapture_extract.o3952509-3
+----------------------------------------------------------------------------------------------------
+
+---
+job-manager:
+    host: gl3156.arc-ts.umich.edu
+    started: Sun 03/03/24 05:23
+---
+pipeline: svx-mdi-tools/svCapture:v2.0.0
+description: "Characterize structural variant junctions in short-read, paired-end capture library(s)"
+suiteVersions:
+    genomex-mdi-tools: main
+execute: extract
+thread: default
+nTasks: 4
+extract:
+    genome:
+        genomes-dir:    /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/resources/genomes
+        genome:         hg38
+        use-all-chroms: false
+        ordered-chroms: NA
+    name-bam-file:
+        bam-file:       null
+    bam-format:
+        use-cram:       true
+    illumina-type:
+        library-type:   Nextera
+    read-filtering:
+        min-mapq:       20
+    read-merging:
+        min-merge-overlap: 5
+        min-merge-density: 0.8
+    clip:
+        min-clip:       5
+    target-region:
+        targets-bed:    /nfs/turbo/umms-glover/data/svCapture/resources/capture_targets/targets_UM_Wilson_chr3_chr16_TE-93195434_hg38.bed
+        region-padding: 800000
+    output:
+        output-dir:     /nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects/HCT_ART_NVB_102723
+        data-name:
+            - HCT_Ro3_Colch_M
+            - HCT_0.2APH_Ro3_Colch_M
+            - HCT_0.2APH_Ro3_ART_Colch_M
+            - HCT_0.2APH_NVB_Ro3_Colch_M
+    push:
+        push-server:    null
+        push-dir:       /srv/data
+        push-user:      ubuntu
+        push-key:       ~/.ssh/mdi-push-key.pem
+    version:
+        version:        latest
+    resources:
+        runtime:        conda
+        n-cpu:          8
+        n-gpu:          0
+        ram-per-cpu:    4G
+        tmp-dir:        /tmp
+        tmp-dir-large:  /scratch/wilsonte_root/wilsonte0/wilsonte
+    job-manager:
+        email:          nobody@nowhere.edu
+        account:        wilsonte0
+        time-limit:     4:00:00
+        partition:      standard
+        exclusive:      false
+    workflow:
+        force:          false
+        rollback:       0
+        quiet:          false
+    help:
+        help:           false
+        dry-run:        true
+    conda:
+        prefix: /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/environments/ef8ad54517 
+        channels:
+            - conda-forge
+            - bioconda
+            - defaults
+        dependencies:
+            - pigz=2.6
+            - samtools=1.16.1
+            - bedtools=2.30.0
+            - r-base=4.1.3
+            - r-essentials=4.1
+            - r-r.utils=2.12.0
+...
+---
+task:
+    task-id: 3
+    data-name: HCT_0.2APH_Ro3_ART_Colch_M
+...
+rolling back to pipeline step 0
+
+ACTION	STEP#	STEP	DATE
+align	1	align	Fri Oct 27 19:21:29 EDT 2023
+collate	1	group	Sun Mar  3 03:14:01 EST 2024
+collate	2	realign	Sun Mar  3 03:27:08 EST 2024
+
+alignment file: /nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects/HCT_ART_NVB_102723/HCT_0.2APH_Ro3_ART_Colch_M/HCT_0.2APH_Ro3_ART_Colch_M.hg38.name.cram
+extracting READ_LEN
+READ_LEN = 151
+extracting MAX_TLEN
+MAX_TLEN = 755
+
+executing: svCapture extract, step 1 = extract
+extracting SV data from name-sorted bam
+/nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects/HCT_ART_NVB_102723/HCT_0.2APH_Ro3_ART_Colch_M/HCT_0.2APH_Ro3_ART_Colch_M.hg38.name.realigned.cram
+extract_nodes	2	nRegions	target regions
+extract_nodes	800000	sumTargetLens	total bp covered by target regions
+extract_nodes	4000000	sumPaddedTargetLens	total bp covered by padded target regions
+extract_nodes	1972224	nThreadPairs-8	total read pairs processed in thread 8
+extract_nodes	20464	nExcluded-8	rejected read pairs in excluded regions in thread 8
+extract_nodes	5263	nFailedQuality-8	rejected read pairs failed MIN_MAPQ 20 in thread 8
+extract_nodes	1972224	nThreadPairs-7	total read pairs processed in thread 7
+extract_nodes	20373	nExcluded-7	rejected read pairs in excluded regions in thread 7
+extract_nodes	5236	nFailedQuality-7	rejected read pairs failed MIN_MAPQ 20 in thread 7
+extract_nodes	1972224	nThreadPairs-6	total read pairs processed in thread 6
+extract_nodes	20606	nExcluded-6	rejected read pairs in excluded regions in thread 6
+extract_nodes	5334	nFailedQuality-6	rejected read pairs failed MIN_MAPQ 20 in thread 6
+extract_nodes	1972224	nThreadPairs-5	total read pairs processed in thread 5
+extract_nodes	20539	nExcluded-5	rejected read pairs in excluded regions in thread 5
+extract_nodes	5361	nFailedQuality-5	rejected read pairs failed MIN_MAPQ 20 in thread 5
+extract_nodes	1972224	nThreadPairs-4	total read pairs processed in thread 4
+extract_nodes	20408	nExcluded-4	rejected read pairs in excluded regions in thread 4
+extract_nodes	5310	nFailedQuality-4	rejected read pairs failed MIN_MAPQ 20 in thread 4
+extract_nodes	1972224	nThreadPairs-3	total read pairs processed in thread 3
+extract_nodes	20450	nExcluded-3	rejected read pairs in excluded regions in thread 3
+extract_nodes	5318	nFailedQuality-3	rejected read pairs failed MIN_MAPQ 20 in thread 3
+extract_nodes	1972224	nThreadPairs-2	total read pairs processed in thread 2
+extract_nodes	20562	nExcluded-2	rejected read pairs in excluded regions in thread 2
+extract_nodes	5330	nFailedQuality-2	rejected read pairs failed MIN_MAPQ 20 in thread 2
+extract_nodes	1972224	nThreadPairs-1	total read pairs processed in thread 1
+extract_nodes	20480	nExcluded-1	rejected read pairs in excluded regions in thread 1
+extract_nodes	5369	nFailedQuality-1	rejected read pairs failed MIN_MAPQ 20 in thread 1
+extract_nodes	22311118	nInputAlns	input aligned segments over all read pairs
+extract_nodes	15777792	nReadPairs	input read pairs
+plotting insert size histogram
+done
+
+executing: svCapture extract, step 2 = coverage
+
+executing: svCapture extract, step 3 = compile
+identifying SV molecules that share endpoints with proper molecules
+calculating duplex rates and strand family sizes
+  targetClass       class    total duplex duplex3 singleton duplexRate
+1          TT      Proper 12167924      0       0  12167924          0
+2          TT Del/Dup/Inv    46804      0       0     46804          0
+3          tt    Artifact      104      0       0       104          0
+4          --      Proper  3305115      0       0   3305115          0
+5          --    Artifact     5053      0       0      5053          0
+parsing and printing SV junction edges
+printing outer clip nodes
+done
+
+---
+job-manager:
+    exit_status: 0
+    walltime: 3:25.67
+    seconds: 205.67
+    maxvmem: 4743064K
+    swaps: 0
+---
+job-manager:
+    ended: Sun 03/03/24 05:27
+...
+----------------------------------------------------------------------------------------------------
+/nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/data-scripts/wilsontelab/publications/CFS-M_phase-PolQ-2023/find_by_project/HCT116/.HCT_ART_NVB_102723.yml.data/log/slurm/svCapture_extract.o3952509-4
+----------------------------------------------------------------------------------------------------
+
+---
+job-manager:
+    host: gl3156.arc-ts.umich.edu
+    started: Sun 03/03/24 05:23
+---
+pipeline: svx-mdi-tools/svCapture:v2.0.0
+description: "Characterize structural variant junctions in short-read, paired-end capture library(s)"
+suiteVersions:
+    genomex-mdi-tools: main
+execute: extract
+thread: default
+nTasks: 4
+extract:
+    genome:
+        genomes-dir:    /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/resources/genomes
+        genome:         hg38
+        use-all-chroms: false
+        ordered-chroms: NA
+    name-bam-file:
+        bam-file:       null
+    bam-format:
+        use-cram:       true
+    illumina-type:
+        library-type:   Nextera
+    read-filtering:
+        min-mapq:       20
+    read-merging:
+        min-merge-overlap: 5
+        min-merge-density: 0.8
+    clip:
+        min-clip:       5
+    target-region:
+        targets-bed:    /nfs/turbo/umms-glover/data/svCapture/resources/capture_targets/targets_UM_Wilson_chr3_chr16_TE-93195434_hg38.bed
+        region-padding: 800000
+    output:
+        output-dir:     /nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects/HCT_ART_NVB_102723
+        data-name:
+            - HCT_Ro3_Colch_M
+            - HCT_0.2APH_Ro3_Colch_M
+            - HCT_0.2APH_Ro3_ART_Colch_M
+            - HCT_0.2APH_NVB_Ro3_Colch_M
+    push:
+        push-server:    null
+        push-dir:       /srv/data
+        push-user:      ubuntu
+        push-key:       ~/.ssh/mdi-push-key.pem
+    version:
+        version:        latest
+    resources:
+        runtime:        conda
+        n-cpu:          8
+        n-gpu:          0
+        ram-per-cpu:    4G
+        tmp-dir:        /tmp
+        tmp-dir-large:  /scratch/wilsonte_root/wilsonte0/wilsonte
+    job-manager:
+        email:          nobody@nowhere.edu
+        account:        wilsonte0
+        time-limit:     4:00:00
+        partition:      standard
+        exclusive:      false
+    workflow:
+        force:          false
+        rollback:       0
+        quiet:          false
+    help:
+        help:           false
+        dry-run:        true
+    conda:
+        prefix: /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/environments/ef8ad54517 
+        channels:
+            - conda-forge
+            - bioconda
+            - defaults
+        dependencies:
+            - pigz=2.6
+            - samtools=1.16.1
+            - bedtools=2.30.0
+            - r-base=4.1.3
+            - r-essentials=4.1
+            - r-r.utils=2.12.0
+...
+---
+task:
+    task-id: 4
+    data-name: HCT_0.2APH_NVB_Ro3_Colch_M
+...
+rolling back to pipeline step 0
+
+ACTION	STEP#	STEP	DATE
+align	1	align	Fri Oct 27 20:08:48 EDT 2023
+collate	1	group	Sun Mar  3 04:18:22 EST 2024
+collate	2	realign	Sun Mar  3 04:36:48 EST 2024
+
+alignment file: /nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects/HCT_ART_NVB_102723/HCT_0.2APH_NVB_Ro3_Colch_M/HCT_0.2APH_NVB_Ro3_Colch_M.hg38.name.cram
+extracting READ_LEN
+READ_LEN = 151
+extracting MAX_TLEN
+MAX_TLEN = 786
+
+executing: svCapture extract, step 1 = extract
+extracting SV data from name-sorted bam
+/nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects/HCT_ART_NVB_102723/HCT_0.2APH_NVB_Ro3_Colch_M/HCT_0.2APH_NVB_Ro3_Colch_M.hg38.name.realigned.cram
+extract_nodes	2	nRegions	target regions
+extract_nodes	800000	sumTargetLens	total bp covered by target regions
+extract_nodes	4000000	sumPaddedTargetLens	total bp covered by padded target regions
+extract_nodes	3107956	nThreadPairs-8	total read pairs processed in thread 8
+extract_nodes	40315	nExcluded-8	rejected read pairs in excluded regions in thread 8
+extract_nodes	8676	nFailedQuality-8	rejected read pairs failed MIN_MAPQ 20 in thread 8
+extract_nodes	3107956	nThreadPairs-7	total read pairs processed in thread 7
+extract_nodes	40485	nExcluded-7	rejected read pairs in excluded regions in thread 7
+extract_nodes	8768	nFailedQuality-7	rejected read pairs failed MIN_MAPQ 20 in thread 7
+extract_nodes	3107956	nThreadPairs-6	total read pairs processed in thread 6
+extract_nodes	40409	nExcluded-6	rejected read pairs in excluded regions in thread 6
+extract_nodes	8789	nFailedQuality-6	rejected read pairs failed MIN_MAPQ 20 in thread 6
+extract_nodes	3107956	nThreadPairs-5	total read pairs processed in thread 5
+extract_nodes	40492	nExcluded-5	rejected read pairs in excluded regions in thread 5
+extract_nodes	8829	nFailedQuality-5	rejected read pairs failed MIN_MAPQ 20 in thread 5
+extract_nodes	3107957	nThreadPairs-4	total read pairs processed in thread 4
+extract_nodes	40550	nExcluded-4	rejected read pairs in excluded regions in thread 4
+extract_nodes	8579	nFailedQuality-4	rejected read pairs failed MIN_MAPQ 20 in thread 4
+extract_nodes	3107957	nThreadPairs-3	total read pairs processed in thread 3
+extract_nodes	40521	nExcluded-3	rejected read pairs in excluded regions in thread 3
+extract_nodes	8820	nFailedQuality-3	rejected read pairs failed MIN_MAPQ 20 in thread 3
+extract_nodes	3107957	nThreadPairs-2	total read pairs processed in thread 2
+extract_nodes	40391	nExcluded-2	rejected read pairs in excluded regions in thread 2
+extract_nodes	8819	nFailedQuality-2	rejected read pairs failed MIN_MAPQ 20 in thread 2
+extract_nodes	3107957	nThreadPairs-1	total read pairs processed in thread 1
+extract_nodes	40277	nExcluded-1	rejected read pairs in excluded regions in thread 1
+extract_nodes	8757	nFailedQuality-1	rejected read pairs failed MIN_MAPQ 20 in thread 1
+extract_nodes	33255367	nInputAlns	input aligned segments over all read pairs
+extract_nodes	24863652	nReadPairs	input read pairs
+plotting insert size histogram
+done
+
+executing: svCapture extract, step 2 = coverage
+
+executing: svCapture extract, step 3 = compile
+identifying SV molecules that share endpoints with proper molecules
+calculating duplex rates and strand family sizes
+  targetClass       class    total duplex duplex3 singleton duplexRate
+1          TT      Proper 12247395      0       0  12247395          0
+2          TT Del/Dup/Inv    51808      0       0     51808          0
+3          tt    Artifact       85      0       0        85          0
+4          --      Proper 12096177      0       0  12096177          0
+5          --    Artifact    15603      0       0     15603          0
+parsing and printing SV junction edges
+printing outer clip nodes
+done
+
+---
+job-manager:
+    exit_status: 0
+    walltime: 5:09.52
+    seconds: 309.52
+    maxvmem: 7466452K
+    swaps: 0
+---
+job-manager:
+    ended: Sun 03/03/24 05:28
+...
+====================================================================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+====================================================================================================
+job: 3952510
+----------------------------------------------------------------------------------------------------
+/nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/data-scripts/wilsontelab/publications/CFS-M_phase-PolQ-2023/find_by_project/HCT116/.HCT_ART_NVB_102723.yml.data/log/slurm/svCapture_find_HCT_ART_NVB_102723.o3952510
+----------------------------------------------------------------------------------------------------
+
+---
+job-manager:
+    host: gl3057.arc-ts.umich.edu
+    started: Sun 03/03/24 05:29
+---
+pipeline: svx-mdi-tools/svCapture:v2.0.0
+description: "Characterize structural variant junctions in short-read, paired-end capture library(s)"
+suiteVersions:
+    genomex-mdi-tools: main
+execute: find
+thread: default
+nTasks: 1
+find:
+    genome:
+        genomes-dir:    /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/resources/genomes
+        genome:         hg38
+        use-all-chroms: false
+        ordered-chroms: NA
+    read-merging:
+        min-merge-overlap: 5
+        min-merge-density: 0.8
+    sv-filtering:
+        min-mapq-one:   30
+        min-mapq-both:  20
+        min-sv-size:    1000
+        sv-size-factor: 0
+        purge-distance: 5
+        purge-limit:    100
+        min-coverage:   1
+        on-target:      2
+    target-region:
+        targets-bed:    /nfs/turbo/umms-glover/data/svCapture/resources/capture_targets/targets_UM_Wilson_chr3_chr16_TE-93195434_hg38.bed
+        region-padding: 800000
+    fixed-width-bins:
+        bin-size:       1000000
+        kmer-length:    100
+        n-errors:       1
+        stranded:       false
+    output:
+        output-dir:     /nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects
+        data-name:      HCT_ART_NVB_102723
+    push:
+        push-server:    null
+        push-dir:       /srv/data
+        push-user:      ubuntu
+        push-key:       ~/.ssh/mdi-push-key.pem
+    version:
+        version:        latest
+    resources:
+        runtime:        conda
+        n-cpu:          8
+        n-gpu:          0
+        ram-per-cpu:    4G
+        tmp-dir:        /tmp
+        tmp-dir-large:  /scratch/wilsonte_root/wilsonte0/wilsonte
+    job-manager:
+        email:          nobody@nowhere.edu
+        account:        wilsonte0
+        time-limit:     4:00:00
+        partition:      standard
+        exclusive:      false
+    workflow:
+        force:          false
+        rollback:       0
+        quiet:          false
+    help:
+        help:           false
+        dry-run:        true
+    conda:
+        prefix: /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/environments/ef8ad54517 
+        channels:
+            - conda-forge
+            - bioconda
+            - defaults
+        dependencies:
+            - pigz=2.6
+            - samtools=1.16.1
+            - bedtools=2.30.0
+            - r-base=4.1.3
+            - r-essentials=4.1
+            - r-r.utils=2.12.0
+...
+rolling back to pipeline step 0
+
+setting find mode
+  compare
+
+executing: svCapture find, step 1 = find
+collecting library stats
+aggregating junction molecules into SV calls
+initializing samples
+loading and parsing molecules
+applying SV size filter to junction molecules
+parsing junction continuity groups into SVs
+marking ambiguous source molecules
+aggregating source molecule duplicates
+assigning SV reference molecules
+collecting candidate matching outer clipped nodes
+  HCT_0.2APH_NVB_Ro3_Colch_M
+  HCT_0.2APH_Ro3_ART_Colch_M
+  HCT_0.2APH_Ro3_Colch_M
+  HCT_Ro3_Colch_M
+attempting to merge gap junctions using clipped nodes
+purging invalid/untrustworthy clip evidence
+initializing genome sequence retrieval
+loading chrom sizes
+initializing target region parsing (if any)
+initializing target regions
+characterizing final SV junction calls
+counting SVs by sample
+setting SV molecule plot positions
+writing SV summary table
+writing molecule evidence table
+saving chromosome metadata
+done
+
+executing: svCapture find, step 2 = manifest
+zipping distribution plots
+updating: HCT_0.2APH_NVB_Ro3_Colch_M.family_sizes.png (deflated 9%)
+updating: HCT_0.2APH_NVB_Ro3_Colch_M.insertSizes.png (deflated 6%)
+updating: HCT_0.2APH_Ro3_ART_Colch_M.family_sizes.png (deflated 9%)
+updating: HCT_0.2APH_Ro3_ART_Colch_M.insertSizes.png (deflated 5%)
+updating: HCT_0.2APH_Ro3_Colch_M.family_sizes.png (deflated 9%)
+updating: HCT_0.2APH_Ro3_Colch_M.insertSizes.png (deflated 6%)
+updating: HCT_Ro3_Colch_M.family_sizes.png (deflated 9%)
+updating: HCT_Ro3_Colch_M.insertSizes.png (deflated 6%)
+assembling sample manifest table
+loading sample metadata
+loading SV summary table
+writing sample manifest
+done
+
+executing: svCapture find, step 3 = coverage
+
+executing: svCapture find, step 4 = vcf
+writing VCF file using breakends
+  initializing
+  parsing VCF header
+  parsing variant records
+indexing VCF file using tabix
+done
+
+writing Stage 2 package file for svCapture find
+/nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects/HCT_ART_NVB_102723/HCT_ART_NVB_102723.svCapture.find.mdi.package.zip
+  adding: HCT_ART_NVB_102723.hg38.manifest.distribution_plots.zip (stored 0%)
+  adding: HCT_ART_NVB_102723.svCapture.concatenatedLogs (stored 0%)
+  adding: HCT_ART_NVB_102723.hg38.manifest.sample_manifest.csv (deflated 51%)
+  adding: package.yml (deflated 64%)
+  adding: HCT_ART_NVB_102723.svCapture.status (deflated 53%)
+  adding: HCT_ART_NVB_102723.hg38.find.structural_variants.rds (deflated 0%)
+  adding: HCT_ART_NVB_102723.hg38.find.junction_molecules.rds (deflated 0%)
+  adding: HCT_ART_NVB_102723.hg38.find.target_regions.bed (deflated 40%)
+  adding: HCT_ART_NVB_102723.hg38.find.metadata.yml (deflated 47%)
+
+
+---
+job-manager:
+    exit_status: 0
+    walltime: 9:59.13
+    seconds: 599.13
+    maxvmem: 997724K
+    swaps: 0
+---
+job-manager:
+    ended: Sun 03/03/24 05:39
+...
+====================================================================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -1,0 +1,325 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+updating /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/data-scripts/wilsontelab/publications/CFS-M_phase-PolQ-2023/assemble_all_projects/.assemble_all.yml.data/assemble_all.yml.status
+updated	3/3/2024 14:18:34
+qType	slurm
+submitted	3/3/2024 13:38:56	wilsonte
+job_name                              array  job_ID     exit_status  start_time  wall_time  maxvmem
+svCapture_assemble_all_data ------------     4005920    0    Sun 03/03/24 13:38  00:00:55   0.874G 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+====================================================================================================
+job: 4005920
+----------------------------------------------------------------------------------------------------
+/nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/data-scripts/wilsontelab/publications/CFS-M_phase-PolQ-2023/assemble_all_projects/.assemble_all.yml.data/log/slurm/svCapture_assemble_all_data.o4005920
+----------------------------------------------------------------------------------------------------
+
+---
+job-manager:
+    host: gl3036.arc-ts.umich.edu
+    started: Sun 03/03/24 13:38
+---
+pipeline: svx-mdi-tools/svCapture:main
+description: "Characterize structural variant junctions in short-read, paired-end capture library(s)"
+suiteVersions:
+    genomex-mdi-tools: main
+execute: assemble
+thread: default
+nTasks: 1
+assemble:
+    assembly-inputs:
+        input-dir:      /nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects
+        samples-table:  /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/data-scripts/wilsontelab/publications/CFS-M_phase-PolQ-2023/assemble_all_projects/../sample_lists/CFS-M_phase-PolQ-2023.csv
+        warn-only:      true
+    assembly-filters:
+        min-flank-size: 20
+        min-family-size: 3
+        min-sv-size:    10000
+        max-sv-size:    1200000
+        min-samples:    1
+        max-samples:    1
+        min-molecules:  1
+        max-molecules:  1
+        min-split-reads: 0
+        max-shared-proper: 1
+        include-clips:  false
+        min-inversion-size: 50000
+    assembly-coverage:
+        coverage-bin-size: 100
+        force-coverage: false
+    assembly-insertions:
+        find-insertion-templates: true
+        min-insertion-size: 1
+        max-insertion-size: 20
+        min-template-size: 7
+        insertion-search-space: 500
+    assembly-base-usage:
+        profile-base-usage: false
+        base-usage-span: 250
+    assembly-flexibility:
+        profile-flexibility: false
+        flexibility-span: 250
+    assembly-features:
+        profile-features: false
+        features-span:  250
+        feature-files:  NA
+        feature-types:  NA
+    output:
+        output-dir:     /nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/assemblies
+        data-name:      all_data
+    push:
+        push-server:    null
+        push-dir:       /srv/data
+        push-user:      ubuntu
+        push-key:       ~/.ssh/mdi-push-key.pem
+    version:
+        version:        latest
+    resources:
+        runtime:        conda
+        n-cpu:          8
+        n-gpu:          0
+        ram-per-cpu:    6G
+        tmp-dir:        /tmp
+        tmp-dir-large:  /scratch/wilsonte_root/wilsonte0/wilsonte
+    job-manager:
+        email:          nobody@nowhere.edu
+        account:        wilsonte0
+        time-limit:     6:00:00
+        partition:      standard
+        exclusive:      false
+    workflow:
+        force:          false
+        rollback:       0
+        quiet:          false
+    help:
+        help:           false
+        dry-run:        true
+    conda:
+        prefix: /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/environments/a8a4a1deac 
+        channels:
+            - conda-forge
+            - bioconda
+            - defaults
+        dependencies:
+            - pigz=2.6
+            - bedtools=2.30.0
+            - samtools=1.15.1
+            - bcftools=1.15.1
+            - r-vcfr=1.12.0
+            - r-base=4.1.3
+            - r-essentials=4.1
+            - r-r.utils=2.12.0
+...
+rolling back to pipeline step 0
+
+
+executing: svCapture assemble, step 1 = assemble
+initializing
+loading samples table
+collecting samples metadata
+cross-checking samples metadata
+
+!!!!!!!!!! metadata mismatch between samples on parameter targetsBed !!!!!!!!!!
+found values are:
+[1] "/nfs/turbo/umms-glover/data/svCapture/resources/capture_targets/targets_UM_Wilson_chr3_chr16_TE-93195434_hg38.bed"
+[2] "/nfs/turbo/umms-glover/data/svCapture/resources/capture_targets/HF1_capture_targets.hg38.bed"                     
+
+assembling target region sequences
+getting N50 and adjusted target coverage by sample
+	HCT116_p53_050321	Control_0_APH
+	HCT116_p53_050321	Control_0pt2_APH
+	cell_cycle_081721	Ro3306_G2
+	cell_cycle_081721	Ro3306_Colchicine_M
+	cell_cycle_081721	Ro3306_0.2APH_S
+	rad52_110121_HF1	Control_0.6APH
+	cell_cycle_081721	Ro3306_0.2APH_G2
+	cell_cycle_081721	Ro3306_0.2APH_Colchicine_M
+	rad52_110121_HF1	Control_0APH
+	rad52_110121_HF1	R1G10.1_0APH
+	cell_cycle_110521	RO3306_Colch_2APH_M
+	rad52_110121_HF1	R2J10.5_0.6APH
+	rad52_110121_HF1	R2J10.5_0APH
+	cell_cycle_110521	RO3306_G2
+	lblast_011422	RO3306_0.4APH_Colch_2APH_M
+	cell_cycle_110521	RO3306_Colch_M
+	lblast_011422	RO3306_G2
+	lblast_011422	RO3306_Colch_M
+	lblast_011422	RO3306_Colch_2APH_M
+	rad52_110121_HF1	R1G10.1_0.6APH
+	cell_cycle_110521	RO3306_0.2APH_Colch_M
+	cell_cycle_110521	RO3306_0.2APH_G2
+	novobiocin_031522	R_G2
+	lblast_011422	RO3306_Colch_0.4APH_M
+	high_APH_040422	HCT_G2
+	novobiocin_031522	R_NVB_G2
+	novobiocin_031522	R_NVB_Colch_M
+	cell_cycle_110521	RO3306_0.2APH_Colch_2APH_M
+	high_APH_040422	HCT_M
+	lblast_011422	RO3306_0.4APH_G2
+	novobiocin_031522	R_Colch_M
+	novobiocin_031522	R_0.2APH_NVB_Colch_M
+	HCT_ART558_052422	HCT_ART_G2
+	novobiocin_031522	R_0.2APH_Colch_M
+	high_APH_040422	HCT_2APH_M
+	HCT_siPolQ_052422	HCT_M_sicontrl_APH
+	HCT_siPolQ_052422	HCT_M_sicontrl
+	HCT_ART558_052422	HCT_G2
+	HCT_ART558_052422	HCT_Colch_M
+	HCT_ART558_052422	HCT_ART_Colch_M
+	novobiocin_031522	R_0.2APH_NVB_G2
+	HCT_ART558_091522	HCT_ART10_Colch_M
+	HCT_ART558_091522	HCT_G2
+	high_APH_040422	HCT_0.2APH_2APH_M
+	HCT_ART558_091522	HCT_Colch_M
+	HCT_ART558_052422	HCT_0.2APH_ART_Colch_M
+	high_APH_040422	HCT_0.2APH__M
+	HCT_ART558_052422	HCT_0.2APH_Colch_M
+	HCT_ART558_052422	HCT_0.2APH_ART_G2
+	HCT_ART558_091522	HCT_0.2APH_Colch_M
+	novobiocin_031522	R_0.2APH_G2
+	HCT_ART558_091522	HCT_0.2APH_ART10_G2
+	high_APH_040422	HCT_0.2APH_G2
+	HCT_async_091522	HCT_Asy_0.2APH_S_2
+	HCT_ART558_052422	HCT_0.2APH_G2
+	HCT_async_091522	HCT_Asy_S_1
+	HCT_ART558_091522	HCT_ART10_G2
+	hf1_polq_091422	HF1_P1E6.6_0.6APH
+	HCT_async_091522	HCT_Asy_0.2APH_M_2
+	HCT_ART558_091522	HCT_0.2APH_ART10_Colch_M
+	HCT_async_091522	HCT_Asy_0.2APH_G2_1
+	HCT_ART558_091522	HCT_0.2APH_G2
+	hf1_polq_091422	HF1_P1F7.9_0.6APH
+	HCT_ROG2_111622	HCT_0.2APH_Ro3_Colch_M_b
+	HCT_async_091522	HCT_Asy_0.2APH_S_1
+	hf1_polq_091422	HF1_P1E2.1_0.6APH
+	HCT_async_112122	HCT_Asy_G2_101322
+	hf1_polq_091422	HF1_P1E2.1_0APH
+	HCT_async_112122	HCT_Asy_0.2APH_M_101322
+	HCT_async_091522	HCT_Asy_0.2APH_M_1
+	HCT_async_091522	HCT_Asy_0.2APH_G2_2
+	HCT_Pol_Lig_092823	HCT_Cntrol_0.2APH_Nu7
+	hf1_polq_091422	HF1_P1E6.6_0APH
+	HCT_Art_Nu7_080323	HCT_0.2APH
+	hf1_polq_091422	HF1_P1F7.9_0APH
+	HCT_ROG2_111622	HCT_0.2APH_Ro3_Colch_M_a
+	HCT_Pol_Lig_092823	HCT_P55B.8_0.2APH
+	HCT_ROG2_111622	HCT_0.2APH_Ro3_Colch_G2_a
+	HCT_ROG2_111622	HCT_0.2APH_Ro3_Colch_G2_b
+	HCT_async_112122	HCT_Asy_S_101322
+	hf1_polq_Nu_092823	HF1_P1F7.9_0.6APH_Nu7441
+	HCT_async_112122	HCT_Asy_0.2APH_G2_102022
+	HCT_async_112122	HCT_Asy_0.2APH_G2_101322
+	HCT_async_112122	HCT_Asy_0.2APH_M_102022
+	HCT_Art_Nu7_080323	HCT_0.2APH_ART_Nu7
+	HCT_Pol_Lig_092823	HCT_Cntrol_0.2APH_ART10
+	HCT_sync_ART_Nu7_123023a	HCT_Cntrl_sync_M_0.2APH_ART_Nu7
+	HCT_Pol_Lig_092823	HCT_Cntrol_0.2APH_ART10_Nu7
+	HCT_async_091522	HCT_Asy_G2_1
+	HCT_async_091522	HCT_Asy_M_1
+	HCT_async_112122	HCT_Asy_0.2APH_S_101322
+	HCT_Pol_Lig_092823	HCT_L1A.6_0.2APH
+	HCT_Pol_Lig_092823	HCT_P55B.8_0.2APH_Nu7
+	HCT_Pol_Lig_092823	HCT_P2A.5_0.2APH_Nu7
+	HCT_sync_ART_Nu7_123023b	HCT_Cntrl_sync_M_0.2APH
+	hf1_polq_Nu_092823	HF1_P1E6.6_0.6APH
+	hf1_polq_Nu_092823	HF1_Cntrl_0.6APH_A
+	hf1_polq_091422	HF1_Cntrl_0.6APH
+	HCT_async_S_POL_LIG_022924	HCT_L1A.6_async_S_0.2APH
+	hf1_polq_Nu_092823	HF1_Cntrl_0.6APH_Nu7_A
+	hf1_polq_091422	HF1_Cntrl_0APH
+	HCT_Pol_Lig_092823	HCT_Cntrl_0.2APH
+	HCT_sync_ART_Nu7_123023a	HCT_P2A.5_sync_M_0.2APH
+	HCT_sync_ART_Nu7_123023a	HCT_Cntrl_sync_M_0.2APH_Nu7
+	HCT_ROG2_111622	HCT_Ro3_Colch_M_a
+	HCT_sync_ART_Nu7_123023b	HCT_Cntrl_sync_M_0.2APH_ART
+	HCT_Pol_Lig_092823	HCT_P2A.5_0.2APH
+	HCT_async_112122	HCT_Asy_0.2APH_S_102022
+	GM_ART_Nu7_123023	GM_0.4APH_ART_Nu7
+	HCT_async_S_POL_LIG_022924	HCT_L1A.6_async_S_0.2APH_ART
+	HCT_ART_NVB_102723	HCT_Ro3_Colch_M
+	hf1_polq_Nu_092823	HF1_P1E6.6_0.6APH_Nu7441
+	HCT_Pol_Lig_092823	HCT_L2A.8_0.2APH_ART10
+	HCT_Art_Nu7_080323	HCT_0.2APH_Nu7
+	HCT_sync_ART_Nu7_123023a	HCT_P2A.5_sync_M_0.2APH_Nu7
+	HCT_async_S_POL_LIG_022924	HCT_Cntrl_async_S_0.2APH
+	hf1_polq_Nu_092823	HF1_P1F7.9_0.6APH
+	HCT_Pol_Lig_092823	HCT_L2A.8_0.2APH
+	HCT_sync_ART_Nu7_123023b	HCT_Cntrl_sync_M_0.2APH_Nu7
+	hf1_polq_Nu_092823	HF1_Cntrl_0.6APH_Nu7_B
+	HCT_ROG2_111622	HCT_Ro3_Colch_G2_a
+	HCT_async_S_POL_LIG_022924	HCT_L2A.8_async_S_0.2APH
+	HCT_async_S_POL_LIG_022924	HCT_P55B.8_async_S_0.2APH_Nu7
+	HCT_async_112122	HCT_Asy_M_101322
+	HCT_Art_Nu7_080323	HCT_0.2APH_ART
+	HCT_sync_ART_Nu7_123023a	HCT_Cntrl_sync_M_0.2APH
+	HCT_ART_NVB_102723	HCT_0.2APH_NVB_Ro3_Colch_M
+	HCT_Pol_Lig_092823	HCT_L1A.6_0.2APH_ART10
+	HCT_ART_NVB_102723	HCT_0.2APH_Ro3_ART_Colch_M
+	GM_ART_Nu7_123023	GM_0.4APH_Nu7
+	GM_ART_Nu7_123023	GM_0.4APH_ART
+	hf1_polq_Nu_092823	HF1_Cntrl_0.6APH_B
+	GM_ART_Nu7_123023	GM_0.4APH
+	HCT_sync_ART_Nu7_123023b	HCT_P55B.8_sync_M_0.2APH_Nu7
+	HCT_async_S_POL_LIG_022924	HCT_Cntrl_async_S
+	HCT_async_S_POL_LIG_022924	HCT_P2A.5_async_S_0.2APH_Nu7
+	HCT_async_S_POL_LIG_022924	HCT_P55B.8_async_S_0.2APH
+	HCT_ART_NVB_102723	HCT_0.2APH_Ro3_Colch_M
+	HCT_sync_ART_Nu7_123023b	HCT_P55B.8_sync_M_0.2APH
+	GM_ART_Nu7_123023	GM_0APH
+	HCT_async_S_POL_LIG_022924	HCT_P2A.5_async_S_0.2APH
+	HCT_sync_ART_Nu7_123023b	HCT_Cntrl_sync_M_0.2APH_ART_Nu7
+	HCT_async_S_POL_LIG_022924	HCT_L2A.8_async_S_0.2APH_ART
+parsing bin coverage matrices
+	FHIT	hg38::chr3:60300384-60700384
+	WWOX	hg38::chr16:78456040-78856040
+	NEGR1	hg38::chr1:71684317-71934317
+	PRKG1	hg38::chr10:51540240-51790240
+	MAGI2	hg38::chr7:78460683-78710684
+tabulating and filtering SVs across all projects and samples
+	HCT116_p53_050321
+	cell_cycle_081721
+	rad52_110121_HF1
+	cell_cycle_110521
+	lblast_011422
+	novobiocin_031522
+	high_APH_040422
+	HCT_siPolQ_052422
+	HCT_ART558_052422
+	HCT_ART558_091522
+	HCT_async_091522
+	hf1_polq_091422
+	HCT_ROG2_111622
+	HCT_async_112122
+	HCT_Art_Nu7_080323
+	HCT_Pol_Lig_092823
+	hf1_polq_Nu_092823
+	HCT_ART_NVB_102723
+	HCT_sync_ART_Nu7_123023a
+	GM_ART_Nu7_123023
+	HCT_sync_ART_Nu7_123023b
+	HCT_async_S_POL_LIG_022924
+counting filtered SVs by sample and type
+attempting to find insertion templates near junctions
+printing output
+done
+
+writing Stage 2 package file for svCapture assemble
+/nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/assemblies/all_data/all_data.svCapture.assemble.mdi.package.zip
+  adding: all_data.svCapture.concatenatedLogs (stored 0%)
+  adding: package.yml (deflated 67%)
+  adding: all_data.svCapture.status (deflated 10%)
+  adding: all_data.assemble.rds (deflated 1%)
+
+
+---
+job-manager:
+    exit_status: 0
+    walltime: 0:55.69
+    seconds: 55.69
+    maxvmem: 874184K
+    swaps: 0
+---
+job-manager:
+    ended: Sun 03/03/24 13:39
+...
+====================================================================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

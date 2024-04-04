@@ -1,0 +1,36 @@
+---
+pipeline: svx-mdi-tools/svCapture:latest
+variables:
+    PROJECT:            rad52_110121_HF1
+    PROJECT_DIR:        ${PROJECTS_DIR}/${PROJECT}
+    CORE_PROJECT_ID:    4237-SA
+    PROJECT_INPUT_DIR:  ${CORE_GLOBUS_DIR}/${CORE_PROJECT_ID}_reprocess/fastqs_${CORE_PROJECT_ID} # use 4237-SA_reprocess; original 4237-SA use incorrect probes
+shared:
+    genomex-mdi-tools//fastq-input: 
+        input-dir: ${PROJECT_INPUT_DIR}
+        input-name: # expects to find <input-dir>/<input-name>/*.fastq.gz
+            - Sample_4237-SA-1-REPREP
+            - Sample_4237-SA-2-REPREP
+            - Sample_4237-SA-3-REPREP
+            - Sample_4237-SA-4-REPREP
+            - Sample_4237-SA-5-REPREP
+            - Sample_4237-SA-6-REPREP
+    output:
+        output-dir: ${PROJECT_DIR}
+        data-name:
+            - Control_0APH
+            - Control_0.6APH
+            - R1G10.1_0APH
+            - R1G10.1_0.6APH
+            - R2J10.5_0APH
+            - R2J10.5_0.6APH
+find:
+    output:
+        output-dir: ${PROJECTS_DIR}
+        data-name:  ${PROJECT}
+execute:
+    - align
+    - collate
+    - extract
+    - find
+

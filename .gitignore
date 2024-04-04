@@ -1,0 +1,15 @@
+server.yml
+.*.data
+old/
+unused/
+backup/
+TODO.md
+sra_files/
+zenodo_files/
+
+CFS-M_phase-PolQ-2023/find_by_project/create_job_files.pl
+CFS-M_phase-PolQ-2023/find_by_project/queue_all_jobs.sh
+CFS-M_phase-PolQ-2023/job_reports/dump_job_reports.*
+
+CFS-SCE-2025/
+CFS-SCE-2025/resources/*.bed.gz

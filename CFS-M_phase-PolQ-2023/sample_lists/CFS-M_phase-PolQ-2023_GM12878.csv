@@ -1,0 +1,12 @@
+sample_id,project,sample,cell_line,cell_line_,..0.4uM_APH,RO3306,release,cell_cycle,siRNA,CRISPR,..2uM_APH,..150uM_NVB,..10uM_ART558,..2uM_NU7441
+5006-SA-1,lblast_011422,RO3306_G2,GM12878,GM,-,+,-,G2,-,-,-,-,-,-
+5006-SA-2,lblast_011422,RO3306_0.4APH_G2,GM12878,GM,0.4,+,-,G2,-,-,-,-,-,-
+5006-SA-3,lblast_011422,RO3306_Colch_M,GM12878,GM,-,+,+,M,-,-,-,-,-,-
+5006-SA-4,lblast_011422,RO3306_Colch_0.4APH_M,GM12878,GM,0.4,+,+,M,-,-,-,-,-,-
+5006-SA-5,lblast_011422,RO3306_Colch_2APH_M,GM12878,GM,-,+,+,M,-,-,2,-,-,-
+5006-SA-6,lblast_011422,RO3306_0.4APH_Colch_2APH_M,GM12878,GM,0.4,+,+,M,-,-,2,-,-,-
+9762-SA-7-LabPrep,GM_ART_Nu7_123023,GM_0APH,GM12878,GM,-,-,-,-,-,-,-,-,-,-
+9762-SA-8-LabPrep,GM_ART_Nu7_123023,GM_0.4APH,GM12878,GM,0.4,-,-,-,-,-,-,-,-,-
+9762-SA-9-LabPrep,GM_ART_Nu7_123023,GM_0.4APH_ART,GM12878,GM,0.4,-,-,-,-,-,-,-,10,-
+9762-SA-10-LabPrep,GM_ART_Nu7_123023,GM_0.4APH_Nu7,GM12878,GM,0.4,-,-,-,-,-,-,-,-,2
+9762-SA-11-LabPrep,GM_ART_Nu7_123023,GM_0.4APH_ART_Nu7,GM12878,GM,0.4,-,-,-,-,-,-,-,10,2

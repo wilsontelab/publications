@@ -1,0 +1,42 @@
+---
+pipeline: svx-mdi-tools/svCapture:latest
+variables:
+    PROJECT:            HCT_async_112122
+    PROJECT_DIR:        ${PROJECTS_DIR}/${PROJECT}
+    CORE_PROJECT_ID:    7157-SA
+    PROJECT_INPUT_DIR:  ${CORE_GLOBUS_DIR}/${CORE_PROJECT_ID}/fastqs_${CORE_PROJECT_ID}
+shared:
+    genomex-mdi-tools//fastq-input: 
+        input-dir: ${PROJECT_INPUT_DIR}
+        input-name: # expects to find <input-dir>/<input-name>/*.fastq.gz
+            - 7157-SA-1
+            - 7157-SA-2
+            - 7157-SA-3
+            - 7157-SA-7
+            - 7157-SA-8
+            - 7157-SA-10
+            - 7157-SA-11
+            - 7157-SA-12
+            - 7157-SA-13
+    output:
+        output-dir: ${PROJECT_DIR}
+        data-name:
+            - HCT_Asy_S_101322
+            - HCT_Asy_G2_101322
+            - HCT_Asy_M_101322
+            - HCT_Asy_0.2APH_S_102022
+            - HCT_Asy_0.2APH_G2_102022
+            - HCT_Asy_0.2APH_S_101322
+            - HCT_Asy_0.2APH_G2_101322
+            - HCT_Asy_0.2APH_M_101322
+            - HCT_Asy_0.2APH_M_102022      
+find:
+    output:
+        output-dir: ${PROJECTS_DIR}
+        data-name:  ${PROJECT}
+execute:
+    - align
+    - collate
+    - extract
+    - find
+

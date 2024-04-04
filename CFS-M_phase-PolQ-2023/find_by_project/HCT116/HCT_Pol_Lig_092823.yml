@@ -1,0 +1,48 @@
+---
+pipeline: svx-mdi-tools/svCapture:latest
+variables:
+    PROJECT:            HCT_Pol_Lig_092823
+    PROJECT_DIR:        ${PROJECTS_DIR}/${PROJECT}
+    CORE_PROJECT_ID:    9099-SA
+    PROJECT_INPUT_DIR:  ${USER_SCRATCH_DIR}/${PIPELINE_NAME}/${CORE_PROJECT_ID}/fastqs_${CORE_PROJECT_ID}
+shared:
+    genomex-mdi-tools//fastq-input: 
+        input-dir: ${PROJECT_INPUT_DIR}
+        input-name: # expects to find <input-dir>/<input-name>/*.fastq.gz
+            - 9099-SA-1
+            - 9099-SA-2
+            - 9099-SA-3
+            - 9099-SA-4
+            - 9099-SA-5
+            - 9099-SA-6
+            - 9099-SA-7
+            - 9099-SA-8
+            - 9099-SA-9
+            - 9099-SA-10
+            - 9099-SA-11
+            - 9099-SA-12
+    output:
+        output-dir: ${PROJECT_DIR}
+        data-name:
+            - HCT_Cntrl_0.2APH
+            - HCT_Cntrol_0.2APH_ART10
+            - HCT_Cntrol_0.2APH_Nu7
+            - HCT_Cntrol_0.2APH_ART10_Nu7
+            - HCT_L1A.6_0.2APH
+            - HCT_L1A.6_0.2APH_ART10
+            - HCT_L2A.8_0.2APH
+            - HCT_L2A.8_0.2APH_ART10
+            - HCT_P2A.5_0.2APH
+            - HCT_P2A.5_0.2APH_Nu7
+            - HCT_P55B.8_0.2APH
+            - HCT_P55B.8_0.2APH_Nu7      
+find:
+    output:
+        output-dir: ${PROJECTS_DIR}
+        data-name:  ${PROJECT}
+execute:
+    - align
+    - collate
+    - extract
+    - find
+
