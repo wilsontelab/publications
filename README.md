@@ -10,10 +10,10 @@ at the University of Michigan from the year 2022 and later.
 Top level folders each correspond to one publication named with
 a keyword and year.
 
-| Keyword | Year | Description |
-| --------| ---- | ----------- |
-| svCapture | 2022 | Technical report describing error minimization strategies for finding rare structural variants in NGS capture libraries. |
-| CFS-M_phase-PolQ-2023 | 2024 | Application of svCapture to discover that structural variants at commmon fragile site are created by end joining in M phase. |
+| Keyword | Created | Published | Description |
+| --------| ---- | ---- | ----------- |
+| svCapture | 2022 | 2022 | Technical report describing error minimization strategies for finding rare structural variants in NGS capture libraries. |
+| CFS-M_phase-PolQ | 2023 | pending | Application of svCapture to discover that structural variants at commmon fragile site are created by end joining in M phase. |
 
 ### Michigan Data Interface
 
