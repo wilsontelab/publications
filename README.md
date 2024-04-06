@@ -13,7 +13,7 @@ a keyword and year.
 | Keyword | Year | Description |
 | --------| ---- | ----------- |
 | svCapture | 2022 | Technical report describing error minimization strategies for finding rare structural variants in NGS capture libraries. |
-| CFS-M_phase-PolQ-2023 | 2023 | Application of svCapture to discover that structural variants at commmon fragile site are created by end joining in M phase. |
+| CFS-M_phase-PolQ-2023 | 2024 | Application of svCapture to discover that structural variants at commmon fragile site are created by end joining in M phase. |
 
 ### Michigan Data Interface
 
