@@ -28,7 +28,7 @@ Please see an individual publication for details.
 
 ### Citing this repository
 
-Releases of this repository are linked to Zenodo via the following DOI:
+Releases of this repository are linked to Zenodo via the following DOI (or a most recent version of it):
 [![DOI](https://zenodo.org/badge/494023172.svg)](https://zenodo.org/doi/10.5281/zenodo.10728194)
 
 In addition, please cite the specific publication for the data set and code
