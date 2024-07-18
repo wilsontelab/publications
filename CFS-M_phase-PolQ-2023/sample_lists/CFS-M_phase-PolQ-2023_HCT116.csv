@@ -109,3 +109,13 @@ sample_id,project,sample,cell_line,cell_line_,..0.2uM_APH,RO3306,release,cell_cy
 10182-SA-8-LabPrep,HCT_async_S_POL_LIG_022924,HCT_P2A.5_async_S_0.2APH_Nu7,HCT116,HCT,0.2,-,-,S,-,POLQ:P2A.5,-,-,-,2
 10182-SA-9-LabPrep,HCT_async_S_POL_LIG_022924,HCT_P55B.8_async_S_0.2APH,HCT116,HCT,0.2,-,-,S,-,POLQ:P55B.8,-,-,-,-
 10182-SA-10-LabPrep,HCT_async_S_POL_LIG_022924,HCT_P55B.8_async_S_0.2APH_Nu7,HCT116,HCT,0.2,-,-,S,-,POLQ:P55B.8,-,-,-,2
+10928-SA-1-LabPrep,HCT_async_S_POL_LIG_062024,HCT_Cntrl_async_S,HCT116,HCT,-,-,-,S,-,-,-,-,-,-
+10928-SA-2-LabPrep,HCT_async_S_POL_LIG_062024,HCT_Cntrl_async_S_0.2APH,HCT116,HCT,0.2,-,-,S,-,-,-,-,-,-
+10928-SA-3-LabPrep,HCT_async_S_POL_LIG_062024,HCT_L1A.6_async_S_0.2APH,HCT116,HCT,0.2,-,-,S,-,LIG4:L1A.6,-,-,-,-
+10928-SA-4-LabPrep,HCT_async_S_POL_LIG_062024,HCT_L1A.6_async_S_0.2APH_ART,HCT116,HCT,0.2,-,-,S,-,LIG4:L1A.6,-,-,10,-
+10928-SA-5-LabPrep,HCT_async_S_POL_LIG_062024,HCT_L2A.8_async_S_0.2APH,HCT116,HCT,0.2,-,-,S,-,LIG4:L2A.8,-,-,-,-
+10928-SA-6-LabPrep,HCT_async_S_POL_LIG_062024,HCT_L2A.8_async_S_0.2APH_ART,HCT116,HCT,0.2,-,-,S,-,LIG4:L2A.8,-,-,10,-
+10928-SA-7-LabPrep,HCT_async_S_POL_LIG_062024,HCT_P2A.5_async_S_0.2APH,HCT116,HCT,0.2,-,-,S,-,POLQ:P2A.5,-,-,-,-
+10928-SA-8-LabPrep,HCT_async_S_POL_LIG_062024,HCT_P2A.5_async_S_0.2APH_Nu7,HCT116,HCT,0.2,-,-,S,-,POLQ:P2A.5,-,-,-,2
+10928-SA-9-LabPrep,HCT_async_S_POL_LIG_062024,HCT_P55B.8_async_S_0.2APH,HCT116,HCT,0.2,-,-,S,-,POLQ:P55B.8,-,-,-,-
+10928-SA-10-LabPrep,HCT_async_S_POL_LIG_062024,HCT_P55B.8_async_S_0.2APH_Nu7,HCT116,HCT,0.2,-,-,S,-,POLQ:P55B.8,-,-,-,2

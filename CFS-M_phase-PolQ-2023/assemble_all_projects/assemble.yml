@@ -8,13 +8,13 @@ assemble:
         input-dir: ${PROJECTS_DIR}
         samples-table:  
             - ${TABLE_PREFIX}_HCT116.csv
-            - ${TABLE_PREFIX}_HF1.csv
-            - ${TABLE_PREFIX}_GM12878.csv
+            # - ${TABLE_PREFIX}_HF1.csv
+            # - ${TABLE_PREFIX}_GM12878.csv
     output:
         output-dir: ${ASSEMBLIES_DIR}
         data-name:
             - HCT116
-            - HF1
-            - GM12878
+            # - HF1
+            # - GM12878
 execute:
     - assemble

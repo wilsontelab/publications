@@ -1,10 +1,14 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 updating /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/data-scripts/wilsontelab/publications/CFS-M_phase-PolQ-2023/assemble_all_projects/.assemble.yml.data/assemble.yml.status
-updated	3/3/2024 14:18:36
+updated	7/18/2024 15:18:33
 qType	slurm
 submitted	3/3/2024 12:51:52	wilsonte
 job_name                              array  job_ID     exit_status  start_time  wall_time  maxvmem
 svCapture_assemble ---------------------  @  3990643    0    Sun 03/03/24 12:51  00:42:30   3.112G 
+qType	slurm
+submitted	6/22/2024 16:16:17	wilsonte
+job_name                              array  job_ID     exit_status  start_time  wall_time  maxvmem
+svCapture_assemble_HCT116 --------------     9880521    0    Sat 06/22/24 16:16  00:05:49   3.111G 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ====================================================================================================
@@ -624,6 +628,284 @@ job-manager:
 ---
 job-manager:
     ended: Sun 03/03/24 12:59
+...
+====================================================================================================
+job: 9880521
+----------------------------------------------------------------------------------------------------
+/nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/data-scripts/wilsontelab/publications/CFS-M_phase-PolQ-2023/assemble_all_projects/.assemble.yml.data/log/slurm/svCapture_assemble_HCT116.o9880521
+----------------------------------------------------------------------------------------------------
+
+---
+job-manager:
+    host: gl3034.arc-ts.umich.edu
+    started: Sat 06/22/24 16:16
+---
+pipeline: svx-mdi-tools/svCapture:main
+description: "Characterize structural variant junctions in short-read, paired-end capture library(s)"
+suiteVersions:
+    genomex-mdi-tools: main
+execute: assemble
+thread: default
+nTasks: 1
+assemble:
+    assembly-inputs:
+        input-dir:      /nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/projects
+        samples-table:  /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/data-scripts/wilsontelab/publications/CFS-M_phase-PolQ-2023/assemble_all_projects/../sample_lists/CFS-M_phase-PolQ-2023_HCT116.csv
+        warn-only:      false
+    assembly-filters:
+        min-flank-size: 20
+        min-family-size: 3
+        min-sv-size:    10000
+        max-sv-size:    1200000
+        min-samples:    1
+        max-samples:    1
+        min-molecules:  1
+        max-molecules:  1
+        min-split-reads: 0
+        max-shared-proper: 1
+        include-clips:  false
+        min-inversion-size: 50000
+    assembly-coverage:
+        coverage-bin-size: 100
+        force-coverage: false
+    assembly-insertions:
+        find-insertion-templates: true
+        min-insertion-size: 1
+        max-insertion-size: 20
+        min-template-size: 7
+        insertion-search-space: 500
+    assembly-base-usage:
+        profile-base-usage: false
+        base-usage-span: 250
+    assembly-flexibility:
+        profile-flexibility: false
+        flexibility-span: 250
+    assembly-features:
+        profile-features: false
+        features-span:  250
+        feature-files:  NA
+        feature-types:  NA
+    output:
+        output-dir:     /nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/assemblies
+        data-name:      HCT116
+    push:
+        push-server:    null
+        push-dir:       /srv/data
+        push-user:      ubuntu
+        push-key:       ~/.ssh/mdi-push-key.pem
+    version:
+        version:        latest
+    resources:
+        runtime:        conda
+        n-cpu:          8
+        n-gpu:          0
+        ram-per-cpu:    6G
+        tmp-dir:        /tmp
+        tmp-dir-large:  /scratch/wilsonte_root/wilsonte0/wilsonte
+    job-manager:
+        email:          nobody@nowhere.edu
+        account:        wilsonte0
+        time-limit:     6:00:00
+        partition:      standard
+        exclusive:      false
+    workflow:
+        force:          false
+        rollback:       0
+        quiet:          false
+    help:
+        help:           false
+        dry-run:        true
+    conda:
+        prefix: /nfs/turbo/path-wilsonte-turbo/mdi/wilsontelab/greatlakes/mdi/environments/a8a4a1deac 
+        channels:
+            - conda-forge
+            - bioconda
+            - defaults
+        dependencies:
+            - pigz=2.6
+            - bedtools=2.30.0
+            - samtools=1.15.1
+            - bcftools=1.15.1
+            - r-vcfr=1.12.0
+            - r-base=4.1.3
+            - r-essentials=4.1
+            - r-r.utils=2.12.0
+...
+rolling back to pipeline step 0
+
+
+executing: svCapture assemble, step 1 = assemble
+initializing
+loading samples table
+collecting samples metadata
+cross-checking samples metadata
+assembling target region sequences
+getting N50 and adjusted target coverage by sample
+	HCT116_p53_050321	Control_0_APH
+	HCT116_p53_050321	Control_0pt2_APH
+	cell_cycle_081721	Ro3306_G2
+	cell_cycle_081721	Ro3306_0.2APH_G2
+	cell_cycle_081721	Ro3306_0.2APH_S
+	cell_cycle_081721	Ro3306_Colchicine_M
+	cell_cycle_081721	Ro3306_0.2APH_Colchicine_M
+	cell_cycle_110521	RO3306_G2
+	cell_cycle_110521	RO3306_0.2APH_Colch_2APH_M
+	novobiocin_031522	R_G2
+	cell_cycle_110521	RO3306_0.2APH_Colch_M
+	cell_cycle_110521	RO3306_0.2APH_G2
+	cell_cycle_110521	RO3306_Colch_2APH_M
+	cell_cycle_110521	RO3306_Colch_M
+	novobiocin_031522	R_0.2APH_G2
+	high_APH_040422	HCT_G2
+	novobiocin_031522	R_0.2APH_NVB_Colch_M
+	novobiocin_031522	R_NVB_G2
+	novobiocin_031522	R_Colch_M
+	novobiocin_031522	R_0.2APH_Colch_M
+	novobiocin_031522	R_NVB_Colch_M
+	HCT_siPolQ_052422	HCT_M_sicontrl_APH
+	novobiocin_031522	R_0.2APH_NVB_G2
+	high_APH_040422	HCT_0.2APH_G2
+	HCT_ART558_052422	HCT_G2
+	high_APH_040422	HCT_M
+	high_APH_040422	HCT_0.2APH_2APH_M
+	high_APH_040422	HCT_2APH_M
+	HCT_ART558_052422	HCT_0.2APH_ART_Colch_M
+	HCT_ART558_052422	HCT_0.2APH_G2
+	high_APH_040422	HCT_0.2APH__M
+	HCT_siPolQ_052422	HCT_M_sicontrl
+	HCT_ART558_052422	HCT_ART_G2
+	HCT_ART558_091522	HCT_0.2APH_ART10_Colch_M
+	HCT_ART558_052422	HCT_0.2APH_ART_G2
+	HCT_ART558_052422	HCT_Colch_M
+	HCT_ART558_091522	HCT_0.2APH_G2
+	HCT_ART558_091522	HCT_G2
+	HCT_ART558_052422	HCT_0.2APH_Colch_M
+	HCT_ART558_052422	HCT_ART_Colch_M
+	HCT_ART558_091522	HCT_ART10_G2
+	HCT_async_091522	HCT_Asy_0.2APH_G2_2
+	HCT_ART558_091522	HCT_ART10_Colch_M
+	HCT_ART558_091522	HCT_0.2APH_ART10_G2
+	HCT_async_091522	HCT_Asy_G2_1
+	HCT_ART558_091522	HCT_Colch_M
+	HCT_async_091522	HCT_Asy_M_1
+	HCT_async_091522	HCT_Asy_0.2APH_S_1
+	HCT_async_091522	HCT_Asy_S_1
+	HCT_async_091522	HCT_Asy_0.2APH_S_2
+	HCT_async_112122	HCT_Asy_S_101322
+	HCT_async_091522	HCT_Asy_0.2APH_G2_1
+	HCT_ART558_091522	HCT_0.2APH_Colch_M
+	HCT_ROG2_111622	HCT_Ro3_Colch_G2_a
+	HCT_ROG2_111622	HCT_0.2APH_Ro3_Colch_G2_a
+	HCT_async_091522	HCT_Asy_0.2APH_M_2
+	HCT_ROG2_111622	HCT_0.2APH_Ro3_Colch_M_b
+	HCT_ROG2_111622	HCT_Ro3_Colch_M_a
+	HCT_async_112122	HCT_Asy_0.2APH_M_102022
+	HCT_async_091522	HCT_Asy_0.2APH_M_1
+	HCT_async_112122	HCT_Asy_M_101322
+	HCT_ROG2_111622	HCT_0.2APH_Ro3_Colch_M_a
+	HCT_async_112122	HCT_Asy_0.2APH_S_102022
+	HCT_async_112122	HCT_Asy_0.2APH_M_101322
+	HCT_ROG2_111622	HCT_0.2APH_Ro3_Colch_G2_b
+	HCT_async_112122	HCT_Asy_0.2APH_G2_102022
+	HCT_async_112122	HCT_Asy_G2_101322
+	HCT_Art_Nu7_080323	HCT_0.2APH_ART
+	HCT_Art_Nu7_080323	HCT_0.2APH_Nu7
+	HCT_async_112122	HCT_Asy_0.2APH_G2_101322
+	HCT_Pol_Lig_092823	HCT_Cntrol_0.2APH_ART10_Nu7
+	HCT_Art_Nu7_080323	HCT_0.2APH_ART_Nu7
+	HCT_async_112122	HCT_Asy_0.2APH_S_101322
+	HCT_Pol_Lig_092823	HCT_Cntrol_0.2APH_Nu7
+	HCT_Art_Nu7_080323	HCT_0.2APH
+	HCT_Pol_Lig_092823	HCT_L2A.8_0.2APH
+	HCT_Pol_Lig_092823	HCT_L1A.6_0.2APH_ART10
+	HCT_Pol_Lig_092823	HCT_Cntrl_0.2APH
+	HCT_Pol_Lig_092823	HCT_P55B.8_0.2APH_Nu7
+	HCT_Pol_Lig_092823	HCT_P55B.8_0.2APH
+	HCT_Pol_Lig_092823	HCT_L2A.8_0.2APH_ART10
+	HCT_ART_NVB_102723	HCT_0.2APH_Ro3_Colch_M
+	HCT_Pol_Lig_092823	HCT_L1A.6_0.2APH
+	HCT_Pol_Lig_092823	HCT_Cntrol_0.2APH_ART10
+	HCT_ART_NVB_102723	HCT_0.2APH_Ro3_ART_Colch_M
+	HCT_sync_ART_Nu7_123023a	HCT_P2A.5_sync_M_0.2APH
+	HCT_Pol_Lig_092823	HCT_P2A.5_0.2APH
+	HCT_sync_ART_Nu7_123023a	HCT_Cntrl_sync_M_0.2APH_ART_Nu7
+	HCT_ART_NVB_102723	HCT_Ro3_Colch_M
+	HCT_ART_NVB_102723	HCT_0.2APH_NVB_Ro3_Colch_M
+	HCT_Pol_Lig_092823	HCT_P2A.5_0.2APH_Nu7
+	HCT_sync_ART_Nu7_123023b	HCT_Cntrl_sync_M_0.2APH_ART
+	HCT_sync_ART_Nu7_123023b	HCT_Cntrl_sync_M_0.2APH
+	HCT_sync_ART_Nu7_123023a	HCT_Cntrl_sync_M_0.2APH
+	HCT_sync_ART_Nu7_123023b	HCT_P55B.8_sync_M_0.2APH_Nu7
+	HCT_async_S_POL_LIG_022924	HCT_Cntrl_async_S
+	HCT_sync_ART_Nu7_123023b	HCT_Cntrl_sync_M_0.2APH_Nu7
+	HCT_sync_ART_Nu7_123023a	HCT_P2A.5_sync_M_0.2APH_Nu7
+	HCT_async_S_POL_LIG_022924	HCT_L1A.6_async_S_0.2APH
+	HCT_sync_ART_Nu7_123023a	HCT_Cntrl_sync_M_0.2APH_Nu7
+	HCT_sync_ART_Nu7_123023b	HCT_Cntrl_sync_M_0.2APH_ART_Nu7
+	HCT_async_S_POL_LIG_022924	HCT_L1A.6_async_S_0.2APH_ART
+	HCT_async_S_POL_LIG_022924	HCT_P2A.5_async_S_0.2APH_Nu7
+	HCT_async_S_POL_LIG_022924	HCT_L2A.8_async_S_0.2APH
+	HCT_async_S_POL_LIG_022924	HCT_P55B.8_async_S_0.2APH
+	HCT_async_S_POL_LIG_062024	HCT_L1A.6_async_S_0.2APH
+	HCT_async_S_POL_LIG_062024	HCT_L2A.8_async_S_0.2APH_ART
+	HCT_async_S_POL_LIG_022924	HCT_Cntrl_async_S_0.2APH
+	HCT_async_S_POL_LIG_062024	HCT_Cntrl_async_S
+	HCT_sync_ART_Nu7_123023b	HCT_P55B.8_sync_M_0.2APH
+	HCT_async_S_POL_LIG_062024	HCT_Cntrl_async_S_0.2APH
+	HCT_async_S_POL_LIG_022924	HCT_P2A.5_async_S_0.2APH
+	HCT_async_S_POL_LIG_022924	HCT_L2A.8_async_S_0.2APH_ART
+	HCT_async_S_POL_LIG_022924	HCT_P55B.8_async_S_0.2APH_Nu7
+	HCT_async_S_POL_LIG_062024	HCT_P2A.5_async_S_0.2APH
+	HCT_async_S_POL_LIG_062024	HCT_L2A.8_async_S_0.2APH
+	HCT_async_S_POL_LIG_062024	HCT_L1A.6_async_S_0.2APH_ART
+	HCT_async_S_POL_LIG_062024	HCT_P2A.5_async_S_0.2APH_Nu7
+	HCT_async_S_POL_LIG_062024	HCT_P55B.8_async_S_0.2APH
+	HCT_async_S_POL_LIG_062024	HCT_P55B.8_async_S_0.2APH_Nu7
+parsing bin coverage matrices
+	FHIT	hg38::chr3:60300384-60700384
+	WWOX	hg38::chr16:78456040-78856040
+tabulating and filtering SVs across all projects and samples
+	HCT116_p53_050321
+	cell_cycle_081721
+	cell_cycle_110521
+	novobiocin_031522
+	high_APH_040422
+	HCT_siPolQ_052422
+	HCT_ART558_052422
+	HCT_ART558_091522
+	HCT_async_091522
+	HCT_ROG2_111622
+	HCT_async_112122
+	HCT_Art_Nu7_080323
+	HCT_Pol_Lig_092823
+	HCT_ART_NVB_102723
+	HCT_sync_ART_Nu7_123023a
+	HCT_sync_ART_Nu7_123023b
+	HCT_async_S_POL_LIG_022924
+	HCT_async_S_POL_LIG_062024
+counting filtered SVs by sample and type
+attempting to find insertion templates near junctions
+printing output
+done
+
+writing Stage 2 package file for svCapture assemble
+/nfs/turbo/umms-glover/publications/CFS-M_phase-PolQ-2023/assemblies/HCT116/HCT116.svCapture.assemble.mdi.package.zip
+  adding: HCT116.assemble.rds (deflated 1%)
+  adding: package.yml (deflated 67%)
+  adding: HCT116.svCapture.status (deflated 10%)
+  adding: HCT116.svCapture.concatenatedLogs (stored 0%)
+
+
+---
+job-manager:
+    exit_status: 0
+    walltime: 5:49.92
+    seconds: 349.92
+    maxvmem: 3110780K
+    swaps: 0
+---
+job-manager:
+    ended: Sat 06/22/24 16:22
 ...
 ====================================================================================================
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
