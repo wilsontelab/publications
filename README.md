@@ -13,7 +13,7 @@ a keyword and year.
 | Keyword | Created | Published | Description |
 | --------| ---- | ---- | ----------- |
 | svCapture | 2022 | 2022 | Technical report describing error minimization strategies for finding rare structural variants in NGS capture libraries. |
-| CFS-M_phase-PolQ | 2023 | pending | Application of svCapture to discover that structural variants at commmon fragile site are created by end joining in M phase. |
+| CFS-M_phase-PolQ | 2023 | 2024 | Application of svCapture to discover that structural variants at commmon fragile site are created by end joining in M phase. |
 
 ### Michigan Data Interface
 
@@ -28,8 +28,8 @@ Please see an individual publication for details.
 
 ### Citing this repository
 
-Releases of this repository are linked to Zenodo via the following DOI (or a most recent version of it):
-[![DOI](https://zenodo.org/badge/494023172.svg)](https://zenodo.org/doi/10.5281/zenodo.10728194)
+Releases of this repository are linked to Zenodo via the following DOI:
+[![DOI](https://zenodo.org/badge/494023172.svg)](https://doi.org/10.5281/zenodo.12775317)
 
 In addition, please cite the specific publication for the data set and code
 relevant to your work.
